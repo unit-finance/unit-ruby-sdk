@@ -3,10 +3,10 @@
 require_relative "lib/unit/version"
 
 Gem::Specification.new do |spec|
-  spec.name = "unit-ruby-gem"
+  spec.name = "unit-ruby-sdk"
   spec.version = UnitRubySdk::VERSION
-  spec.authors = ["stymoshchuk"]
-  spec.email = ["sol.tymoshchuk@gmail.com"]
+  spec.authors = ["Unit"]
+  spec.email = ["dev@unit.co"]
 
   spec.summary = "TODO: Write a short summary, because RubyGems requires one."
   spec.description = "TODO: Write a longer description or delete this line."
