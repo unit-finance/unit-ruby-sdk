@@ -10,7 +10,7 @@ class IndividualApplicationDto
               :sole_proprietorship, :tags, :relationships, :attributes
 
   sig do
-    params(id: String, created_at: String, full_name: FullName, address: Address, date_of_birth: String,
+    params(id: String, created_at: String, full_name: FullName, address: Address, date_of_birth: Date,
            email: String, phone: Phone, status: String, ssn: T.nilable(String),
            message: T.nilable(String), ip: T.nilable(String), ein: T.nilable(String), dba: T.nilable(String),
            sole_proprietorship: T.nilable(T::Boolean), tags: T.nilable(Hash),

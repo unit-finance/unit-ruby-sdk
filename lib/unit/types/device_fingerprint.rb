@@ -13,4 +13,15 @@ class DeviceFingerprint
     @value = value
     @provider = provider
   end
+
+  def represent
+    {
+      value: value,
+      provider: provider
+    }
+  end
+
+  def self.from_json_api(data)
+    DeviceFingerprint.new(data["value"], data["provider"])
+  end
 end

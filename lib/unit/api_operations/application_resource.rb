@@ -37,7 +37,8 @@ class ApplicationResource < BaseResource
   end
   def get_application(application_id)
     response = self.class.get("#{api_url}/applications/#{application_id}", headers: headers)
-    if response.code == 200
+    case response.code
+    when 200...300
       IndividualApplicationDto.from_json_api(response)
     else
       UnitError.from_json_api(response)
