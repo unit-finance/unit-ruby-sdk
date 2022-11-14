@@ -14,7 +14,7 @@ class IndividualApplicationDto
            email: String, phone: Phone, status: String, ssn: T.nilable(String),
            message: T.nilable(String), ip: T.nilable(String), ein: T.nilable(String), dba: T.nilable(String),
            sole_proprietorship: T.nilable(T::Boolean), tags: T.nilable(Hash),
-           relationships: Relationship).void
+           relationships: Hash).void
   end
   def initialize(id, created_at, full_name, address, date_of_birth,
                  email, phone, status, ssn = nil, message = nil,
@@ -40,13 +40,12 @@ class IndividualApplicationDto
     @relationships = relationships
   end
 
-  def self.from_json_api(response)
-    attributes = response["data"]["attributes"]
-    IndividualApplicationDto.new(response["data"]["id"], attributes["createdAt"], FullName.from_json_api(attributes["fullName"]),
+  def self.from_json_api(id, _type, attributes, relationships)
+    IndividualApplicationDto.new(id, attributes["createdAt"], FullName.from_json_api(attributes["fullName"]),
                                  Address.from_json_api(attributes["address"]), attributes["dateOfBirth"],
                                  attributes["email"], Phone.from_json_api(attributes["phone"]),
                                  attributes["status"], attributes["ssn"], attributes["message"],
                                  attributes["ip"], attributes["ein"], attributes["dba"], attributes["sole_proprietorship"],
-                                 attributes["tags"], Relationship.from_json_api(response["data"]["relationships"]))
+                                 attributes["tags"], relationships)
   end
 end

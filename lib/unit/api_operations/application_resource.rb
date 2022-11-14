@@ -9,6 +9,8 @@ require_relative "../types/phone"
 require_relative "../types/relationship"
 
 require_relative "individual_application_dto"
+require_relative '../types/dto_decoder'
+require_relative "../unit_response.rb"
 require_relative "../errors/unit_error"
 require "json"
 
@@ -19,14 +21,14 @@ class ApplicationResource < BaseResource
   extend T::Sig
 
   sig do
-    params(request: CreateIndividualApplicationRequest).returns(T.any(IndividualApplicationDto, UnitError))
+    params(request: CreateIndividualApplicationRequest).void
   end
   def create_application(request)
     payload = request.to_json_api
 
     response = self.class.post("#{api_url}/applications", body: payload, headers: headers)
     if response.code == 201
-      IndividualApplicationDto.from_json_api(response)
+      check_application_type(response)
     else
       UnitError.from_json_api(response)
     end
@@ -43,5 +45,9 @@ class ApplicationResource < BaseResource
     else
       UnitError.from_json_api(response)
     end
+  end
+
+  def check_application_type(response)
+    p UnitResponse.new(DtoDecoder.decode(response["data"]), DtoDecoder.decode(response["included"]))
   end
 end

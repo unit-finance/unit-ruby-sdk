@@ -14,12 +14,10 @@ class Relationship
     @type = type
   end
 
-  def represent
-    { "org": { "data": { "type": type, "id": id } } }
+  sig do
+    params(nested: T::Boolean).void
   end
-
-  def self.from_json_api(data)
-    payload = data["org"]["data"]
-    Relationship.new(payload["id"], payload["type"])
+  def represent(nested = true )
+    nested ? { "data": { "id": id, "type": type } } : { "id": id, "type": type }
   end
 end
