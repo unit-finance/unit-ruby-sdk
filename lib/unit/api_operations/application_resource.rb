@@ -4,6 +4,7 @@ require "sorbet-runtime"
 require_relative "../api_operations/base_resource"
 require_relative "../api_operations/create_individual_application_request"
 require_relative "../api_operations/create_business_application_request"
+require_relative "../api_operations/patch_application_request"
 require_relative "../api_operations/list_application_params"
 
 require_relative "../types/full_name"
@@ -38,7 +39,7 @@ class ApplicationResource < BaseResource
   end
 
   sig do
-    params(application_id: Integer).void
+    params(application_id: Integer).returns(T.any(UnitResponse, UnitError))
   end
   def get_application(application_id)
     response = self.class.get("#{api_url}/applications/#{application_id}", headers: headers)
@@ -51,15 +52,15 @@ class ApplicationResource < BaseResource
   end
 
   sig do
-    params(params: ListApplicationParams).void
+    params(params: ListApplicationParams).returns(T.any(UnitResponse, UnitError))
   end
   def list_applications(params = nil)
     response = self.class.get("#{api_url}/applications", body: params.to_hash.to_json, headers: headers)
     case response.code
     when 200...300
-      p check_application_type(response)
+      check_application_type(response)
     else
-      p UnitError.from_json_api(response)
+      UnitError.from_json_api(response)
     end
   end
 
