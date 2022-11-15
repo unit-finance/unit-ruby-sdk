@@ -13,7 +13,7 @@ class CreateIndividualApplicationRequest
   extend T::Sig
 
   sig do
-    params(ssn: String, full_name: FullName, date_of_birth: Date, address: Address, email: String, phone: Phone,
+    params(ssn: String, full_name: FullName, date_of_birth: String, address: Address, email: String, phone: Phone,
            ip: T.nilable(String), ein: T.nilable(String), dba: T.nilable(String), sole_proprietorship: T.nilable(T::Boolean),
            passport: T.nilable(String), nationality: T.nilable(String), device_fingerprints: T.nilable(DeviceFingerprint),
            idempotency_key: String, tags: T.nilable(Hash), jwt_subject: String).void

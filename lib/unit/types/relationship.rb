@@ -17,7 +17,7 @@ class Relationship
   sig do
     params(nested: T::Boolean).void
   end
-  def represent(nested = true )
+  def represent(nested = true)
     nested ? { "data": { "id": id, "type": type } } : { "id": id, "type": type }
   end
 end

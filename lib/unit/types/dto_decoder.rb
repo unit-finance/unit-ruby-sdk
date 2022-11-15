@@ -1,16 +1,23 @@
+# frozen_string_literal: true
+
 require_relative "../api_operations/individual_application_dto"
+require_relative "../api_operations/business_application_dto"
 require_relative "../api_operations/application_document_dto"
 require_relative "../types/relationship"
 require_relative "../types/relationship_array"
-
+require_relative "../types/raw_unit_object"
 
 MAPPINGS = {
   "individualApplication": lambda { |id, type, attributes, relationships|
-    IndividualApplicationDto.from_json_api(id, type, attributes, relationships)},
-  "document": lambda { |id, type, attributes, relationships|
-    ApplicationDocumentDto.from_json_api(id, type, attributes)}
+                             IndividualApplicationDto.from_json_api(id, type, attributes, relationships)
+                           },
+  "document": lambda { |id, type, attributes, _relationships|
+                ApplicationDocumentDto.from_json_api(id, type, attributes)
+              },
+  "businessApplication": lambda { |id, type, attributes, relationships|
+                           BusinessApplicationDto.from_json_api(id, type, attributes, relationships)
+                         }
 }.freeze
-
 
 def split_json_api_single_response(payload)
   id = payload["id"]
@@ -19,21 +26,19 @@ def split_json_api_single_response(payload)
   if payload["relationships"]
     relationships = {}
     payload["relationships"].map do |key, value|
-      if value["data"].is_a?(Array)
-        relationships[key] = RelationshipArray.new(value["data"])
-      else
-        relationships[key] = Relationship.new(value["data"]["id"], value["data"]["type"])
-      end
+      relationships[key] = if value["data"].is_a?(Array)
+                             RelationshipArray.new(value["data"])
+                           else
+                             Relationship.new(value["data"]["id"], value["data"]["type"])
+                           end
     end
   end
   [id, type, attributes, relationships]
 end
 
 def split_json_api_array_response(payload)
-  unless payload.is_a?(Array)
-    raise "Could not parse response. Expected an array of data objects."
+  raise "Could not parse response. Expected an array of data objects." unless payload.is_a?(Array)
 
-  end
   dtos = []
   payload.map do |data|
     dtos << split_json_api_single_response(data)
@@ -42,12 +47,17 @@ def split_json_api_array_response(payload)
 end
 
 def mapping_wrapper(id, type, attributes, relationships)
-  MAPPINGS[type.to_sym].call(id, type, attributes, relationships)
+  if MAPPINGS.key?(type.to_sym)
+    MAPPINGS[type.to_sym].call(id, type, attributes, relationships)
+  else
+    RawUnitObject.new(id, type, attributes, relationships)
+  end
 end
-
 
 class DtoDecoder
   def self.decode(payload)
+    return nil if payload.nil?
+
     if payload.is_a?(Array)
       dtos = split_json_api_array_response(payload)
       response = []
@@ -61,4 +71,3 @@ class DtoDecoder
     end
   end
 end
-

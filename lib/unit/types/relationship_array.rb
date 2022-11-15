@@ -1,9 +1,12 @@
-require 'sorbet-runtime'
+# frozen_string_literal: true
+
+require "sorbet-runtime"
 
 class RelationshipArray
   extend T::Sig
 
   attr_reader :data
+
   sig do
     params(array: Array).void
   end
@@ -11,12 +14,11 @@ class RelationshipArray
     relationships = []
     array.each do |item|
       relationships << if item.is_a?(Relationship)
-        item
-      else
-        Relationship.new(item["id"], item["type"]) end
+                         item
+                       else
+                         Relationship.new(item["id"], item["type"]) end
     end
     @data = relationships
-    
   end
 
   def represent
@@ -27,6 +29,7 @@ class RelationshipArray
     RelationshipArray.new(
       ids.map do |id|
         Relationship.new(id, type)
-      end)
+      end
+    )
   end
 end

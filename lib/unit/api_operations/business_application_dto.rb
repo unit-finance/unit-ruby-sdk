@@ -1,22 +1,26 @@
 # frozen_string_literal: true
 
-
 require "sorbet-runtime"
+
+require_relative "../types/full_name"
+require_relative "../types/address"
+require_relative "../types/phone"
+require_relative "../types/business_contact"
+require_relative "../types/officer"
+require_relative "../types/beneficial_owner"
 
 class BusinessApplicationDto
   extend T::Sig
 
-
   attr_reader :id, :created_at, :name, :address, :phone, :status, :state_of_incorporation,
               :entity_type, :contact, :officer, :beneficial_owners, :ssn, :message, :ip, :ein, :dba,
-               :tags, :relationships
+              :tags, :relationships
 
   sig do
-    params(id: String, created_at: String, full_name: FullName, address: Address, date_of_birth: String,
-           email: String, phone: Phone, status: String, ssn: T.nilable(String),
-           message: T.nilable(String), ip: T.nilable(String), ein: T.nilable(String), dba: T.nilable(String),
-           sole_proprietorship: T.nilable(T::Boolean), tags: T.nilable(Hash),
-           relationships: Hash).void
+    params(id: String, created_at: String, name: String, address: Address, phone: Phone, status: String,
+           state_of_incorporation: String, entity_type: String, contact: BusinessContact, officer: Officer,
+           beneficial_owners: Array, ssn: T.nilable(String), message: T.nilable(String), ip: T.nilable(String),
+           ein: T.nilable(String), dba: T.nilable(String), tags: T.nilable(Hash), relationships: T.nilable(Hash)).void
   end
   def initialize(id, created_at, name, address, phone, status,
                  state_of_incorporation, entity_type, contact, officer, beneficial_owners, ssn = nil, message = nil,
@@ -43,11 +47,10 @@ class BusinessApplicationDto
   end
 
   def self.from_json_api(id, _type, attributes, relationships)
-    BusinessApplicationDto.new(id, attributes["createdAt"], attributes["name"], attributes["address"], attributes["phone"],
+    BusinessApplicationDto.new(id, attributes["createdAt"], attributes["name"], Address.from_json_api(attributes["address"]), Phone.from_json_api(attributes["phone"]),
                                attributes["status"], attributes["stateOfIncorporation"], attributes["entityType"],
-                               attributes["contact"], attributes["officer"], attributes["beneficialOwners"],
+                               BusinessContact.from_json_api(attributes["contact"]), Officer.from_json_api(attributes["officer"]), BeneficialOwner.from_json_api(attributes["beneficialOwners"]),
                                attributes["ssn"], attributes["message"], attributes["ip"], attributes["ein"],
                                attributes["dba"], attributes["tags"], relationships)
   end
-
 end

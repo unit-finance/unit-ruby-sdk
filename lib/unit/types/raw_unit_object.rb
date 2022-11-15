@@ -1,5 +1,6 @@
-class RawUnitObject
+# frozen_string_literal: true
 
+class RawUnitObject
   attr_reader :id, :type, :attributes, :relationships
 
   def initialize(id, type, attributes, relationships)

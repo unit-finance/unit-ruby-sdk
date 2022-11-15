@@ -1,48 +1,64 @@
+# frozen_string_literal: true
+
+require "sorbet-runtime"
+
+require_relative "../types/full_name"
+require_relative "../types/address"
+require_relative "../types/phone"
+require_relative "../types/business_contact"
+require_relative "../types/beneficial_owner"
+require_relative "../types/officer"
+
 class CreateBusinessApplicationRequest
   attr_reader :name, :address, :phone, :state_of_incorporation, :ein, :contact, :officer, :beneficial_owners,
-              :entity_type, :dba, :ip, :website
+              :entity_type, :dba, :ip, :website, :type
 
   extend T::Sig
 
   sig do
     params(name: String, address: Address, phone: Phone, state_of_incorporation: String,
-           contact:).void
+           ein: String, contact: BusinessContact, officer: Officer, beneficial_owners: Array,
+           entity_type: String, dba: T.nilable(String), ip: T.nilable(String), website: T.nilable(String)).void
   end
-  def initialize(ssn, full_name, date_of_birth, address, email, phone, ip = nil, ein = nil, dba = nil, sole_proprietorship = nil, passport = nil,
-                 nationality = nil, device_fingerprints = nil, idempotency_key = nil, tags = nil, jwt_object = nil)
-    @ssn = ssn
-    @full_name = full_name
-    @date_of_birth = date_of_birth
+  def initialize(name, address, phone, state_of_incorporation, ein, contact, officer,
+                 beneficial_owners, entity_type, dba = nil, ip = nil,
+                 website = nil)
+    @name = name
     @address = address
     @phone = phone
-    @email = email
-    @ip = ip
+    @state_of_incorporation = state_of_incorporation
     @ein = ein
+    @contact = contact
+    @officer = officer
+    @beneficial_owners = beneficial_owners.map(&:represent)
+    @entity_type = entity_type
     @dba = dba
-    @sole_proprietorship = sole_proprietorship
-    @passport = passport
-    @nationality = nationality
-    @device_fingerprints = device_fingerprints
-    @idempotency_key = idempotency_key
-    @tags = tags
-    @jwt_object = jwt_object
-    @type = "individualApplication"
+    @ip = ip
+    @website = website
+    @type = "businessApplication"
   end
 
   def to_json_api
-    {
+    payload = {
       "data": {
         "type": type,
         "attributes": {
-          "ssn": ssn,
-          "fullName": full_name.represent,
-          "dateOfBirth": date_of_birth,
+          "name": name,
           "address": address.represent,
-          "email": email,
-          "phone": phone.represent
+          "phone": phone.represent,
+          "stateOfIncorporation": state_of_incorporation,
+          "ein": ein,
+          "contact": contact.represent,
+          "officer": officer.represent,
+          "beneficialOwners": beneficial_owners,
+          "entityType": entity_type
         }
       }
     }.to_json
+    attributes = JSON.parse(payload)["data"]["attributes"]
+    attributes["dba"] = dba if dba
+    attributes["ip"] = ip if ip
+    attributes["website"] = website if website
+    payload
   end
 end
-

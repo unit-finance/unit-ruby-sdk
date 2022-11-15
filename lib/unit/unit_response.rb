@@ -1,4 +1,6 @@
-require 'sorbet-runtime'
+# frozen_string_literal: true
+
+require "sorbet-runtime"
 
 class UnitResponse
   extend T::Sig
@@ -8,4 +10,3 @@ class UnitResponse
     @included = included
   end
 end
-
