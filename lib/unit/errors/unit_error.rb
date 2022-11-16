@@ -1,11 +1,20 @@
 # frozen_string_literal: true
 
 require_relative "unit_error_payload"
+
+# Represents an Error returned from Unit's API
+# TODO: Consider moving from_json_api to a module and make it return an array of UnitError
+# TODO: Consider dropping the UnitErrorPayload class
 class UnitError
+  # Create a new UnitError
+  # @param [Array<UnitErrorPayload>] errors
   def initialize(errors)
     @errors = errors
   end
 
+  # Creates a new UnitError from given response.
+  # @param [Hash] response The response returned from Unit's API
+  # @return [UnitError] a new UnitError populated with values taken from the response
   def self.from_json_api(response)
     errors = response["errors"]
 
