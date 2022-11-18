@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require_relative "../api_operations/individual_application_dto"
-require_relative "../api_operations/business_application_dto"
-require_relative "../api_operations/application_document_dto"
+require_relative "../api_resources/individual_application_dto"
+require_relative "../api_resources/business_application_dto"
+require_relative "../api_resources/application_document_dto"
 require_relative "../types/relationship"
 require_relative "../types/relationship_array"
 require_relative "../types/raw_unit_object"

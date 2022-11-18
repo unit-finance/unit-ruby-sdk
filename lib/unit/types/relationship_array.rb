@@ -1,15 +1,9 @@
 # frozen_string_literal: true
 
-require "sorbet-runtime"
-
 class RelationshipArray
-  extend T::Sig
-
   attr_reader :data
 
-  sig do
-    params(array: Array).void
-  end
+  # @param array [Array] The array of relationships
   def initialize(array)
     relationships = []
     array.each do |item|
@@ -21,10 +15,14 @@ class RelationshipArray
     @data = relationships
   end
 
+  # @return [Hash] The JSON API payload
   def represent
     { "data": data.map(&:represent) }
   end
 
+  # @param type [String] The type of the relationship
+  # @@param [Array] The array of ids
+  # @return [RelationshipArray] The relationship array
   def self.from_ids_array(type, ids)
     RelationshipArray.new(
       ids.map do |id|

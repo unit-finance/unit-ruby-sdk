@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 require_relative "unit_error_payload"
-class UnitError
+module UnitError
   def initialize(errors)
     @errors = errors
   end
 
-  def self.from_json_api(response)
+  def from_json_api(response)
     errors = response["errors"]
 
     errors&.map do |error|

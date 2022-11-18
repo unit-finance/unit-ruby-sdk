@@ -1,19 +1,16 @@
 # frozen_string_literal: true
 
-require "sorbet-runtime"
-
 class DeviceFingerprint
   attr_reader :value, :provider
 
-  extend T::Sig
-  sig do
-    params(value: String, provider: String)
-  end
+  # @param value [String] The value
+  # @param provider [String] The provider
   def initialize(value, provider = "iovation")
     @value = value
     @provider = provider
   end
 
+  # @return [Hash] The JSON API payload
   def represent
     {
       value: value,
@@ -21,6 +18,7 @@ class DeviceFingerprint
     }
   end
 
+  # @param data [Hash] The JSON API payload
   def self.from_json_api(data)
     DeviceFingerprint.new(data["value"], data["provider"])
   end

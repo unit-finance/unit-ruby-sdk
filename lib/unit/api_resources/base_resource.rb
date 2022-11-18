@@ -1,19 +1,19 @@
 # frozen_string_literal: true
 
-require "sorbet-runtime"
 require "httparty"
 
 class BaseResource
   include HTTParty
-  extend T::Sig
 
   attr_reader :api_url, :headers
 
   @api_url = base_uri "https://api.s.unit.sh"
 
-  sig do
-    params(api_url: String, token: String).void
-  end
+  # @param api_url [String] The API URL
+  # @param token [String] The API token
+  # @return [BaseResource]
+  # @example
+  # BaseResource.new("https://api.s.unit.sh", "token")
   def initialize(api_url, token)
     @api_url = api_url
     @token = token

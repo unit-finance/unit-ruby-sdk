@@ -4,6 +4,17 @@ class BeneficialOwner
   attr_reader :full_name, :date_of_birth, :address, :phone, :email,
               :status, :ssn, :passport, :nationality, :percentage
 
+  # @param [FullName] full_name
+  # @param [Date] date_of_birth
+  # @param [Address] address
+  # @param [Phone] phone
+  # @param [String] email
+  # @param [String] ssn
+  # @param optional [String] status
+  # @param optional [String] passport
+  # @param optional [String] nationality
+  # @param optional [Integer] percentage
+  # @return [BeneficialOwner]
   def initialize(full_name, date_of_birth, address, phone, email, ssn, status = nil, passport = nil,
                  nationality = nil, percentage = nil)
     @full_name = full_name
@@ -18,6 +29,8 @@ class BeneficialOwner
     @percentage = percentage
   end
 
+  # @param [Array] list of BeneficialOwners
+  # @return [Array] The JSON API payload
   def self.from_json_api(list)
     beneficial_owners = []
     list.map do |data|
@@ -26,6 +39,7 @@ class BeneficialOwner
     end
   end
 
+  # @return [Hash] The JSON API payload
   def represent
     payload =
       {
@@ -34,12 +48,12 @@ class BeneficialOwner
         address: address.represent,
         phone: phone.represent,
         email: email,
-        ssn: ssn
+        ssn: ssn,
+        status: status,
+        passport: passport,
+        nationality: nationality,
+        percentage: percentage
       }
-    payload["status"] = status if status
-    payload["passport"] = passport if passport
-    payload["nationality"] = nationality if nationality
-    payload["percentage"] = percentage if percentage
-    payload
+    payload.compact
   end
 end

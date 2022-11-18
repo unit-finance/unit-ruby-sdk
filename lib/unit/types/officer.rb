@@ -1,11 +1,19 @@
 # frozen_string_literal: true
 
-require "sorbet-runtime"
-
 class Officer
   attr_reader :full_name, :date_of_birth, :address, :phone, :email,
               :status, :title, :ssn, :passport, :nationality
 
+  # @param [FullName] full_name
+  # @param [Date] date_of_birth
+  # @param [Address] address
+  # @param [Phone] phone
+  # @param [String] email
+  # @param [String] ssn
+  # @param optional [String] status
+  # @param optional [String] title
+  # @param optional [String] passport
+  # @param optional [String] nationality
   def initialize(full_name, date_of_birth, address, phone, email, ssn,
                  status = nil, title = nil, passport = nil,
                  nationality = nil)
@@ -21,11 +29,14 @@ class Officer
     @nationality = nationality
   end
 
+  # @param [Hash] data
+  # @return [Officer]
   def self.from_json_api(data)
     Officer.new(data["fullName"], data["dateOfBirth"], data["address"], data["phone"], data["email"], data["ssn"],
                 data["status"], data["title"], data["passport"], data["nationality"])
   end
 
+  # @return [Hash] The JSON API payload
   def represent
     payload =
       {
@@ -34,12 +45,13 @@ class Officer
         address: address.represent,
         phone: phone.represent,
         email: email,
-        ssn: ssn
+        ssn: ssn,
+        status: status,
+        title: title,
+        passport: passport,
+        nationality: nationality
       }
-    payload["status"] = status if status
-    payload["title"] = title if title
-    payload["passport"] = passport if passport
-    payload["nationality"] = nationality if nationality
-    payload
+    payload.compact
+
   end
 end

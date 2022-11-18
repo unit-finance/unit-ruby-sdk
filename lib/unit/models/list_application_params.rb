@@ -1,8 +1,12 @@
 # frozen_string_literal: true
-
 class ListApplicationParams
   attr_reader :offset, :limit, :email, :tags, :query, :sort
 
+  # @param offset [Integer] The offset
+  # @param limit [Integer] The limit
+  # @param email [String] The email
+  # @param tags [String] The tags
+  # @param query [String] The query
   def initialize(offset = 0, limit = 100, email = nil, tags = nil,
                  query = nil, sort = nil)
     @offset = offset

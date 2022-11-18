@@ -15,4 +15,5 @@ gem "tapioca", require: false, group: :development
 
 gem "httparty"
 
+gem "httmultiparty", "~> 0.3.16"
 gem "ruby-debug-ide"

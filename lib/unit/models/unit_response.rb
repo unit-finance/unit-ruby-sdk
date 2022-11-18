@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require "sorbet-runtime"
 
 class UnitResponse
-  extend T::Sig
+  # @param data [Hash] The JSON API payload
+  # @param included [Array] The JSON API payload
 
   def initialize(data, included)
     @data = data
