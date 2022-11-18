@@ -12,8 +12,6 @@ class BaseResource
   # @param api_url [String] The API URL
   # @param token [String] The API token
   # @return [BaseResource]
-  # @example
-  # BaseResource.new("https://api.s.unit.sh", "token")
   def initialize(api_url, token)
     @api_url = api_url
     @token = token

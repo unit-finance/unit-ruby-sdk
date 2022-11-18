@@ -4,18 +4,16 @@ require "httmultiparty"
 require "httparty"
 
 require_relative "../api_resources/base_resource"
-require_relative "../api_resources/individual_application_request"
-require_relative "../api_resources/business_application_request"
-require_relative "../api_resources/pplication_request"
-require_relative "../api_resources/plication_params"
+require_relative "../models/create_business_application_request"
+require_relative "../models/create_individual_application_request"
+require_relative "../models/patch_application_request"
+require_relative "../models/list_application_params"
 
 require_relative "../types/full_name"
 require_relative "../types/address"
 require_relative "../types/phone"
 require_relative "../types/relationship"
 
-require_relative "individual_application_dto"
-require_relative "../types/dto_decoder"
 require_relative "../models/unit_response"
 require_relative "../errors/unit_error"
 require "json"
@@ -31,12 +29,11 @@ class ApplicationResource < BaseResource
     response = self.class.post("#{api_url}/applications", body: payload, headers: headers)
     case response.code
     when 200...300
-      check_application_type(response)
+      UnitResponse.new(response["data"], response["included"])
     else
       UnitError.from_json_api(response)
     end
   end
-
 
   # @param [Integer] application_id
   # @return [UnitResponse, UnitError]
@@ -44,7 +41,7 @@ class ApplicationResource < BaseResource
     response = self.class.get("#{api_url}/applications/#{application_id}", headers: headers)
     case response.code
     when 200...300
-      check_application_type(response)
+      UnitResponse.new(response["data"], response["included"])
     else
       UnitError.from_json_api(response)
     end
@@ -56,14 +53,10 @@ class ApplicationResource < BaseResource
     response = self.class.get("#{api_url}/applications", body: params.to_hash.to_json, headers: headers)
     case response.code
     when 200...300
-      check_application_type(response)
+      UnitResponse.new(response["data"], response["included"])
     else
       UnitError.from_json_api(response)
     end
-  end
-
-  def check_application_type(response)
-    UnitResponse.new(DtoDecoder.decode(response["data"]), DtoDecoder.decode(response["included"]))
   end
 
   # @param [UploadDocumentRequest] request
@@ -71,8 +64,8 @@ class ApplicationResource < BaseResource
   def upload(request)
     url = "#{api_url}/applications/#{request.application_id}/documents/#{request.document_id}"
 
-    r = {file: File.new(request.file)}
-    puts r
+    r = request.to_json_api
+
     headers.merge!({ "Content-Type" => "image/jpeg" }) if request.file_type == "image/jpeg"
     headers.merge!({ "Content-Type" => "image/png" }) if request.file_type == "image/png"
     headers.merge!({ "Content-Type" => "application/pdf" }) if request.file_type == "application/pdf"
@@ -81,9 +74,9 @@ class ApplicationResource < BaseResource
 
     case response.code
     when 200...300
-      p UnitResponse.new(response["data"], nil)
+      UnitResponse.new(response["data"], nil)
     else
-      p UnitError.from_json_api(response)
+      UnitError.from_json_api(response)
     end
   end
 

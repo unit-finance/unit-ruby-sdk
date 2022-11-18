@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+#
 class RelationshipArray
   attr_reader :data
 

@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "sorbet-runtime"
-
 class Address
   attr_reader :street, :street2, :city, :state, :postal_code, :country
 
