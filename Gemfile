@@ -9,11 +9,11 @@ gem "rake", "~> 13.0"
 
 gem "rubocop", "~> 1.21"
 
-gem "sorbet", group: :development
-gem "sorbet-runtime"
-gem "tapioca", require: false, group: :development
-
 gem "httparty"
 
 gem "httmultiparty", "~> 0.3.16"
 gem "ruby-debug-ide"
+
+gem "factory_bot_rails", "~> 6.2.0"
+
+gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'main'

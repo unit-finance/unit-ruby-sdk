@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-#
+# represents relationship Array in the JSON API payload
 class RelationshipArray
   attr_reader :data
 

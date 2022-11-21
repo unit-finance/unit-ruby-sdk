@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require "sorbet-runtime"
 require_relative "../types/full_name"
 require_relative "../types/address"
 require_relative "../types/phone"

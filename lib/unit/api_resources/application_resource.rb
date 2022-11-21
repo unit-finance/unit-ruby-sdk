@@ -18,6 +18,7 @@ require_relative "../models/unit_response"
 require_relative "../errors/unit_error"
 require "json"
 
+# class for creating requests to Unit API and parsing responses
 class ApplicationResource < BaseResource
   include HTTParty
   include HTTMultiParty
@@ -69,7 +70,7 @@ class ApplicationResource < BaseResource
     headers.merge!({ "Content-Type" => "image/jpeg" }) if request.file_type == "image/jpeg"
     headers.merge!({ "Content-Type" => "image/png" }) if request.file_type == "image/png"
     headers.merge!({ "Content-Type" => "application/pdf" }) if request.file_type == "application/pdf"
-    puts headers
+
     response = self.class.put(url, query: r, headers: headers)
 
     case response.code

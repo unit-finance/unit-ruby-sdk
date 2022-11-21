@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# represents relationships in the JSON API payload
 class Relationship
   attr_reader :id, :type
 
