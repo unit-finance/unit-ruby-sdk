@@ -16,6 +16,7 @@ require "unit/models/upload_document_request"
 
 # Test the ApplicationResource class
 class ApplicationResourceTest < Minitest::Test
+
   FULL_NAME = FullName.new("John", "Doe")
   ADDRESS = Address.new("123 Main St", "San Francisco", "CA", "94205", "US")
   EMAIL = "so@gmail.com"
