@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :individual_application_payload do
     ssn { Faker::Number.number(digits: 9) }

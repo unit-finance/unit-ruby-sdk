@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class FullName
   attr_reader :first, :last
 
@@ -15,10 +16,5 @@ class FullName
       first: first,
       last: last
     }
-  end
-
-  # @param data [Hash] The JSON API payload
-  def self.from_json_api(data)
-    FullName.new(data["first"], data["last"])
   end
 end

@@ -20,8 +20,7 @@ class PatchApplicationRequest
         attributes: { tags: tags }
       }
     }
-    attributes = payload[:data][:attributes].compact!
-    payload[:data][:attributes] = attributes
+    payload[:data][:attributes].compact!
     payload.to_json
   end
 end

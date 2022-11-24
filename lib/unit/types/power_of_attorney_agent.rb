@@ -5,9 +5,9 @@ require_relative "address"
 require_relative "phone"
 
 class PowerOfAttorneyAgent
-
   attr_reader :status, :full_name, :ssn, :passport, :nationality,
               :date_of_birth, :address, :phone, :email, :jwt_subject
+
   # @param [String] status
   # @param [FullName] full_name
   # @param [String] ssn

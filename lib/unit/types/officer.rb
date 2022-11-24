@@ -29,13 +29,6 @@ class Officer
     @nationality = nationality
   end
 
-  # @param [Hash] data
-  # @return [Officer]
-  def self.from_json_api(data)
-    Officer.new(data["fullName"], data["dateOfBirth"], data["address"], data["phone"], data["email"], data["ssn"],
-                data["status"], data["title"], data["passport"], data["nationality"])
-  end
-
   # @return [Hash] The JSON API payload
   def represent
     payload =
@@ -52,6 +45,5 @@ class Officer
         nationality: nationality
       }
     payload.compact
-
   end
 end

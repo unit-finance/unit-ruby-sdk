@@ -29,16 +29,6 @@ class BeneficialOwner
     @percentage = percentage
   end
 
-  # @param [Array] list of BeneficialOwners
-  # @return [Array] The JSON API payload
-  def self.from_json_api(list)
-    beneficial_owners = []
-    list.map do |data|
-      beneficial_owners << BeneficialOwner.new(data["fullName"], data["dateOfBirth"], data["address"], data["phone"], data["email"],
-                                               data["ssn"], data["status"], data["passport"], data["nationality"], data["percentage"])
-    end
-  end
-
   # @return [Hash] The JSON API payload
   def represent
     payload =

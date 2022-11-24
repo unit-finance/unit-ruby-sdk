@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class ListApplicationParams
   attr_reader :offset, :limit, :email, :tags, :query, :sort
 

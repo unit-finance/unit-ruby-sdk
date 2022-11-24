@@ -1,7 +1,8 @@
+# frozen_string_literal: true
 
 class UnitResource
-
   attr_reader :id, :type, :attributes, :relationships
+
   # @param id [String] The application id
   # @param type [String] The type of application
   # @param attributes [Hash] The attributes
@@ -14,9 +15,5 @@ class UnitResource
     @type = type
     @attributes = attributes
     @relationships = relationships
-  end
-
-  def self.from_json_api(_id, _type, attributes, relationships)
-    new(_id, _type, attributes, relationships)
   end
 end

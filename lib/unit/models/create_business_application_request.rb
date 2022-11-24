@@ -8,11 +8,8 @@ require_relative "../types/beneficial_owner"
 require_relative "../types/officer"
 
 class CreateBusinessApplicationRequest
-
-
   attr_reader :name, :address, :phone, :state_of_incorporation, :ein, :contact, :officer, :beneficial_owners,
               :entity_type, :dba, :ip, :website, :type
-
 
   # @param name [String]
   # @param address [Address]
@@ -51,7 +48,7 @@ class CreateBusinessApplicationRequest
         type: type,
         attributes: {
           name: name,
-          address: address.attributes,
+          address: address.represent,
           phone: phone.represent,
           stateOfIncorporation: state_of_incorporation,
           ein: ein,
@@ -65,8 +62,7 @@ class CreateBusinessApplicationRequest
         }
       }
     }
-    attributes = payload[:data][:attributes].compact!
-    payload[:data][:attributes] = attributes
+    payload[:data][:attributes].compact!
     payload.to_json
   end
 end

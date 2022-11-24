@@ -17,9 +17,4 @@ class Phone
       number: number
     }
   end
-
-  # @param data [Hash] The JSON API payload
-  def self.from_json_api(data)
-    Phone.new(data["countryCode"], data["number"])
-  end
 end

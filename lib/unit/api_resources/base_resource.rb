@@ -5,7 +5,7 @@ require "httparty"
 class BaseResource
   include HTTParty
 
-  attr_reader :api_url, :headers
+  attr_reader :api_url, :headers, :token
 
   @api_url = base_uri "https://api.s.unit.sh"
 

@@ -17,9 +17,4 @@ class DeviceFingerprint
       provider: provider
     }
   end
-
-  # @param data [Hash] The JSON API payload
-  def self.from_json_api(data)
-    DeviceFingerprint.new(data["value"], data["provider"])
-  end
 end

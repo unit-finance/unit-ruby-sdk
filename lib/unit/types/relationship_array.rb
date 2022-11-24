@@ -20,15 +20,4 @@ class RelationshipArray
   def represent
     { "data": data.map(&:represent) }
   end
-
-  # @param type [String] The type of the relationship
-  # @@param [Array] The array of ids
-  # @return [RelationshipArray] The relationship array
-  def self.from_ids_array(type, ids)
-    RelationshipArray.new(
-      ids.map do |id|
-        Relationship.new(id, type)
-      end
-    )
-  end
 end

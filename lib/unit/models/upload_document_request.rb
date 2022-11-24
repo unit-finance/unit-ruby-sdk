@@ -1,8 +1,17 @@
 # frozen_string_literal: true
 
+# Creates request for uploading a document
 class UploadDocumentRequest
-  attr_reader :application_id, :document_id, :file, :file_type, :is_back_side
+  attr_reader :application_id, :document_id, :file, :file_type, :content_type, :is_back_side
 
+  # @param application_id [Integer] The application ID
+  # @param document_id [Integer] The document ID
+  # @param file [String] The file path
+  # @param file_type [String] The file type
+  # @option file_type [String] :pdf
+  # @option file_type [String] :jpg
+  # @option file_type [String] :png
+  # @param is_back_side [Boolean] The file is back side
   def initialize(application_id, document_id, file, file_type,
                  is_back_side = nil)
     @application_id = application_id
@@ -12,6 +21,7 @@ class UploadDocumentRequest
     @is_back_side = is_back_side
   end
 
+  # @return [String] The Json API payload
   def to_json_api
     payload = {
       data: {
@@ -22,8 +32,7 @@ class UploadDocumentRequest
         }
       }
     }
-    attributes = payload[:data][:attributes].compact!
-    payload[:data][:attributes] = attributes
+    payload[:data][:attributes].compact!
     payload.to_json
   end
 end

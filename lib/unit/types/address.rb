@@ -29,11 +29,4 @@ class Address
       country: country
     }
   end
-
-  # @param data [Hash] The Json API payload
-  # @return [Address]
-  def self.from_json_api(data)
-    Address.new(data["street"], data["city"],
-                data["state"], data["postalCode"], data["country"], data["street2"])
-  end
 end

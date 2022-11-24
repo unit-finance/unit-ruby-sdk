@@ -70,8 +70,7 @@ class CreateIndividualApplicationRequest
         }
       }
     }
-    attributes = payload[:data][:attributes].compact!
-    payload[:data][:attributes] = attributes
+    payload[:data][:attributes].compact!
     payload.to_json
   end
 end
