@@ -29,7 +29,6 @@ class ApplicationResourceTest < Minitest::Test
   end
 
   def test_create_individual_application
-    p ENV["USER_TOKEN"]
     request = create_individual_application_request
     response = create_application(request)
     assert_equal response.data["type"], "individualApplication"
