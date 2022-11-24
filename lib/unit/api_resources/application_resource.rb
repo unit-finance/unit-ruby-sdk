@@ -1,10 +1,6 @@
 # frozen_string_literal: true
 
-require "httmultiparty"
-require "multipart/post"
-require "faraday"
 require "curb"
-
 require "httparty"
 
 require_relative "../api_resources/base_resource"
@@ -25,7 +21,6 @@ require "json"
 # class for creating requests to Unit API and parsing responses
 class ApplicationResource < BaseResource
   include HTTParty
-  include HTTMultiParty
 
   # Create a new application by calling Unit's API
   # @param [CreateIndividualApplicationRequest, CreateBusinessApplicationRequest] request
