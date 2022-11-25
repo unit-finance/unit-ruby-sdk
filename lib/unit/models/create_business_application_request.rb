@@ -41,7 +41,6 @@ class CreateBusinessApplicationRequest
     @type = "businessApplication"
   end
 
-  # @return [String] The JSON API payload
   def to_json_api
     payload = {
       data: {

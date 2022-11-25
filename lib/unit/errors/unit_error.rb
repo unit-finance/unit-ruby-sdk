@@ -19,12 +19,11 @@ module UnitError
   end
 end
 
-  class UnitErrorParams
-    attr_reader :errors
+class UnitErrorParams
+  attr_reader :errors
 
-    # @param errors [Array]
-    def initialize(errors)
-      @errors = errors
-    end
+  # @param errors [Array]
+  def initialize(errors)
+    @errors = errors
   end
-
+end
