@@ -6,8 +6,9 @@ require_relative "../types/phone"
 require_relative "../types/device_fingerprint"
 
 class CreateIndividualApplicationRequest
-  attr_reader :type, :ssn, :full_name, :date_of_birth, :address, :email, :phone, :ip, :ein, :dba, :sole_proprietorship,
-              :passport, :nationality, :device_fingerprints, :idempotency_key, :tags, :jwt_subject
+  attr_reader :type, :ssn, :full_name, :date_of_birth, :address, :email, :phone, :ip, :ein, :industry, :dba, :sole_proprietorship,
+              :passport, :nationality, :device_fingerprints, :idempotency_key, :tags, :jwt_subject, :power_of_attorney_agent,
+              :evaluation_params
 
   # @param [String] ssn
   # @param [FullName] full_name
@@ -17,6 +18,7 @@ class CreateIndividualApplicationRequest
   # @param [Phone] phone
   # @param ip [String] optional
   # @param optional [String] ein
+  # @param optional [String] industry
   # @param optional [String] dba
   # @param optional [Boolean] sole_proprietorship
   # @param optional [String] passport
@@ -25,8 +27,11 @@ class CreateIndividualApplicationRequest
   # @param optional [String] idempotency_key
   # @param optional [Hash] tags
   # @param optional [String] jwt_subject
-  def initialize(ssn, full_name, date_of_birth, address, email, phone, ip = nil, ein = nil, dba = nil, sole_proprietorship = nil, passport = nil,
-                 nationality = nil, device_fingerprints = nil, idempotency_key = nil, tags = nil, jwt_subject = nil)
+  # @param optional [PowerOfAttorneyAgent] power_of_attorney_agent
+  # @param optional [EvaluationParams] evaluation_params
+  def initialize(ssn, full_name, date_of_birth, address, email, phone, ip = nil, ein = nil, industry = nil, dba = nil, sole_proprietorship = nil, passport = nil,
+                 nationality = nil, device_fingerprints = nil, idempotency_key = nil, tags = nil, jwt_subject = nil, power_of_attorney_agent = nil,
+                 evaluation_params = nil)
     @ssn = ssn
     @full_name = full_name
     @date_of_birth = date_of_birth
@@ -35,6 +40,7 @@ class CreateIndividualApplicationRequest
     @email = email
     @ip = ip
     @ein = ein
+    @industry = industry
     @dba = dba
     @sole_proprietorship = sole_proprietorship
     @passport = passport
@@ -43,6 +49,8 @@ class CreateIndividualApplicationRequest
     @idempotency_key = idempotency_key
     @tags = tags
     @jwt_object = jwt_subject
+    @power_of_attorney_agent = power_of_attorney_agent
+    @evaluation_params = evaluation_params
     @type = "individualApplication"
   end
 
@@ -59,13 +67,16 @@ class CreateIndividualApplicationRequest
           phone: phone.represent,
           ip: ip,
           ein: ein,
+          industry: industry,
           dba: dba,
           soleProprietorship: sole_proprietorship,
           passport: passport,
           nationality: nationality,
           idempotencyKey: idempotency_key,
           tags: tags,
-          jwtSubject: jwt_subject
+          jwtSubject: jwt_subject,
+          powerOfAttorneyAgent: power_of_attorney_agent&.represent,
+          evaluationParams: evaluation_params&.represent
         }
       }
     }

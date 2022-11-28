@@ -103,6 +103,10 @@ class ApplicationResourceTest < Minitest::Test
     UploadDocumentRequest.new(824_034, 122_063, "resources/test.pdf", "pdf", false)
   end
 
+  def upload_document_back_request
+    UploadDocumentRequest.new(824_034, 122_063, "resources/test.pdf", "pdf", true)
+  end
+
   def upload_document(request)
     unit_api = ApplicationResource.new("https://api.s.unit.sh", ENV["USER_TOKEN"])
     unit_api.upload(request)
@@ -110,6 +114,12 @@ class ApplicationResourceTest < Minitest::Test
 
   def test_upload_document
     request = upload_document_request
+    response = upload_document(request)
+    assert_equal response.data["type"], "document"
+  end
+
+  def test_upload_document_back
+    request = upload_document_back_request
     response = upload_document(request)
     assert_equal response.data["type"], "document"
   end

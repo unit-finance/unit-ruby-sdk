@@ -20,19 +20,4 @@ class UploadDocumentRequest
     @file_type = file_type
     @is_back_side = is_back_side
   end
-
-  # @return [String] The Json API payload
-  def to_json_api
-    payload = {
-      data: {
-        attributes: {
-          file: file,
-          fileType: file_type,
-          isBackSide: is_back_side
-        }
-      }
-    }
-    payload[:data][:attributes].compact!
-    payload.to_json
-  end
 end

@@ -67,6 +67,7 @@ class ApplicationResource < BaseResource
   # @return [UnitResponse, UnitError]
   def upload(request)
     url = "#{api_url}/applications/#{request.application_id}/documents/#{request.document_id}"
+    url += "/back" if request.is_back_side
 
     headers.merge!({ "Content-Type" => "application/pdf" }) if request.file_type == "pdf"
     headers.merge!({ "Content-Type" => "image/jpeg" }) if request.file_type == "jpeg"

@@ -6,7 +6,7 @@ class UnitResource
   attr_reader :id, :type, :attributes, :relationships
 
   # @param id [String] The resource's ID
-  # @param type [String] The type of application
+  # @param type [String] The type of the resource
   # @param attributes [Hash] The attributes
   # @param relationships [Hash] The relationships
   def initialize(id, type, attributes, relationships)
