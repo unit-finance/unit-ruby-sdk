@@ -3,12 +3,13 @@
 class UnitErrorPayload
   attr_reader :title, :status, :detail, :details, :source, :code
 
-  # @param title [String] The title
-  # @param status [String] The status
-  # @param detail [String] The detail
-  # @param details [String] The details
-  # @param source [Hash] The source
-  # @param code [String] The code
+  # @param title [String] The title of the error
+  # @param status [String] The HTTP status code
+  # @param detail [String] The additional information about the error
+  # @param details [String] The details of the error
+  # @param source [Hash] The source of the error
+  # @param code [String] A Unit-specific code, uniquely identifying the error type
+  # Check out documentation link for more details: https://docs.unit.co/about-jsonapi/#intro-errors
   def initialize(title, status, detail, details = nil,
                  source = nil, code = nil)
     @title = title
