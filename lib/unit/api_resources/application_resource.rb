@@ -71,25 +71,19 @@ class ApplicationResource < BaseResource
 
     headers = {}
 
+    headers["Authorization"] = "Bearer #{token}"
+    headers["User-Agent"] = "unit-ruby-sdk"
     headers.merge!({ "Content-Type" => "application/pdf" }) if request.file_type == "pdf"
     headers.merge!({ "Content-Type" => "image/jpeg" }) if request.file_type == "jpeg"
     headers.merge!({ "Content-Type" => "image/png" }) if request.file_type == "png"
 
-    curl = Curl::Easy.new(url)
-    curl.headers["Content-Type"] = headers["Content-Type"]
-    curl.headers["Authorization"] = "Bearer #{token}"
-    curl.headers["User-Agent"] = "unit-ruby-sdk"
-    data = File.read(request.file)
-    curl.put_data = data
-    curl.http_put(data)
-    response = curl.body_str
-    response_code = curl.response_code
+    response = self.class.put(url, body: request.file, headers: headers)
 
-    case response_code
+    case response.code
     when 200...300
-      UnitResponse.new(JSON.parse(response)["data"], nil)
+      UnitResponse.new(response["data"], nil)
     else
-      UnitError.from_json_api(JSON.parse(response))
+      UnitError.from_json_api(response)
     end
   end
 

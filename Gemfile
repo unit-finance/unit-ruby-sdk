@@ -14,5 +14,3 @@ gem "httparty"
 gem "ruby-debug-ide"
 
 gem "factory_bot_rails", "~> 6.2.0"
-
-gem "curb"

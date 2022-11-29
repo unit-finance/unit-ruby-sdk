@@ -4,8 +4,8 @@
 class UploadDocumentRequest
   attr_reader :application_id, :document_id, :file, :file_type, :content_type, :is_back_side
 
-  # @param application_id [Integer] The application ID
-  # @param document_id [Integer] The document ID
+  # @param application_id [String] The application ID
+  # @param document_id [String] The document ID
   # @param file [String] The file path
   # @param file_type [String] The file type
   # @option file_type [String] :pdf

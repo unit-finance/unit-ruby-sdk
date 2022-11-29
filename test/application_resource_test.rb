@@ -49,7 +49,9 @@ class ApplicationResourceTest < Minitest::Test
                                                             "james@unit-finance.com", "123456789")
     ]
     entity_type = "LLC"
-    CreateBusinessApplicationRequest.new("Acme Inc.", ADDRESS, PHONE, "CA", "123456789",
+    industry = "Technology"
+
+    CreateBusinessApplicationRequest.new("Acme Inc.", ADDRESS, PHONE, "CA", "123456789", industry,
                                          business_contact, officer, beneficial_owners, entity_type)
   end
 
@@ -101,11 +103,17 @@ class ApplicationResourceTest < Minitest::Test
   end
 
   def upload_document_request
-    UploadDocumentRequest.new(824_034, 122_063, "resources/test.pdf", "pdf", false)
+    file = File.open("./test/test.pdf", "rb")
+    contents = file.read
+    file.close
+    UploadDocumentRequest.new("836683", "125215", contents, "pdf", false)
   end
 
   def upload_document_back_request
-    UploadDocumentRequest.new(824_034, 122_063, "resources/test.pdf", "pdf", true)
+    file = File.open("./test/test.pdf", "rb")
+    contents = file.read
+    file.close
+    UploadDocumentRequest.new("836683", "125214", contents, "pdf", true)
   end
 
   def upload_document(request)

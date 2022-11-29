@@ -29,7 +29,6 @@ GEM
     builder (3.2.4)
     concurrent-ruby (1.1.10)
     crass (1.0.6)
-    curb (1.0.1)
     diff-lcs (1.5.0)
     erubi (1.11.0)
     factory_bot (6.2.1)
@@ -120,7 +119,6 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  curb
   factory_bot_rails (~> 6.2.0)
   httparty
   rake (~> 13.0)
