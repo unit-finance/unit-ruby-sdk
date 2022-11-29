@@ -45,7 +45,8 @@ class ApplicationResourceTest < Minitest::Test
     officer = Officer.new(FULL_NAME, "1998-08-10", ADDRESS, PHONE, "jone.doe@unit-finance.com", "123456789")
     beneficial_owners = [
       BeneficialOwner.new(FULL_NAME, "2001-08-10", ADDRESS, PHONE, "james@unit-finance.com",
-                          "123456789"), BeneficialOwner.new(FULL_NAME, "2001-08-10", ADDRESS, PHONE, "james@unit-finance.com", "123456789")
+                          "123456789"), BeneficialOwner.new(FULL_NAME, "2001-08-10", ADDRESS, PHONE,
+                                                            "james@unit-finance.com", "123456789")
     ]
     entity_type = "LLC"
     CreateBusinessApplicationRequest.new("Acme Inc.", ADDRESS, PHONE, "CA", "123456789",

@@ -12,7 +12,7 @@ class Relationship
   end
 
   # @param nested [Boolean] Whether or not the relationship is nested
-  def represent(nested = true)
+  def represent(nested: true)
     nested ? { "data": { "id": id, "type": type } } : { "id": id, "type": type }
   end
 end
