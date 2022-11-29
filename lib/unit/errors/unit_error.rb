@@ -1,29 +1,25 @@
 # frozen_string_literal: true
 
+require_relative "unit_error_payload"
+
 # Represents an Error returned from Unit's API
-module UnitError
-  # @param [Hash] json_api
-  # @return [UnitError]
+class UnitError
+  # Create a new UnitError
+  # @param [Array<UnitErrorPayload>] errors
+  def initialize(errors)
+    @errors = errors
+  end
+
+  # Creates a new UnitError from given response.
+  # @param [Hash] response The response returned from Unit's API
+  # @return [UnitError] a new UnitError populated with values taken from the response
   def self.from_json_api(response)
     errors = response["errors"]
 
     errors&.map do |error|
-      error["title"]
-      error["status"]
-      error["detail"]
-      error["details"]
-      error["source"]
-      error["code"]
+      UnitErrorPayload.new(error["title"], error["status"],
+                           error["detail"], error["details"], error["source"], error["code"])
     end
-    UnitErrorParams.new(errors)
-  end
-end
-
-class UnitErrorParams
-  attr_reader :errors
-
-  # @param errors [Array]
-  def initialize(errors)
-    @errors = errors
+    UnitError.new(errors)
   end
 end

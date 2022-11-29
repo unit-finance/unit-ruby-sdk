@@ -69,14 +69,16 @@ class ApplicationResource < BaseResource
     url = "#{api_url}/applications/#{request.application_id}/documents/#{request.document_id}"
     url += "/back" if request.is_back_side
 
+    headers = {}
+
     headers.merge!({ "Content-Type" => "application/pdf" }) if request.file_type == "pdf"
     headers.merge!({ "Content-Type" => "image/jpeg" }) if request.file_type == "jpeg"
     headers.merge!({ "Content-Type" => "image/png" }) if request.file_type == "png"
 
     curl = Curl::Easy.new(url)
     curl.headers["Content-Type"] = headers["Content-Type"]
-    curl.headers["Authorization"] = headers["Authorization"]
-    curl.headers["User-Agent"] = headers["User-Agent"]
+    curl.headers["Authorization"] = "Bearer #{token}"
+    curl.headers["User-Agent"] = "unit-ruby-sdk"
     data = File.read(request.file)
     curl.put_data = data
     curl.http_put(data)
