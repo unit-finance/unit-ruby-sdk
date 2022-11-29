@@ -1,29 +1,17 @@
 name: Ruby
 
-on:
-  push:
-    branches:
-      - main
-
-  pull_request:
-
+on: [push, pull_request]
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
-    name: Ruby ${{ matrix.ruby }}
-    strategy:
-      matrix:
-        ruby:
-          - '2.6.6'
-
     steps:
-    - uses: actions/checkout@v3
-    - name: Set up Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: ${{ matrix.ruby }}
-        bundler-cache: true
-    - name: Install libcurl4-openssl-dev
-      run: sudo apt-get install -y libcurl4-openssl-dev
-    - name: Run the default task
-      run: bundle exec rake
+      - uses: actions/checkout@v3
+      - name: Set up Ruby
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '2.6.8' # Not needed with a .ruby-version file
+          bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+      - name: Install libcurl4-openssl-dev
+        run: sudo apt-get install -y libcurl4-openssl-dev
+      - name: Run rake
+        run: bundle exec rake
