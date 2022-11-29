@@ -16,9 +16,11 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 2.6.8
-      - name: Run tests
+      - name: Install Dependencies
         run: |
           sudo apt-get install -y libcurl4-openssl-dev
           bundle install
-          bundle exec rake
-          rspec
+      - name: Rake
+        run: bundle exec rake
+      - name: Run tests
+        run: rspec
