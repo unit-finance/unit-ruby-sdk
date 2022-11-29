@@ -11,6 +11,6 @@ jobs:
           ruby-version: 2.6.8
       - name: Run tests
         run: |
-          sudo apt-get install libcurl4-gnutls-dev libcurl3 libcurl4-openssl-dev
+          sudo apt-get install -y libcurl4-openssl-dev
           bundle install
           bundle exec rake
