@@ -19,14 +19,12 @@ require "json"
 
 # class for creating requests to Unit API and parsing responses
 class ApplicationResource < BaseResource
-  include HTTParty
-
   # Create a new application by calling Unit's API
   # @param [CreateIndividualApplicationRequest, CreateBusinessApplicationRequest] request
   # @return [UnitResponse, UnitError]
   def create_application(request)
     payload = request.to_json_api
-    response = self.class.post("#{api_url}/applications", body: payload, headers: headers)
+    response = HTTParty.post("#{api_url}/applications", body: payload, headers: headers)
     case response.code
     when 200...300
       UnitResponse.new(response["data"], response["included"])
@@ -39,7 +37,7 @@ class ApplicationResource < BaseResource
   # @param [Integer] application_id
   # @return [UnitResponse, UnitError]
   def get_application(application_id)
-    response = self.class.get("#{api_url}/applications/#{application_id}", headers: headers)
+    response = HTTParty.get("#{api_url}/applications/#{application_id}", headers: headers)
     case response.code
     when 200...300
       UnitResponse.new(response["data"], response["included"])
@@ -52,7 +50,7 @@ class ApplicationResource < BaseResource
   # @param [ListApplicationParams] params
   # @return [UnitResponse, UnitError]
   def list_applications(params = nil)
-    response = self.class.get("#{api_url}/applications", body: params&.to_hash&.to_json, headers: headers)
+    response = HTTParty.get("#{api_url}/applications", body: params&.to_hash&.to_json, headers: headers)
     case response.code
     when 200...300
       UnitResponse.new(response["data"], response["included"])
@@ -76,7 +74,7 @@ class ApplicationResource < BaseResource
     headers.merge({ "Content-Type" => "image/jpeg" }) if request.file_type == "jpeg"
     headers.merge({ "Content-Type" => "image/png" }) if request.file_type == "png"
 
-    response = self.class.put(url, body: request.file, headers: headers)
+    response = HTTParty.put(url, body: request.file, headers: headers)
 
     case response.code
     when 200...300
@@ -91,7 +89,7 @@ class ApplicationResource < BaseResource
   # @return [UnitResponse, UnitError]
   def update(request)
     payload = request.to_json_api
-    response = self.class.patch("#{api_url}/applications/#{request.application_id}", body: payload, headers: headers)
+    response = HTTParty.patch("#{api_url}/applications/#{request.application_id}", body: payload, headers: headers)
     case response.code
     when 200...300
       UnitResponse.new(response["data"], nil)
