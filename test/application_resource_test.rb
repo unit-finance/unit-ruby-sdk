@@ -49,7 +49,7 @@ class ApplicationResourceTest < Minitest::Test
                                                             "james@unit-finance.com", "123456789")
     ]
     entity_type = "LLC"
-    industry = "Technology"
+    industry = "Retail"
 
     CreateBusinessApplicationRequest.new("Acme Inc.", ADDRESS, PHONE, "CA", "123456789", industry,
                                          business_contact, officer, beneficial_owners, entity_type)

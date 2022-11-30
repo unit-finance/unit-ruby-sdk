@@ -3,11 +3,7 @@
 require "httparty"
 
 class BaseResource
-  include HTTParty
-
   attr_reader :api_url, :headers, :token
-
-  base_uri @api_url
 
   # @param api_url [String] The API URL
   # @param token [String] The API token
