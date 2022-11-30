@@ -9,13 +9,18 @@ class ListApplicationParams
   # @param email [String] Filter applications by email address (case sensitive).
   # @param tags [String] Filter applications by tags. More information regarding tags: https://docs.unit.co/#tags
   # @param query [String] Search term according to the: https://docs.unit.co/#full-text-search
+  # @param status [String] Filter applications by status: https://docs.unit.co/applications/#application-statuses
+  # @param sort [String] Sorts the resources by the specified field.
+  # @option sort=createdAt for ascending order
+  # @option sort=-createdAt (leading minus sign) for descending order.
   def initialize(offset = 0, limit = 100, email = nil, tags = nil,
-                 query = nil, sort = nil)
+                 query = nil, status = nil, sort = nil)
     @offset = offset
     @limit = limit
     @email = email
     @tags = tags
     @query = query
+    @status = status
     @sort = sort
   end
 
@@ -25,6 +30,7 @@ class ListApplicationParams
                "filter[email]": email,
                "filter[tags]": tags,
                "filter[query]": query,
+               "filter[status]": status,
                "sort": sort }
     params.compact!
   end
