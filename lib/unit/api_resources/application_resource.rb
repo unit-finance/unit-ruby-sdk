@@ -72,9 +72,9 @@ class ApplicationResource < BaseResource
 
     headers["Authorization"] = "Bearer #{token}"
     headers["User-Agent"] = "unit-ruby-sdk"
-    headers.merge({ "Content-Type" => "application/pdf" }) if request.file_type == "pdf"
-    headers.merge({ "Content-Type" => "image/jpeg" }) if request.file_type == "jpeg"
-    headers.merge({ "Content-Type" => "image/png" }) if request.file_type == "png"
+    headers["Content-Type"] = "application/pdf" if request.file_type == "pdf"
+    headers["Content-Type"] = "image/jpeg" if request.file_type == "jpeg"
+    headers["Content-Type"] = "image/png" if request.file_type == "png"
 
     response = self.class.put(url, body: request.file, headers: headers)
 
