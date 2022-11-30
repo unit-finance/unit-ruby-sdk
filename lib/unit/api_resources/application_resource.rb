@@ -70,9 +70,9 @@ class ApplicationResource < BaseResource
 
     headers = {
       "Authorization" => "Bearer #{token}",
-      "User-Agent" => "unit-ruby-sdk",
+      "User-Agent" => "unit-ruby-sdk"
     }
-    
+
     headers["Content-Type"] = "application/pdf" if request.file_type == "pdf"
     headers["Content-Type"] = "image/jpeg" if request.file_type == "jpeg"
     headers["Content-Type"] = "image/png" if request.file_type == "png"
