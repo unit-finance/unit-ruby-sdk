@@ -8,16 +8,11 @@ require_relative "../models/create_individual_application_request"
 require_relative "../models/patch_application_request"
 require_relative "../models/list_application_params"
 
-require_relative "../types/full_name"
-require_relative "../types/address"
-require_relative "../types/phone"
-require_relative "../types/relationship"
-
 require_relative "../models/unit_response"
 require_relative "../errors/unit_error"
 require "json"
 
-# class for creating requests to Unit API and parsing responses
+# class for creating requests for applications to Unit API and parsing responses
 class ApplicationResource < BaseResource
   # Create a new application by calling Unit's API
   # @param [CreateIndividualApplicationRequest, CreateBusinessApplicationRequest] request
