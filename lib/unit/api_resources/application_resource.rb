@@ -66,13 +66,14 @@ class ApplicationResource < BaseResource
     url = "#{api_url}/applications/#{request.application_id}/documents/#{request.document_id}"
     url += "/back" if request.is_back_side
 
-    headers = {}
+    headers = {
+      "Authorization" => "Bearer #{token}",
+      "User-Agent" => "unit-ruby-sdk"
+    }
 
-    headers["Authorization"] = "Bearer #{token}"
-    headers["User-Agent"] = "unit-ruby-sdk"
-    headers.merge({ "Content-Type" => "application/pdf" }) if request.file_type == "pdf"
-    headers.merge({ "Content-Type" => "image/jpeg" }) if request.file_type == "jpeg"
-    headers.merge({ "Content-Type" => "image/png" }) if request.file_type == "png"
+    headers["Content-Type"] = "application/pdf" if request.file_type == "pdf"
+    headers["Content-Type"] = "image/jpeg" if request.file_type == "jpeg"
+    headers["Content-Type"] = "image/png" if request.file_type == "png"
 
     response = HTTParty.put(url, body: request.file, headers: headers)
 
