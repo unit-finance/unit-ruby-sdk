@@ -3,10 +3,10 @@
 require "httparty"
 
 require_relative "../api_resources/base_resource"
-require_relative "../models/create_business_application_request"
-require_relative "../models/create_individual_application_request"
-require_relative "../models/patch_application_request"
-require_relative "../models/list_application_params"
+require_relative "../models/applications/create_business_application_request"
+require_relative "../models/applications/create_individual_application_request"
+require_relative "../models/applications/patch_application_request"
+require_relative "../models/applications/list_application_params"
 
 require_relative "../models/unit_response"
 require_relative "../errors/unit_error"

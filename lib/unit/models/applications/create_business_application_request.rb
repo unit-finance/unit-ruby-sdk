@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "../types/full_name"
+require_relative "../types/es/full_name"
 require_relative "../types/address"
 require_relative "../types/phone"
 require_relative "../types/business_contact"
