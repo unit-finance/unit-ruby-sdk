@@ -3,8 +3,6 @@
 require_relative "unit_error_payload"
 
 # Represents an Error returned from Unit's API
-# TODO: Consider moving from_json_api to a module and make it return an array of UnitError
-# TODO: Consider dropping the UnitErrorPayload class
 class UnitError
   # Create a new UnitError
   # @param [Array<UnitErrorPayload>] errors

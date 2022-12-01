@@ -1,16 +1,14 @@
 # frozen_string_literal: true
 
-require "sorbet-runtime"
-
 class Address
   attr_reader :street, :street2, :city, :state, :postal_code, :country
 
-  extend T::Sig
-
-  sig do
-    params(street: String, city: String,
-           state: String, postal_code: String, country: String, street2: T.nilable(String)).void
-  end
+  # @param street [String]
+  # @param city [String]
+  # @param state [String]
+  # @param postal_code [String]
+  # @param country [String]
+  # @param optional street2 [String]
   def initialize(street, city, state, postal_code, country, street2 = nil)
     @street = street
     @street2 = street2
@@ -20,6 +18,7 @@ class Address
     @country = country
   end
 
+  # @return [Hash]
   def represent
     {
       street: street,
@@ -29,10 +28,5 @@ class Address
       postalCode: postal_code,
       country: country
     }
-  end
-
-  def self.from_json_api(data)
-    Address.new(data["street"], data["city"],
-                data["state"], data["postalCode"], data["country"], data["street2"])
   end
 end

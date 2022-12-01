@@ -1,25 +1,18 @@
 # frozen_string_literal: true
 
-require "sorbet-runtime"
-
+# represents relationships in the JSON API payload
 class Relationship
   attr_reader :id, :type
 
-  extend T::Sig
-  sig do
-    params(id: String, type: String).void
-  end
+  # @param id [String] The id of the relationship
+  # @param type [String] The type
   def initialize(id, type)
     @id = id
     @type = type
   end
 
-  def represent
-    { "org": { "data": { "type": type, "id": id } } }
-  end
-
-  def self.from_json_api(data)
-    payload = data["org"]["data"]
-    Relationship.new(payload["id"], payload["type"])
+  # @param nested [Boolean] Whether or not the relationship is nested
+  def represent(nested: true)
+    nested ? { "data": { "id": id, "type": type } } : { "id": id, "type": type }
   end
 end
