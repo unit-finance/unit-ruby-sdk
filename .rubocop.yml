@@ -25,4 +25,4 @@ Metrics/AbcSize:
   Enabled: false
 
 Layout/LineLength:
-  Max: 300
+  Max: 350
