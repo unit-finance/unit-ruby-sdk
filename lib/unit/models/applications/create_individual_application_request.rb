@@ -10,25 +10,25 @@ class CreateIndividualApplicationRequest
               :passport, :nationality, :device_fingerprints, :idempotency_key, :tags, :jwt_subject, :power_of_attorney_agent,
               :evaluation_params
 
-  # @param [String] ssn
-  # @param [FullName] full_name
-  # @param [Date] date_of_birth
-  # @param [Address] address
-  # @param [String] email
-  # @param [Phone] phone
-  # @param ip [String] optional
-  # @param optional [String] ein
-  # @param optional [String] industry
-  # @param optional [String] dba
-  # @param optional [Boolean] sole_proprietorship
-  # @param optional [String] passport
-  # @param optional [String] nationality
-  # @param optional [DeviceFingerprint] device_fingerprints
-  # @param optional [String] idempotency_key
-  # @param optional [Hash] tags
-  # @param optional [String] jwt_subject
-  # @param optional [PowerOfAttorneyAgent] power_of_attorney_agent
-  # @param optional [EvaluationParams] evaluation_params
+  # @param ssn [String] SSN (or ITIN) of the individual (numbers only). Either an ssn or passport is required.
+  # @param full_name [FullName] Full name of the individual.
+  # @param date_of_birth [Date] Date only (e.g. "2001-08-15").
+  # @param address [Address] Address of the individual.
+  # @param email [String] Email address of the individual.
+  # @param phone [Phone] Phone number of the individual.
+  # @param optional ip [String]  IP address of the end-customer creating the application. Both IPv4 and IPv6 formats are supported. Highly recommended as a fraud prevention measure, if the information is available when submitting the application.
+  # @param optional ein [String] If the individual is a sole proprietor who has an Employer Identification Number, specify it here. Not all sole proprietors have an EIN, so this attribute is optional, even when soleProprietorship is set to true.
+  # @param optional industry [String] If the individual is a sole proprietor, specify the business industry here.
+  # @param optional dba [String] If the individual is a sole proprietor who is doing business under a different name, specify it here. This attribute is optional, even when soleProprietorship is set to true.
+  # @param optional sole_proprietorship [Boolean]  Default: false. Indicates whether the individual is a sole proprietor.
+  # @param optional passport [String] Passport number of the individual. Valid only for non-US persons. Either an ssn or passport number is required.
+  # @param optional nationality [String] Required if a passport is used as the main ID. Two letters representing the individual nationality. (e.g. "US").
+  # @param optional device_fingerprints [DeviceFingerprint]  A list of device fingerprints for fraud and risk prevention. See: https://docs.unit.co/applications#device-fingerprints
+  # @param optional idempotency_key [String] See: https://docs.unit.co/#intro-idempotency
+  # @param optional tags [Hash] See: https://docs.unit.co/#tags. Tags that will be copied to the customer that this application creates. See: https://docs.unit.co/#tag-inheritance
+  # @param optional jwt_subject [String] See: https://docs.unit.co/customer-api-tokens/#customers-create-customer-bearer-token-jwt for more information.
+  # @param optional power_of_attorney_agent [PowerOfAttorneyAgent] The details of the person that will act as the agent that has power of attorney.
+  # @param optional evaluation_params [EvaluationParams] Evaluation Params for this entity.
   def initialize(ssn, full_name, date_of_birth, address, email, phone, ip = nil, ein = nil, industry = nil, dba = nil, sole_proprietorship = nil, passport = nil,
                  nationality = nil, device_fingerprints = nil, idempotency_key = nil, tags = nil, jwt_subject = nil, power_of_attorney_agent = nil,
                  evaluation_params = nil)
