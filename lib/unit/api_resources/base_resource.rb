@@ -18,4 +18,16 @@ class BaseResource
         "User-Agent" => "unit-ruby-sdk"
       }
   end
+
+  # Check the response code and return a UnitResponse or UnitError
+  # @param [HTTParty::Response] response
+  def response_handler(response)
+    included = response["included"].nil? ? nil : response["included"]
+    case response.code
+    when 200...300
+      UnitResponse.new(response["data"], included)
+    else
+      UnitError.from_json_api(response)
+    end
+  end
 end

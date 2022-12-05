@@ -19,7 +19,7 @@ class CustomerResource < BaseResource
     response_handler(response)
   end
 
-  # Get a customer's documents by calling Unit's API
+  # Get a customer by calling Unit's API
   # @param [Integer] customer_id
   # @return [UnitResponse, UnitError]
   def get(customer_id)
@@ -27,7 +27,7 @@ class CustomerResource < BaseResource
     response_handler(response)
   end
 
-  # Get a customers by calling Unit's API
+  # Get customers by calling Unit's API
   # @param [ListCustomerParams] params
   # @return [UnitResponse, UnitError]
   def list(params = nil)
@@ -64,8 +64,6 @@ class CustomerResource < BaseResource
     response_handler(response)
   end
 
-  # Check the response code and return a UnitResponse or UnitError
-  # @param [HTTParty::Response] response
   def response_handler(response)
     meta = response["meta"].nil? ? nil : response["meta"]
     case response.code
