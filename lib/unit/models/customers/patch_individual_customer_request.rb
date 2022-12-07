@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 # Update individual customer information request
+# See: https://docs.unit.co/customers#update-individual-customer
 class PatchIndividualCustomerRequest
   attr_reader :customer_id, :address, :phone, :email, :dba, :authorized_users, :tags, :jwt_subject
 

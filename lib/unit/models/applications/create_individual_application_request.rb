@@ -5,6 +5,8 @@ require_relative "../types/address"
 require_relative "../types/phone"
 require_relative "../types/device_fingerprint"
 
+# Request to create an individual application
+# See https://docs.unit.co/applications/#create-individual-application
 class CreateIndividualApplicationRequest
   attr_reader :type, :ssn, :full_name, :date_of_birth, :address, :email, :phone, :ip, :ein, :industry, :dba, :sole_proprietorship,
               :passport, :nationality, :device_fingerprints, :idempotency_key, :tags, :jwt_subject, :power_of_attorney_agent,

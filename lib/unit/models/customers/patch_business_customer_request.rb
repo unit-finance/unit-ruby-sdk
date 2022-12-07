@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 # Update business customer information request
+# See: https://docs.unit.co/customers#update-business-customer
 class PatchBusinessCustomerRequest
   attr_reader :customer_id, :address, :phone, :contact, :authorized_users, :dba, :tags
 

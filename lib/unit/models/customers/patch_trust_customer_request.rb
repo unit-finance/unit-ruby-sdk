@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-# Update a trust customer by calling Unit's API
+# Update a trust customer request
+# See: https://docs.unit.co/customers#update-trust-customer
 class PatchTrustCustomerRequest
   attr_reader :customer_id, :authorized_users, :tags
 

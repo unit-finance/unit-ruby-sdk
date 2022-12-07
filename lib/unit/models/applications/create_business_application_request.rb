@@ -7,6 +7,8 @@ require_relative "../types/business_contact"
 require_relative "../types/beneficial_owner"
 require_relative "../types/officer"
 
+# Request to create a business application
+# See: https://docs.unit.co/applications/#create-business-application
 class CreateBusinessApplicationRequest
   attr_reader :name, :address, :phone, :state_of_incorporation, :ein, :industry, :contact, :officer, :beneficial_owners,
               :entity_type, :dba, :ip, :website, :tags, :idempotency_key, :device_fingerprints, :type

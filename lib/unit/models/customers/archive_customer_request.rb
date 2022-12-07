@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# Request to archive customer
+# See: https://docs.unit.co/customers#archive-customer
 class ArchiveCustomerRequest
   attr_reader :customer_id, :reason
 

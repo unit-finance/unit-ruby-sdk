@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 # Request to remove authorized users from customer
+# See: https://docs.unit.co/customers#remove-authorized-users
 class RemoveAuthorizedUsersRequest
   attr_reader :customer_id, :authorized_users_emails
 

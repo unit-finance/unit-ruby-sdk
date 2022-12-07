@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 # params for listing customers
+# See: https://docs.unit.co/customers#list-customers
 class ListCustomerParams
   attr_reader :limit, :offset, :query, :email, :tags, :status, :sort
 

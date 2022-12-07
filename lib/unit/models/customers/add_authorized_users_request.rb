@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 # Request to add authorized users to a project
+# See: https://docs.unit.co/customers#add-authorized-users
 class AddAuthorizedUsersRequest
   attr_reader :customer_id, :authorized_users
 
