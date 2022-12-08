@@ -16,6 +16,7 @@ require "unit/models/customers/remove_authorized_users_request"
 require "unit/api_resources/customer_resource"
 
 require "unit"
+
 class CustomerResourceTest < Minitest::Test
   FULL_NAME = FullName.new("John", "Doe")
   ADDRESS = Address.new("123 Main St", "San Francisco", "CA", "94205", "US")
@@ -25,68 +26,47 @@ class CustomerResourceTest < Minitest::Test
   AUTHORIZED_USERS = [AuthorizedUser.new(FULL_NAME, EMAIL, PHONE), AuthorizedUser.new(FULL_NAME, "mfg@hotmail.com", PHONE)].freeze
   CUSTOMER_TYPES = %w[individualCustomer businessCustomer trustCustomer].freeze
 
-  unit = Unit.new("https://api.s.unit.sh", ["USER_TOKEN"])
-  @@customer = unit.customers
-
-  def update(request)
-    @@customer.update(request)
-  end
+  UNIT = Unit.new("https://api.s.unit.sh", ENV["USER_TOKEN"])
 
   def test_update_individual_customer
     request = PatchIndividualCustomerRequest.new("733576", ADDRESS)
-    response = update(request)
+    response = UNIT.customers.update(request)
     assert_equal response.data["type"], "individualCustomer"
   end
 
   def test_update_business_customer
     request = PatchBusinessCustomerRequest.new("733565", ADDRESS, PHONE, CONTACT)
-    response = update(request)
+    response = UNIT.customers.update(request)
     assert_equal response.data["type"], "businessCustomer"
   end
 
-  def get_customer(customer_id)
-    @@customer.get(customer_id)
-  end
-
   def test_get_individual_customer
-    response = get_customer("733576")
+    response = UNIT.customers.get("733576")
     assert_equal response.data["type"], "individualCustomer"
   end
 
   def test_get_business_customer
-    response = get_customer("733565")
+    response = UNIT.customers.get("733565")
     assert_equal response.data["type"], "businessCustomer"
-  end
-
-  def list(params)
-    @@customer.list(params)
   end
 
   def test_list_customers
     request_params = ListCustomerParams.new(10, 0, "Richard")
-    response = list(request_params)
+    response = UNIT.customers.list(request_params)
     response.data.each do |customer|
       assert_equal CUSTOMER_TYPES.include?(customer["type"]), true
     end
   end
 
-  def add_authorized_users(request)
-    @@customer.add_authorized_users(request)
-  end
-
   def test_add_authorised_users
     request = AddAuthorizedUsersRequest.new("733565", AUTHORIZED_USERS)
-    response = add_authorized_users(request)
+    response = UNIT.customers.add_authorized_users(request)
     assert_equal response.data["type"], "businessCustomer"
-  end
-
-  def remove_authorized_users(request)
-    @@customer.remove_authorized_users(request)
   end
 
   def test_remove_authorised_users
     request = RemoveAuthorizedUsersRequest.new("733565", ["mfg@hotmail.com"])
-    response = remove_authorized_users(request)
+    response = UNIT.customers.remove_authorized_users(request)
     assert_equal response.data["type"], "businessCustomer"
     assert_equal response.data["attributes"]["authorizedUsers"].length, 1
   end

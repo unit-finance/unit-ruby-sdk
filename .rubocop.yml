@@ -24,8 +24,5 @@ Metrics/MethodLength:
 Metrics/AbcSize:
   Enabled: false
 
-Style/ClassVars:
-  Enabled: false
-
 Layout/LineLength:
   Max: 350
