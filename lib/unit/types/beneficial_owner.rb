@@ -29,7 +29,6 @@ class BeneficialOwner
     @percentage = percentage
   end
 
-  # @return [Hash] The JSON API payload
   def represent
     payload =
       {

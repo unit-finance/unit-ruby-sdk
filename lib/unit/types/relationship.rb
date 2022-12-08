@@ -2,7 +2,7 @@
 
 # represents relationships in the JSON API payload
 class Relationship
-  attr_reader :id, :type
+  attr_accessor :id, :type
 
   # @param id [String] The id of the relationship
   # @param type [String] The type
@@ -13,6 +13,6 @@ class Relationship
 
   # @param nested [Boolean] Whether or not the relationship is nested
   def represent(nested: true)
-    nested ? { "data": { "id": id, "type": type } }.to_json : { "id": id, "type": type }.to_json
+    nested ? { "data": { "id": id, "type": type } } : { "id": id, "type": type }
   end
 end

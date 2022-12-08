@@ -7,17 +7,17 @@ class RelationshipArray
   # @param array [Array] The array of relationships
   def initialize(array)
     relationships = []
-    array.each do |item|
+    array.map do |item|
       relationships << if item.is_a?(Relationship)
                          item
                        else
-                         Relationship.new(item["id"], item["type"]) end
+                         Relationship.new(item[:data][:id], item[:data][:type]).represent end
+      p item
     end
     @data = relationships
   end
 
-  # @return [Hash] The JSON API payload
   def represent
-    { "data": data.map(&:represent) }
+    { "data": data }
   end
 end

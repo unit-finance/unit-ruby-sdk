@@ -7,8 +7,9 @@ class UnitResponse
   # @param data [Hash] The JSON API payload
   # @param included [Array] The JSON API payload
 
-  def initialize(data, included)
+  def initialize(data, included, meta)
     @data = data
     @included = included
+    @meta = meta
   end
 end

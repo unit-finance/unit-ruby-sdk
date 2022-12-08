@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 # Type representing authorized user
+# See: https://docs.unit.co/customers/#authorized-users
 class AuthorizedUser
   attr_reader :full_name, :email, :phone, :jwt_subject
 

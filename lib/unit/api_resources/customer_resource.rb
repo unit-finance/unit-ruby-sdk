@@ -9,9 +9,10 @@ require_relative "../models/customers/patch_individual_customer_request"
 require_relative "../models/customers/patch_business_customer_request"
 
 # class for creating requests for customers to Unit API and parsing responses
+# See: https://docs.unit.co/customers/
 class CustomerResource < BaseResource
   # Update a customer by calling Unit's API
-  # @param [PatchIndividualCustomerRequest, PatchBusinessCustomerRequest] request
+  # @param [PatchIndividualCustomerRequest, PatchBusinessCustomerRequest, PatchTrustCustomerRequest] request
   # @return [UnitResponse, UnitError]
   def update(request)
     payload = request.to_json_api
@@ -62,15 +63,5 @@ class CustomerResource < BaseResource
     payload = request.to_json_api
     response = HTTParty.delete("#{api_url}/customers/#{request.customer_id}/authorized-users", body: payload, headers: headers)
     response_handler(response)
-  end
-
-  def response_handler(response)
-    meta = response["meta"].nil? ? nil : response["meta"]
-    case response.code
-    when 200...300
-      UnitResponse.new(response["data"], meta)
-    else
-      UnitError.from_json_api(response)
-    end
   end
 end

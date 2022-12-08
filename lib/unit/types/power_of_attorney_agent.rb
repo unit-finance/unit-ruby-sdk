@@ -31,7 +31,6 @@ class PowerOfAttorneyAgent
     @jwt_subject = jwt_subject
   end
 
-  # @return [Hash] The JSON API payload
   def represent
     {
       status: status,

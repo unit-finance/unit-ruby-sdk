@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require_relative "../types/es/full_name"
-require_relative "../types/address"
-require_relative "../types/phone"
-require_relative "../types/device_fingerprint"
+require "unit/types/full_name"
+require "unit/types/address"
+require "unit/types/phone"
+require "unit/types/device_fingerprint"
 
 # Request to create an individual application
 # See https://docs.unit.co/applications/#create-individual-application

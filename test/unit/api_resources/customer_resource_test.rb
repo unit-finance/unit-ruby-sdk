@@ -9,7 +9,6 @@ require "unit/types/authorized_user"
 
 require "unit/models/customers/patch_individual_customer_request"
 require "unit/models/customers/patch_business_customer_request"
-require "unit/models/customers/patch_trust_customer_request"
 require "unit/models/customers/list_customer_params"
 require "unit/models/customers/archive_customer_request"
 require "unit/models/customers/add_authorized_users_request"

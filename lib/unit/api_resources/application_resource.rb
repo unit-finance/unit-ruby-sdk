@@ -13,6 +13,7 @@ require_relative "../errors/unit_error"
 require "json"
 
 # class for creating requests for applications to Unit API and parsing responses
+# See: https://docs.unit.co/applications
 class ApplicationResource < BaseResource
   # Create a new application by calling Unit's API
   # @param [CreateIndividualApplicationRequest, CreateBusinessApplicationRequest] request

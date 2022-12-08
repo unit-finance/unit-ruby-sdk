@@ -23,9 +23,10 @@ class BaseResource
   # @param [HTTParty::Response] response
   def response_handler(response)
     included = response["included"].nil? ? nil : response["included"]
+    meta = response["meta"].nil? ? nil : response["meta"]
     case response.code
     when 200...300
-      UnitResponse.new(response["data"], included)
+      UnitResponse.new(response["data"], included, meta)
     else
       UnitError.from_json_api(response)
     end

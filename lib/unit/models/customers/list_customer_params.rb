@@ -10,9 +10,7 @@ class ListCustomerParams
   # @param optional query [String] Search term according to the: https://docs.unit.co/#full-text-search
   # @param optional email [String] Filter customers by email address (case sensitive).
   # @param optional tags [Hash] Filter customers by tags. More information regarding tags: https://docs.unit.co/#tags
-  # @param optional status [String] Filter customers by status.
-  # @option status [String] "Active" Filter customers by status "active"
-  # @option status [String] "Archived" Filter customers by status "archived"
+  # @param optional status [String] Filter customers by status. One of: Active, Archived
   # @param optional sort [String] Sorts the resources by the specified field.
   # @option sort=createdAt for ascending order
   # @option sort=-createdAt (leading minus sign) for descending order.

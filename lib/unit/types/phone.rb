@@ -10,7 +10,6 @@ class Phone
     @number = number
   end
 
-  # @return [Hash]
   def represent
     {
       countryCode: country_code,
