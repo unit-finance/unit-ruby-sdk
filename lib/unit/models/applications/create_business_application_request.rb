@@ -13,23 +13,22 @@ class CreateBusinessApplicationRequest
   attr_reader :name, :address, :phone, :state_of_incorporation, :ein, :industry, :contact, :officer, :beneficial_owners,
               :entity_type, :dba, :ip, :website, :tags, :idempotency_key, :device_fingerprints, :type
 
-  # @param name [String] The name of the business.
-  # @param address [Address] Address of the business.
-  # @param phone [Phone] Phone number of the business.
-  # @param state_of_incorporation [String] Two letters representing a US state.
-  # @param ein [String] Business EIN (numbers only).
-  # @param industry [String] The business industry.
-  # @param contact [BusinessContact] Primary contact of the business.
-  # @param officer [Officer] Officer representing the business
-  # @param beneficial_owners [Array]Array of beneficial owners in the business.
-  # @param entity_type [String] One of the following: "Corporation", "LLC", "Partnership"
-  # @param optional dba [String] Doing business as
-  # @param optional ip [String]  IP address of the end-customer creating the application.
-  # @param optional website [String] Business's website.
-  # @param optional tags [Hash] See: https://docs.unit.co/#tags.
-  # @param optional idempotency_key [String] See: https://docs.unit.co/#intro-idempotency
-  # @param optional device_fingerprints [DeviceFingerprint] List of device fingerprints for fraud and risk prevention
-  # See for more information: https://docs.unit.co/applications/#create-business-application
+  # @param name [String]
+  # @param address [Address]
+  # @param phone [Phone]
+  # @param state_of_incorporation [String]
+  # @param ein [String]
+  # @param industry [String]
+  # @param contact [BusinessContact]
+  # @param officer [Officer]
+  # @param beneficial_owners [Array]
+  # @param entity_type [String]
+  # @param optional dba [String]
+  # @param optional ip [String]
+  # @param optional website [String]
+  # @param optional tags [Hash]
+  # @param optional idempotency_key [String]
+  # @param optional device_fingerprints [DeviceFingerprint]
   def initialize(name, address, phone, state_of_incorporation, ein, industry, contact, officer,
                  beneficial_owners, entity_type, dba = nil, ip = nil, website = nil, tags = nil, idempotency_key = nil,
                  device_fingerprints = nil)
