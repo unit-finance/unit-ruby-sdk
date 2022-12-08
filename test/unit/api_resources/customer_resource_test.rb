@@ -25,11 +25,11 @@ class CustomerResourceTest < Minitest::Test
   AUTHORIZED_USERS = [AuthorizedUser.new(FULL_NAME, EMAIL, PHONE), AuthorizedUser.new(FULL_NAME, "mfg@hotmail.com", PHONE)].freeze
   CUSTOMER_TYPES = %w[individualCustomer businessCustomer trustCustomer].freeze
 
-  UNIT = Unit.new("https://api.s.unit.sh", ENV["USER_TOKEN"])
-  CUSTOMER = UNIT.customers
+  unit = Unit.new("https://api.s.unit.sh", ["USER_TOKEN"])
+  @@customer = unit.customers
 
   def update(request)
-    CUSTOMER.update(request)
+    @@customer.update(request)
   end
 
   def test_update_individual_customer
@@ -45,7 +45,7 @@ class CustomerResourceTest < Minitest::Test
   end
 
   def get_customer(customer_id)
-    CUSTOMER.get(customer_id)
+    @@customer.get(customer_id)
   end
 
   def test_get_individual_customer
@@ -59,7 +59,7 @@ class CustomerResourceTest < Minitest::Test
   end
 
   def list(params)
-    CUSTOMER.list(params)
+    @@customer.list(params)
   end
 
   def test_list_customers
@@ -71,7 +71,7 @@ class CustomerResourceTest < Minitest::Test
   end
 
   def add_authorized_users(request)
-    CUSTOMER.add_authorized_users(request)
+    @@customer.add_authorized_users(request)
   end
 
   def test_add_authorised_users
@@ -81,7 +81,7 @@ class CustomerResourceTest < Minitest::Test
   end
 
   def remove_authorized_users(request)
-    CUSTOMER.remove_authorized_users(request)
+    @@customer.remove_authorized_users(request)
   end
 
   def test_remove_authorised_users
