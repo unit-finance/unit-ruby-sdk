@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 # Creates request for uploading a document
+# See: https://docs.unit.co/application-documents/#upload-document
 class UploadDocumentRequest
   attr_reader :application_id, :document_id, :file, :file_type, :content_type, :is_back_side
 

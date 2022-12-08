@@ -1,12 +1,14 @@
 # frozen_string_literal: true
 
-require_relative "../types/es/full_name"
-require_relative "../types/address"
-require_relative "../types/phone"
-require_relative "../types/business_contact"
-require_relative "../types/beneficial_owner"
-require_relative "../types/officer"
+require "unit/types/full_name"
+require "unit/types/address"
+require "unit/types/phone"
+require "unit/types/business_contact"
+require "unit/types/beneficial_owner"
+require "unit/types/officer"
 
+# Request to create a business application
+# See: https://docs.unit.co/applications/#create-business-application
 class CreateBusinessApplicationRequest
   attr_reader :name, :address, :phone, :state_of_incorporation, :ein, :industry, :contact, :officer, :beneficial_owners,
               :entity_type, :dba, :ip, :website, :tags, :idempotency_key, :device_fingerprints, :type
@@ -27,7 +29,6 @@ class CreateBusinessApplicationRequest
   # @param optional tags [Hash]
   # @param optional idempotency_key [String]
   # @param optional device_fingerprints [DeviceFingerprint]
-
   def initialize(name, address, phone, state_of_incorporation, ein, industry, contact, officer,
                  beneficial_owners, entity_type, dba = nil, ip = nil, website = nil, tags = nil, idempotency_key = nil,
                  device_fingerprints = nil)

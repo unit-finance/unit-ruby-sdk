@@ -9,7 +9,6 @@ class EvaluationParams
     @required_verificaion = required_verification
   end
 
-  # @return [Hash]
   def represent
     {
       use_selfie_verification: use_selfie_verification,

@@ -1,34 +1,36 @@
 # frozen_string_literal: true
 
-require_relative "../types/es/full_name"
-require_relative "../types/address"
-require_relative "../types/phone"
-require_relative "../types/device_fingerprint"
+require "unit/types/full_name"
+require "unit/types/address"
+require "unit/types/phone"
+require "unit/types/device_fingerprint"
 
+# Request to create an individual application
+# See https://docs.unit.co/applications/#create-individual-application
 class CreateIndividualApplicationRequest
   attr_reader :type, :ssn, :full_name, :date_of_birth, :address, :email, :phone, :ip, :ein, :industry, :dba, :sole_proprietorship,
               :passport, :nationality, :device_fingerprints, :idempotency_key, :tags, :jwt_subject, :power_of_attorney_agent,
               :evaluation_params
 
-  # @param [String] ssn
-  # @param [FullName] full_name
-  # @param [Date] date_of_birth
-  # @param [Address] address
-  # @param [String] email
-  # @param [Phone] phone
-  # @param ip [String] optional
-  # @param optional [String] ein
-  # @param optional [String] industry
-  # @param optional [String] dba
-  # @param optional [Boolean] sole_proprietorship
-  # @param optional [String] passport
-  # @param optional [String] nationality
-  # @param optional [DeviceFingerprint] device_fingerprints
-  # @param optional [String] idempotency_key
-  # @param optional [Hash] tags
-  # @param optional [String] jwt_subject
-  # @param optional [PowerOfAttorneyAgent] power_of_attorney_agent
-  # @param optional [EvaluationParams] evaluation_params
+  # @param ssn [String]
+  # @param full_name [FullName]
+  # @param date_of_birth [Date]
+  # @param address [Address]
+  # @param email [String]
+  # @param phone [Phone]
+  # @param optional ip [String]
+  # @param optional ein [String]
+  # @param optional industry [String]
+  # @param optional dba [String]
+  # @param optional sole_proprietorship [Boolean]
+  # @param optional passport [String]
+  # @param optional nationality [String]
+  # @param optional device_fingerprints [DeviceFingerprint]
+  # @param optional idempotency_key [String]
+  # @param optional tags [Hash]
+  # @param optional jwt_subject [String]
+  # @param optional power_of_attorney_agent [PowerOfAttorneyAgent]
+  # @param optional evaluation_params [EvaluationParams]
   def initialize(ssn, full_name, date_of_birth, address, email, phone, ip = nil, ein = nil, industry = nil, dba = nil, sole_proprietorship = nil, passport = nil,
                  nationality = nil, device_fingerprints = nil, idempotency_key = nil, tags = nil, jwt_subject = nil, power_of_attorney_agent = nil,
                  evaluation_params = nil)

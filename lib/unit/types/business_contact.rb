@@ -15,7 +15,6 @@ class BusinessContact
     @phone = phone
   end
 
-  # @return [Hash]
   def represent
     {
       fullName: full_name.represent,

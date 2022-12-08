@@ -18,7 +18,6 @@ class Address
     @country = country
   end
 
-  # @return [Hash]
   def represent
     {
       street: street,

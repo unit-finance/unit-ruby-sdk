@@ -29,7 +29,6 @@ class Officer
     @nationality = nationality
   end
 
-  # @return [Hash] The JSON API payload
   def represent
     payload =
       {

@@ -2,7 +2,7 @@
 
 # represents relationships in the JSON API payload
 class Relationship
-  attr_reader :id, :type
+  attr_accessor :id, :type
 
   # @param id [String] The id of the relationship
   # @param type [String] The type

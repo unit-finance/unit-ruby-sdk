@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 # params for list applications
+# See: https://docs.unit.co/applications/#list-applications
 class ListApplicationParams
   attr_reader :offset, :limit, :email, :tags, :query, :sort
 

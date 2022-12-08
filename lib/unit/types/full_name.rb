@@ -10,7 +10,6 @@ class FullName
     @last = last
   end
 
-  # @return [Hash]
   def represent
     {
       first: first,

@@ -13,6 +13,7 @@ require_relative "../errors/unit_error"
 require "json"
 
 # class for creating requests for applications to Unit API and parsing responses
+# See: https://docs.unit.co/applications
 class ApplicationResource < BaseResource
   # Create a new application by calling Unit's API
   # @param [CreateIndividualApplicationRequest, CreateBusinessApplicationRequest] request
@@ -20,12 +21,7 @@ class ApplicationResource < BaseResource
   def create_application(request)
     payload = request.to_json_api
     response = HTTParty.post("#{api_url}/applications", body: payload, headers: headers)
-    case response.code
-    when 200...300
-      UnitResponse.new(response["data"], response["included"])
-    else
-      UnitError.from_json_api(response)
-    end
+    response_handler(response)
   end
 
   # Get an application by calling Unit's API
@@ -33,12 +29,7 @@ class ApplicationResource < BaseResource
   # @return [UnitResponse, UnitError]
   def get_application(application_id)
     response = HTTParty.get("#{api_url}/applications/#{application_id}", headers: headers)
-    case response.code
-    when 200...300
-      UnitResponse.new(response["data"], response["included"])
-    else
-      UnitError.from_json_api(response)
-    end
+    response_handler(response)
   end
 
   # Get an applications by calling Unit's API
@@ -46,12 +37,8 @@ class ApplicationResource < BaseResource
   # @return [UnitResponse, UnitError]
   def list_applications(params = nil)
     response = HTTParty.get("#{api_url}/applications", body: params&.to_hash&.to_json, headers: headers)
-    case response.code
-    when 200...300
-      UnitResponse.new(response["data"], response["included"])
-    else
-      UnitError.from_json_api(response)
-    end
+
+    response_handler(response)
   end
 
   # Upload a document to an application
@@ -72,12 +59,7 @@ class ApplicationResource < BaseResource
 
     response = HTTParty.put(url, body: request.file, headers: headers)
 
-    case response.code
-    when 200...300
-      UnitResponse.new(response["data"], nil)
-    else
-      UnitError.from_json_api(response)
-    end
+    response_handler(response)
   end
 
   # Update an application by calling Unit's API
@@ -86,11 +68,6 @@ class ApplicationResource < BaseResource
   def update(request)
     payload = request.to_json_api
     response = HTTParty.patch("#{api_url}/applications/#{request.application_id}", body: payload, headers: headers)
-    case response.code
-    when 200...300
-      UnitResponse.new(response["data"], nil)
-    else
-      UnitError.from_json_api(response)
-    end
+    response_handler(response)
   end
 end

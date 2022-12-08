@@ -10,7 +10,6 @@ class DeviceFingerprint
     @provider = provider
   end
 
-  # @return [Hash] The JSON API payload
   def represent
     {
       value: value,
