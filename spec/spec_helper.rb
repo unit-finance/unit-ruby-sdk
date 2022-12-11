@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require 'rspec'
-require 'unit_ruby_sdk'
+require "rspec"
+require "unit_ruby_sdk"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
