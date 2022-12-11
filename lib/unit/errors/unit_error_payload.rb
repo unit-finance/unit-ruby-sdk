@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class UnitErrorPayload
+class Unit::UnitErrorPayload
   attr_reader :title, :status, :detail, :details, :source, :code
 
   # @param title [String] The title of the error

@@ -3,7 +3,7 @@
 require_relative "lib/unit/version"
 
 Gem::Specification.new do |spec|
-  spec.name = "unit-ruby-sdk"
+  spec.name = "unit_ruby_sdk"
   spec.version = Unit::VERSION
   spec.authors = ["Unit"]
   spec.email = ["dev@unit.co"]

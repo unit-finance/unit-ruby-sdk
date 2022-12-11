@@ -2,7 +2,7 @@
 
 require "httparty"
 
-class BaseResource
+class Unit::BaseResource
   attr_reader :api_url, :headers, :token
 
   # @param api_url [String] The API URL

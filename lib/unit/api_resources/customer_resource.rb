@@ -10,7 +10,7 @@ require_relative "../models/customers/patch_business_customer_request"
 
 # class for creating requests for customers to Unit API and parsing responses
 # See: https://docs.unit.co/customers/
-class CustomerResource < BaseResource
+class Unit::CustomerResource < Unit::BaseResource
   # Update a customer by calling Unit's API
   # @param [PatchIndividualCustomerRequest, PatchBusinessCustomerRequest, PatchTrustCustomerRequest] request
   # @return [UnitResponse, UnitError]

@@ -14,7 +14,7 @@ require "json"
 
 # class for creating requests for applications to Unit API and parsing responses
 # See: https://docs.unit.co/applications
-class ApplicationResource < BaseResource
+class Unit::ApplicationResource < Unit::BaseResource
   # Create a new application by calling Unit's API
   # @param [CreateIndividualApplicationRequest, CreateBusinessApplicationRequest] request
   # @return [UnitResponse, UnitError]

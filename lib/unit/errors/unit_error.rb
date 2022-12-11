@@ -3,7 +3,7 @@
 require_relative "unit_error_payload"
 
 # Represents an Error returned from Unit's API
-class UnitError
+class Unit::UnitError
   # Create a new UnitError
   # @param [Array<UnitErrorPayload>] errors
   def initialize(errors)
