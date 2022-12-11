@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    unit-ruby-sdk (0.1.0)
+    unit_ruby_sdk (0.1.0)
 
 GEM
   remote: https://rubygems.org/
@@ -115,6 +115,7 @@ GEM
 
 PLATFORMS
   arm64-darwin-21
+  universal-darwin-22
   x86_64-darwin-21
   x86_64-linux
 
@@ -125,7 +126,7 @@ DEPENDENCIES
   rspec
   rubocop (~> 1.21)
   ruby-debug-ide
-  unit-ruby-sdk!
+  unit_ruby_sdk!
 
 BUNDLED WITH
-   2.3.24
+   2.3.25

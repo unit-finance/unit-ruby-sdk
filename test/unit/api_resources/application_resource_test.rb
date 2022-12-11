@@ -7,12 +7,12 @@ require "unit/types/phone"
 require "unit/types/relationship"
 require "unit/types/power_of_attorney_agent"
 require "unit/types/business_contact"
-require "unit/models/applcations/create_individual_application_request"
-require "unit/models/applcations/create_business_application_request"
-require "unit/models/applcations/patch_application_request"
+require "unit/models/applications/create_individual_application_request"
+require "unit/models/applications/create_business_application_request"
+require "unit/models/applications/patch_application_request"
 require "unit/api_resources/application_resource"
-require "unit/models/applcations/list_application_params"
-require "unit/models/applcations/upload_document_request"
+require "unit/models/applications/list_application_params"
+require "unit/models/applications/upload_document_request"
 
 # Test the ApplicationResource class
 class ApplicationResourceTest < Minitest::Test
