@@ -6,7 +6,7 @@ Gem::Specification.new do |spec|
   spec.name = "unit_ruby_sdk"
   spec.version = Unit::VERSION
   spec.authors = ["Unit"]
-  spec.email = ["dev@unit.co"]
+  spec.email = ["engineering@unit.co"]
 
   spec.summary = "This library provides a Ruby wrapper to http://unit.co API. See https://docs.unit.co/"
   spec.description = "This library provides a Ruby wrapper to http://unit.co API. See https://docs.unit.co/"
@@ -14,11 +14,6 @@ Gem::Specification.new do |spec|
   spec.license = "Mozilla Public License 2.0"
   spec.required_ruby_version = ">= 2.6.0"
 
-  spec.metadata["allowed_push_host"] = "https://github.com/unit-finance/unit-ruby-sdk"
-
-  spec.metadata["homepage_uri"] = spec.homepage
-  spec.metadata["source_code_uri"] = "https://github.com/unit-finance/unit-ruby-sdk"
-  spec.metadata["changelog_uri"] = "https://github.com/unit-finance/unit-ruby-sdk"
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
