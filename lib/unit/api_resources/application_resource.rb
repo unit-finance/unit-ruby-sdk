@@ -12,14 +12,6 @@ module Unit
       # @param [CreateIndividualApplicationRequest, CreateBusinessApplicationRequest] request
       # @return [UnitResponse, UnitError]
       def self.create_application(request)
-        api_url = Unit.config[:api_url]
-        token = Unit.config[:token]
-        headers =
-          {
-            "Content-Type" => "application/vnd.api+json",
-            "Authorization" => "Bearer #{token}",
-            "User-Agent" => "unit-ruby-sdk"
-          }
         payload = request.to_json_api
         response = HTTParty.post("#{api_url}/applications", body: payload, headers: headers)
         response_handler(response)
@@ -28,7 +20,7 @@ module Unit
       # Get an application by calling Unit's API
       # @param [Integer] application_id
       # @return [UnitResponse, UnitError]
-      def get_application(application_id)
+      def self.get_application(application_id)
         response = HTTParty.get("#{api_url}/applications/#{application_id}", headers: headers)
         response_handler(response)
       end
@@ -36,16 +28,15 @@ module Unit
       # Get an applications by calling Unit's API
       # @param [ListApplicationParams] params
       # @return [UnitResponse, UnitError]
-      def list_applications(params = nil)
+      def self.list_applications(params = nil)
         response = HTTParty.get("#{api_url}/applications", body: params&.to_hash&.to_json, headers: headers)
-
         response_handler(response)
       end
 
       # Upload a document to an application
       # @param [UploadDocumentRequest] request
       # @return [UnitResponse, UnitError]
-      def upload(request)
+      def self.upload(request)
         url = "#{api_url}/applications/#{request.application_id}/documents/#{request.document_id}"
         url += "/back" if request.is_back_side
 
@@ -66,7 +57,7 @@ module Unit
       # Update an application by calling Unit's API
       # @param [PatchApplicationRequest] request
       # @return [UnitResponse, UnitError]
-      def update(request)
+      def self.update(request)
         payload = request.to_json_api
         response = HTTParty.patch("#{api_url}/applications/#{request.application_id}", body: payload, headers: headers)
         response_handler(response)
