@@ -9,7 +9,7 @@ gem "rake", "~> 13.0"
 
 gem "rubocop", "~> 1.21"
 
-gem "httparty", "~0.20.0"
+gem "httparty", "~>0.20"
 
 gem "ruby-debug-ide"
 
