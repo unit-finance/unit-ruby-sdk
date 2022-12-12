@@ -10,7 +10,7 @@ module Unit
 
       # @param application_id [String] The application id
       # @param type [String] The type
-      # @param optional tags [String] The tags
+      # @param tags [String] The tags
       def initialize(application_id, type, tags = nil)
         @application_id = application_id
         @type = type
