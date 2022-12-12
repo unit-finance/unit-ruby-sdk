@@ -6,7 +6,7 @@ require "unit_ruby_sdk"
 module SpecHelper
   def configure_tests
     stub_const("FULL_NAME", Unit::Types::FullName.new("John", "Doe"))
-    stub_const("EMAIL", "jone.doe@unit-finance.co")
+    stub_const("EMAIL", "jone.doe@unit-finance.com")
     stub_const("DATE_OF_BIRTH", "1980-08-10")
     stub_const("ADDRESS", Unit::Types::Address.new("123 Main St", "San Francisco", "CA", "94205", "US"))
     stub_const("PHONE", Unit::Types::Phone.new("380", "555123222"))
