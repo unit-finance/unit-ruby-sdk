@@ -19,14 +19,14 @@ module Unit
         end
 
         # Get an application by calling Unit's API
-        # @param [Integer] application_id
+        # @param [String] application_id
         # @return [UnitResponse, UnitError]
         def get_application(application_id)
           response = HTTParty.get("#{api_url}/applications/#{application_id}", headers: headers)
           response_handler(response)
         end
 
-        # Get an applications by calling Unit's API
+        # List applications by calling Unit's API
         # @param [ListApplicationParams] params
         # @return [UnitResponse, UnitError]
         def list_applications(params = nil)

@@ -16,7 +16,7 @@ module Unit
       # @param sort [String] Sorts the resources by the specified field.
       # @option sort=createdAt for ascending order
       # @option sort=-createdAt (leading minus sign) for descending order.
-      def initialize(offset = 0, limit = 100, email = nil, tags = nil,
+      def initialize(offset = APPLICATION_LIST_OFFSET, limit = APPLICATION_LIST_LIMIT, email = nil, tags = nil,
                      query = nil, status = nil, sort = nil)
         @offset = offset
         @limit = limit

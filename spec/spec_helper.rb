@@ -22,7 +22,7 @@ module SpecHelper
     stub_const("APPLICATION_TYPES", %w[individualApplication businessApplication trustApplication].freeze)
     stub_const("UNIT_API_URL", "https://api.s.unit.sh")
     stub_const("UNIT_TOKEN", ENV["USER_TOKEN"])
-    Unit.config({ api_url: UNIT_API_URL, token: UNIT_TOKEN })
+    Unit.config(api_url: UNIT_API_URL, token: UNIT_TOKEN)
   end
 
   def get_document_contents

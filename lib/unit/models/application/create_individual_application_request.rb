@@ -20,19 +20,19 @@ module Unit
       # @param address [Address]
       # @param email [String]
       # @param phone [Phone]
-      # @param optional ip [String]
-      # @param optional ein [String]
-      # @param optional industry [String]
-      # @param optional dba [String]
-      # @param optional sole_proprietorship [Boolean]
-      # @param optional passport [String]
-      # @param optional nationality [String]
-      # @param optional device_fingerprints [DeviceFingerprint]
-      # @param optional idempotency_key [String]
-      # @param optional tags [Hash]
-      # @param optional jwt_subject [String]
-      # @param optional power_of_attorney_agent [PowerOfAttorneyAgent]
-      # @param optional evaluation_params [EvaluationParams]
+      # @param ip [String] - optional
+      # @param ein [String] - optional
+      # @param industry [String] - optional
+      # @param dba [String] - optional
+      # @param sole_proprietorship [Boolean] - optional
+      # @param passport [String] - optional
+      # @param nationality [String] - optional
+      # @param device_fingerprints [DeviceFingerprint] - optional
+      # @param idempotency_key [String] - optional
+      # @param tags [Hash] - optional
+      # @param jwt_subject [String] - optional
+      # @param power_of_attorney_agent [PowerOfAttorneyAgent] - optional
+      # @param evaluation_params [EvaluationParams] - optional
       def initialize(ssn, full_name, date_of_birth, address, email, phone, ip = nil, ein = nil, industry = nil, dba = nil, sole_proprietorship = nil, passport = nil,
                      nationality = nil, device_fingerprints = nil, idempotency_key = nil, tags = nil, jwt_subject = nil, power_of_attorney_agent = nil,
                      evaluation_params = nil)

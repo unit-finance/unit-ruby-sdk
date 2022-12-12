@@ -25,12 +25,12 @@ module Unit
       # @param officer [Officer]
       # @param beneficial_owners [Array]
       # @param entity_type [String]
-      # @param optional dba [String]
-      # @param optional ip [String]
-      # @param optional website [String]
-      # @param optional tags [Hash]
-      # @param optional idempotency_key [String]
-      # @param optional device_fingerprints [DeviceFingerprint]
+      # @param dba [String] - optional
+      # @param ip [String] - optional
+      # @param website [String] - optional
+      # @param tags [Hash] - optional
+      # @param idempotency_key [String] - optional
+      # @param device_fingerprints [DeviceFingerprint] - optional
       def initialize(name, address, phone, state_of_incorporation, ein, industry, contact, officer,
                      beneficial_owners, entity_type, dba = nil, ip = nil, website = nil, tags = nil, idempotency_key = nil,
                      device_fingerprints = nil)
