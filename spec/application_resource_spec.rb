@@ -4,48 +4,66 @@ require_relative "./spec_helper"
 
 RSpec.describe Unit::Resource::ApplicationResource do
   before do
-    stub_const("FULL_NAME", Unit::Types::FullName.new("John", "Doe"))
-    stub_const("ADDRESS", Unit::Types::Address.new("123 Main St", "San Francisco", "CA", "94205", "US"))
-    stub_const("EMAIL", "so@gmail.com")
-    stub_const("PHONE", Unit::Types::Phone.new("380", "555123222"))
-    stub_const("APPLICATION_TYPES", %w[individualApplication businessApplication trustApplication].freeze)
-    Unit.config({ api_url: "https://api.s.unit.sh", token: ENV["USER_TOKEN"] })
+    configure_tests
   end
 
   it "Should create business application" do
-    request = create_business_application_request
-    response = create_application(request)
-    expect(response.data["type"]).to be "businessApplication"
+    request = Unit::Application::CreateBusinessApplicationRequest.new(
+      BUSINESS_NAME,
+      ADDRESS,
+      PHONE,
+      STATE,
+      EIN,
+      INDUSTRY,
+      Unit::Types::BusinessContact.new(FULL_NAME, EMAIL, PHONE),
+      Unit::Types::Officer.new(FULL_NAME, DATE_OF_BIRTH, ADDRESS, PHONE, EMAIL, SSN),
+      [
+        Unit::Types::BeneficialOwner.new(FULL_NAME, DATE_OF_BIRTH, ADDRESS, PHONE, EMAIL, SSN),
+        Unit::Types::BeneficialOwner.new(FULL_NAME, DATE_OF_BIRTH, ADDRESS, PHONE, EMAIL, SSN)
+      ],
+      ENTITY_TYPE
+    )
+
+    response = described_class.create_application(request)
+    expect(response.data["type"]).to eq "businessApplication"
   end
 
   it "Should create individual application" do
-    request = create_individual_application_request
-    response = create_application(request)
-    expect(response.data["type"]).to be "individualApplication"
+    request = Unit::Application::CreateIndividualApplicationRequest.new(
+      "123456789", FULL_NAME, Date.new(1989, 2, 1), ADDRESS, EMAIL, PHONE
+    )
+    response = described_class.create_application(request)
+    expect(response.data["type"]).to eq "individualApplication"
   end
 
   it "Should patch application" do
-    request = patch_application_request
-    response = patch_application(request)
-    expect(response.data["type"]).to be "individualApplication"
+    request = Unit::Application::PatchApplicationRequest.new("824008", "individualApplication")
+    response = described_class.update(request)
+    expect(response.data["type"]).to eq "individualApplication"
   end
 
   it "Should get application" do
-    response = get_application
-    expect(response.data["type"]).to be "individualApplication"
+    response = described_class.get_application(824_008)
+    expect(response.data["type"]).to eq "individualApplication"
   end
 
   it "Should list applications" do
-    request = list_applications_request
-    response = list_applications(request)
+    request = Unit::Application::ListApplicationParams.new(0, 1, "richard@piedpiper.com")
+    response = described_class.list_applications(request)
     response.data.each do |application|
       expect(application["type"]).to exist
     end
   end
 
   it "Should upload document" do
-    request = upload_document_request
-    response = upload_document(request)
-    expect(response.data["type"]).to be "document"
+    request = Unit::Application::UploadDocumentRequest.new("836683", "125215", get_document_contents, "pdf")
+    response = described_class.upload(request)
+    expect(response.data["type"]).to eq "document"
+  end
+
+  it "Should upload document back" do
+    request = Unit::Application::UploadDocumentRequest.new("836683", "125214", get_document_contents, "pdf", true)
+    response = described_class.upload(request)
+    expect(response.data["type"]).to eq "document"
   end
 end

@@ -42,7 +42,7 @@ module Unit
   autoload :UnitResponse, "unit/models/unit_response"
   autoload :UnitResource, "unit/models/unit_resource"
 
-  # Configure Unit SDK
+  # Configure Unit SDK - acts both as a setter and a getter
   # @param [Hash] new_config If passed, update config
   # @return [Hash] current config
   def self.config(new_config=nil)
