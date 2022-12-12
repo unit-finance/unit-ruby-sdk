@@ -7,6 +7,7 @@ module Unit
     autoload :ApplicationResource, "unit/api_resources/application_resource"
     autoload :CustomerResource, "unit/api_resources/customer_resource"
   end
+
   module Application
     autoload :CreateBusinessApplicationRequest, "unit/models/application/create_business_application_request"
     autoload :CreateIndividualApplicationRequest, "unit/models/application/create_individual_application_request"
@@ -14,6 +15,7 @@ module Unit
     autoload :PatchApplicationRequest, "unit/models/application/patch_application_request"
     autoload :UploadDocumentRequest, "unit/models/application/upload_document_request"
   end
+
   module Customer
     autoload :AddAuthorizedUsersRequest, "unit/models/customer/add_authorized_users_request"
     autoload :ArchiveCustomerRequest, "unit/models/customer/archive_customer_request"
@@ -22,6 +24,7 @@ module Unit
     autoload :PatchIndividualCustomerRequest, "unit/models/customer/patch_individual_customer_request"
     autoload :RemoveAuthorizedUsersRequest, "unit/models/customer/remove_authorized_users_request"
   end
+
   module Types
     autoload :Address, "unit/types/address"
     autoload :AuthorizedUser, "unit/types/authorized_user"
@@ -45,7 +48,7 @@ module Unit
   # Configure Unit SDK - acts both as a setter and a getter
   # @param [Hash] new_config If passed, update config
   # @return [Hash] current config
-  def self.config(new_config=nil)
+  def self.config(new_config = nil)
     @@config ||= new_config
   end
 end

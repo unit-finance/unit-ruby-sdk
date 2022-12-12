@@ -15,8 +15,7 @@ module Unit
       # @option file_type [String] :jpg
       # @option file_type [String] :png
       # @param is_back_side [Boolean] The file is back side
-      def initialize(application_id, document_id, file, file_type,
-                     is_back_side = false)
+      def initialize(application_id, document_id, file, file_type, is_back_side: false)
         @application_id = application_id
         @document_id = document_id
         @file = file
