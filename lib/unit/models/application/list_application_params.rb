@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # params for list applications
-# See: https://docs.unit.co/applications/#list-applications
+# @see https://docs.unit.co/applications/#list-applications
 module Unit
   module Application
     class ListApplicationParams

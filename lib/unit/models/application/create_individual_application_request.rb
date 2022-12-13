@@ -6,7 +6,7 @@ require "unit/types/phone"
 require "unit/types/device_fingerprint"
 
 # Request to create an individual application
-# See https://docs.unit.co/applications/#create-individual-application
+# @see https://docs.unit.co/applications/#create-individual-application
 module Unit
   module Application
     class CreateIndividualApplicationRequest

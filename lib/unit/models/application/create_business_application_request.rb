@@ -8,7 +8,7 @@ require "unit/types/beneficial_owner"
 require "unit/types/officer"
 
 # Request to create a business application
-# See: https://docs.unit.co/applications/#create-business-application
+# @see https://docs.unit.co/applications/#create-business-application
 module Unit
   module Application
     class CreateBusinessApplicationRequest

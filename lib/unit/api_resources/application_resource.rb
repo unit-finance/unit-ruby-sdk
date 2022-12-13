@@ -4,7 +4,7 @@ require "httparty"
 require_relative "./base_resource"
 require "json"
 # class for creating requests for applications to Unit API and parsing responses
-# See: https://docs.unit.co/applications
+# @see https://docs.unit.co/applications
 module Unit
   module Resource
     class ApplicationResource < Unit::Resource::BaseResource

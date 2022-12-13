@@ -4,19 +4,11 @@ require_relative "unit/version"
 
 module Unit
   autoload :Application, "unit/models/application/application"
+  autoload :Customer, "unit/models/customer/customer"
 
   module Resource
     autoload :ApplicationResource, "unit/api_resources/application_resource"
     autoload :CustomerResource, "unit/api_resources/customer_resource"
-  end
-
-  module Customer
-    autoload :AddAuthorizedUsersRequest, "unit/models/customer/add_authorized_users_request"
-    autoload :ArchiveCustomerRequest, "unit/models/customer/archive_customer_request"
-    autoload :ListCustomerParams, "unit/models/customer/list_customer_params"
-    autoload :PatchBusinessCustomerRequest, "unit/models/customer/patch_business_customer_request"
-    autoload :PatchIndividualCustomerRequest, "unit/models/customer/patch_individual_customer_request"
-    autoload :RemoveAuthorizedUsersRequest, "unit/models/customer/remove_authorized_users_request"
   end
 
   module Types
