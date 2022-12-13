@@ -4,7 +4,7 @@ require_relative "unit/version"
 
 module Unit
   autoload :Application, "unit/models/application/application"
-  autoload :Customer, "unit/customer/customer"
+  autoload :Customer, "unit/models/customer/customer"
 
   module Resource
     autoload :ApplicationResource, "unit/api_resources/application_resource"
