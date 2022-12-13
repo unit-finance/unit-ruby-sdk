@@ -46,7 +46,7 @@ RSpec.describe Unit::Application do
   it "Should list applications" do
     response = described_class.list_applications(offset: 0, limit: 1)
     response.data.each do |application|
-      expect(application["type"]).to exist
+      expect(application["type"]).to be_truthy
     end
   end
 
