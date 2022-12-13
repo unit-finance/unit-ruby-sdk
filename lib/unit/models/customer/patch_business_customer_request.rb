@@ -7,13 +7,13 @@ module Unit
     class PatchBusinessCustomerRequest
       attr_reader :customer_id, :address, :phone, :contact, :authorized_users, :dba, :tags
 
-      # @param customer_id [String] The id of business
-      # @param optional address [Address] The address of business
-      # @param optional phone [Phone] The phone of business
-      # @param optional contact [BusinessContact] The primary contact of the business
-      # @param optional authorized_users [Array<AuthorizedUser>] The authorized users of business
-      # @param optional dba [String] The dba of business. To modify or add needed to specify the new dba name.
-      # @param optional tags [Hash] Provides opportunity to add, update or delete tags from resources with the tags attribute on the corresponding Update operation
+      # @param customer_id [String]
+      # @param address [Address] - optional
+      # @param phone [Phone] - optional
+      # @param contact [BusinessContact] - optional
+      # @param authorized_users [Array<AuthorizedUser>] - optional
+      # @param dba [String] - optional
+      # @param tags [Hash] - optional
       # more information regarding tags: https://docs.unit.co/#updating-tags
       def initialize(customer_id, address = nil, phone = nil, contact = nil,
                      authorized_users = nil, dba = nil, tags = nil)

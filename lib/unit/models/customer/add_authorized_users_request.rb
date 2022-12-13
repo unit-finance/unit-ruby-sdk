@@ -7,8 +7,8 @@ module Unit
     class AddAuthorizedUsersRequest
       attr_reader :customer_id, :authorized_users
 
-      # @param customer_id [String] The id of customer
-      # @param authorized_users [Array<AuthorizedUser>] The authorized users
+      # @param customer_id [String]
+      # @param authorized_users [Array<AuthorizedUser>]
       def initialize(customer_id, authorized_users)
         @customer_id = customer_id
         @authorized_users = authorized_users

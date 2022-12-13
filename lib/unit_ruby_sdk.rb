@@ -132,14 +132,7 @@ module Unit
     end
   end
 
-  module Customer
-    autoload :AddAuthorizedUsersRequest, "unit/models/customer/add_authorized_users_request"
-    autoload :ArchiveCustomerRequest, "unit/models/customer/archive_customer_request"
-    autoload :ListCustomerParams, "unit/models/customer/list_customer_params"
-    autoload :PatchBusinessCustomerRequest, "unit/models/customer/patch_business_customer_request"
-    autoload :PatchIndividualCustomerRequest, "unit/models/customer/patch_individual_customer_request"
-    autoload :RemoveAuthorizedUsersRequest, "unit/models/customer/remove_authorized_users_request"
-  end
+  autoload :Customer, "unit/customer"
 
   module Types
     autoload :Address, "unit/types/address"
