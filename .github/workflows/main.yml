@@ -22,4 +22,6 @@ jobs:
       - name: Rake
         run: bundle exec rake
       - name: Run tests
+        env:
+          USER_TOKEN: ${{ secrets.UNIT_TOKEN }}
         run: rspec
