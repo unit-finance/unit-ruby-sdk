@@ -43,3 +43,12 @@ application = response.data
 
 puts application.id
 ```
+Fetching customer
+```ruby    
+require 'unit_ruby_sdk'
+
+Unit.config(api_url: ENV['API_URL'], token: ENV['TOKEN'])
+
+customer = Unit::Customer.list_customers.first
+puts customer.id
+```
