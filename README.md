@@ -14,7 +14,7 @@ gem install unit_ruby_sdk
 
 ## Usage
 
-Creating Business Application
+Creating a Business Application
 
 ```ruby
 require 'unit_ruby_sdk'
@@ -44,5 +44,5 @@ response = Unit::Application.create_business_application(
 
 application = response.data
 
-print(application.id)
+puts application.id
 ```
