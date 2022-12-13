@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 # Request to update application
-# See for updating business application: https://docs.unit.co/applications/#update-business-application
-# See for updating individual application: https://docs.unit.co/applications/#update-individual-application
+# @see for updating business application: https://docs.unit.co/applications/#update-business-application
+# @see for updating individual application: https://docs.unit.co/applications/#update-individual-application
 module Unit
   module Application
     class PatchApplicationRequest

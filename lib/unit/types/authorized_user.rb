@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Type representing authorized user
-# See: https://docs.unit.co/customers/#authorized-users
+# @see https://docs.unit.co/customers/#authorized-users
 module Unit
   module Types
     class AuthorizedUser

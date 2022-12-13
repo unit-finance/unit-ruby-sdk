@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Update individual customer information request
-# @see: https://docs.unit.co/customers#update-individual-customer
+# @see https://docs.unit.co/customers#update-individual-customer
 module Unit
   module Customer
     class PatchIndividualCustomerRequest

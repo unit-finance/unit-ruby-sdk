@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Creates request for uploading a document
-# See: https://docs.unit.co/application-documents/#upload-document
+# @see https://docs.unit.co/application-documents/#upload-document
 module Unit
   module Application
     class UploadDocumentRequest

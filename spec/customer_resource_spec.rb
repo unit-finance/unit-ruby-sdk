@@ -40,8 +40,8 @@ RSpec.describe Unit::Customer do
   end
 
   it "Should remove authorised users" do
-    response = described_class.remove_authorized_users(customer_id: "733565", authorized_users: ["mfg@hotmail.com"])
+    response = described_class.remove_authorized_users(customer_id: "733565", authorized_users: ["april.doe@unit-finance.com"])
     expect(response.data["type"]).to eq "businessCustomer"
-    expect(response.data["attributes"]["authorizedUsers"].length).to eq 4
+    expect(response.data["attributes"]["authorizedUsers"].length).to eq 3
   end
 end

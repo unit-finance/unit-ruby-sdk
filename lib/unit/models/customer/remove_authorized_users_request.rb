@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Request to remove authorized users from customer
-# @see: https://docs.unit.co/customers#remove-authorized-users
+# @see https://docs.unit.co/customers#remove-authorized-users
 module Unit
   module Customer
     class RemoveAuthorizedUsersRequest

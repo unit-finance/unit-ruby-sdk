@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Update business customer information request
-# @see: https://docs.unit.co/customers#update-business-customer
+# @see https://docs.unit.co/customers#update-business-customer
 module Unit
   module Customer
     class PatchBusinessCustomerRequest

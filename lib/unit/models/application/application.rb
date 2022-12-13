@@ -86,8 +86,8 @@ module Unit
       end
 
       # List applications by calling Unit's API
-      # @param offset [Integer] Number of resources to skip. See pagination: https://docs.unit.co/#intro-pagination
-      # @param limit [Integer] The limit Maximum number of resources that will be returned. Maximum is 1000 resources.
+      # @param offset [Integer] Number of resources to skip.
+      # @param limit [Integer] The limit Maximum number of resources that will be returned.
       # @param email [String] Filter applications by email address (case sensitive).
       # @param tags [String] Filter applications by tags. More information regarding tags: https://docs.unit.co/#tags
       # @param query [String] Search term according to the: https://docs.unit.co/#full-text-search

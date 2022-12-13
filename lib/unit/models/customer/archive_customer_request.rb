@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Request to archive customer
-# @see: https://docs.unit.co/customers#archive-customer
+# @see https://docs.unit.co/customers#archive-customer
 module Unit
   module Customer
     class ArchiveCustomerRequest

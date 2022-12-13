@@ -14,7 +14,7 @@ module Unit
 
     class << self
       # Update individual customer by calling Unit's API
-      # @see: https://docs.unit.co/customers#update-individual-customer
+      # @see https://docs.unit.co/customers#update-individual-customer
       # @param customer_id [String]
       # @param address [Address] - optional
       # @param phone [Phone] - optional
@@ -29,7 +29,7 @@ module Unit
       end
 
       # Update business customer by calling Unit's API
-      # @see: https://docs.unit.co/customers#update-business-customer
+      # @see https://docs.unit.co/customers#update-business-customer
       # @param customer_id [String]
       # @param address [Address] - optional
       # @param phone [Phone] - optional
@@ -75,7 +75,7 @@ module Unit
       end
 
       # Add authorized users by calling Unit's API
-      # @see: https://docs.unit.co/customers#add-authorized-users
+      # @see https://docs.unit.co/customers#add-authorized-users
       # @param customer_id [String]
       # @param authorized_users [Array<AuthorizedUser>]
       def add_authorized_users(customer_id:, authorized_users:)
@@ -84,7 +84,7 @@ module Unit
       end
 
       # Remove authorized users by calling Unit's API
-      # @see: https://docs.unit.co/customers#remove-authorized-users
+      # @see https://docs.unit.co/customers#remove-authorized-users
       # @param customer_id [String]
       # @param authorized_users [Array<AuthorizedUser>]
       def remove_authorized_users(customer_id:, authorized_users:)

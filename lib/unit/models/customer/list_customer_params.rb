@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # params for listing customers
-# See: https://docs.unit.co/customers#list-customers
+# @see https://docs.unit.co/customers#list-customers
 module Unit
   module Customer
     class ListCustomerParams
