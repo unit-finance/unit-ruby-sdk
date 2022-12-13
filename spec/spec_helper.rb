@@ -7,6 +7,7 @@ module SpecHelper
   def configure_tests
     stub_const("FULL_NAME", Unit::Types::FullName.new("John", "Doe"))
     stub_const("EMAIL", "jone.doe@unit-finance.com")
+    stub_const("EMAIL1", "april.doe@unit-finance.com")
     stub_const("DATE_OF_BIRTH", "1980-08-10")
     stub_const("ADDRESS", Unit::Types::Address.new("123 Main St", "San Francisco", "CA", "94205", "US"))
     stub_const("PHONE", Unit::Types::Phone.new("380", "555123222"))
@@ -17,7 +18,7 @@ module SpecHelper
     stub_const("ENTITY_TYPE", "LLC")
     stub_const("INDUSTRY", "Retail")
     stub_const("BUSINESS_NAME", "Acme Inc.")
-    stub_const("AUTHORIZED_USERS", [Unit::Types::AuthorizedUser.new(FULL_NAME, EMAIL, PHONE), Unit::Types::AuthorizedUser.new(FULL_NAME, EMAIL, PHONE)])
+    stub_const("AUTHORIZED_USERS", [Unit::Types::AuthorizedUser.new(FULL_NAME, EMAIL, PHONE), Unit::Types::AuthorizedUser.new(FULL_NAME, EMAIL1, PHONE)])
     stub_const("CUSTOMER_TYPES", %w[individualCustomer businessCustomer trustCustomer])
     stub_const("APPLICATION_TYPES", %w[individualApplication businessApplication trustApplication].freeze)
     stub_const("UNIT_API_URL", "https://api.s.unit.sh")

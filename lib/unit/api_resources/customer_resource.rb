@@ -7,7 +7,7 @@ require_relative "../models/unit_response"
 require_relative "../errors/unit_error"
 
 # class for creating requests for customers to Unit API and parsing responses
-# See: https://docs.unit.co/customers/
+# @see: https://docs.unit.co/customers/
 module Unit
   module Resource
     class CustomerResource < Unit::Resource::BaseResource

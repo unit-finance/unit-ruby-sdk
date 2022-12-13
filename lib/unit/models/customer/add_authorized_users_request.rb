@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Request to add authorized users to a project
-# See: https://docs.unit.co/customers#add-authorized-users
+# @see: https://docs.unit.co/customers#add-authorized-users
 module Unit
   module Customer
     class AddAuthorizedUsersRequest

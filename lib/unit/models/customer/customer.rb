@@ -14,6 +14,7 @@ module Unit
 
     class << self
       # Update individual customer by calling Unit's API
+      # @see: https://docs.unit.co/customers#update-individual-customer
       # @param customer_id [String]
       # @param address [Address] - optional
       # @param phone [Phone] - optional
@@ -28,6 +29,7 @@ module Unit
       end
 
       # Update business customer by calling Unit's API
+      # @see: https://docs.unit.co/customers#update-business-customer
       # @param customer_id [String]
       # @param address [Address] - optional
       # @param phone [Phone] - optional
@@ -42,6 +44,7 @@ module Unit
       end
 
       # Get customer by calling Unit's API
+      # @see https://docs.unit.co/customers#get-specific-customer
       # @param customer_id [String]
       # @return [UnitResponse, UnitError]
       def get_customer(customer_id)
@@ -49,6 +52,7 @@ module Unit
       end
 
       # List customers by calling Unit's API
+      # @see https://docs.unit.co/customers#list-customers
       # @param limit [Integer] - optional
       # @param offset [Integer] - optional
       # @param query [String] - optional
@@ -62,6 +66,7 @@ module Unit
       end
 
       # Archive customer by calling Unit's API
+      # @see https://docs.unit.co/customers#archive-customer
       # @param customer_id [String]
       # @param reason [String] - optional
       def archive_customer(customer_id:, reason: nil)
@@ -70,6 +75,7 @@ module Unit
       end
 
       # Add authorized users by calling Unit's API
+      # @see: https://docs.unit.co/customers#add-authorized-users
       # @param customer_id [String]
       # @param authorized_users [Array<AuthorizedUser>]
       def add_authorized_users(customer_id:, authorized_users:)
@@ -78,6 +84,7 @@ module Unit
       end
 
       # Remove authorized users by calling Unit's API
+      # @see: https://docs.unit.co/customers#remove-authorized-users
       # @param customer_id [String]
       # @param authorized_users [Array<AuthorizedUser>]
       def remove_authorized_users(customer_id:, authorized_users:)
