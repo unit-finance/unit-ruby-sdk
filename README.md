@@ -1,6 +1,9 @@
 # unit_ruby_sdk
+
 This gem provides a ruby wrapper for [Unit's API](https://docs.unit.co/#introduction).
+
 ## Documentation
+
 See [Unit's Docs](https://docs.unit.co)
 
 ## Installation
