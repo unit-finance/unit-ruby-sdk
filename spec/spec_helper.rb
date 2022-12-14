@@ -23,7 +23,6 @@ module SpecHelper
     stub_const("APPLICATION_TYPES", %w[individualApplication businessApplication trustApplication].freeze)
     stub_const("RELATIONSHIPS", { "customer": Unit::Types::Relationship.new("customer", "751009").represent })
     stub_const("OWNERS", Unit::Types::RelationshipArray.from_ids_array("customer", ["760553"]))
-    stub_const("OWNERS_TO_REMOVE", Unit::Types::RelationshipArray.from_ids_array("customer", ["760553"]))
     stub_const("UNIT_API_URL", "https://api.s.unit.sh")
     stub_const("UNIT_TOKEN", ENV["USER_TOKEN"])
     Unit.config(api_url: UNIT_API_URL, token: UNIT_TOKEN)

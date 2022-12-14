@@ -30,5 +30,11 @@ Layout/LineLength:
 Style/ClassVars:
   Enabled: false
 
+Lint/UnderscorePrefixedVariableName:
+  Enabled: false
+
+Style/OptionalBooleanParameter:
+  Enabled: false
+
 Metrics/BlockLength:
   Enabled: false

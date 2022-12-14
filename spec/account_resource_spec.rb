@@ -60,7 +60,7 @@ RSpec.describe Unit::Account::Deposit do
   end
 
   it "Remove account owners" do
-    response = described_class.remove_owners(account_id: 51_502, customers: OWNERS_TO_REMOVE)
+    response = described_class.remove_owners(account_id: 51_502, customers: OWNERS)
     expect(response.data["type"]).to eq("depositAccount")
   end
 end
