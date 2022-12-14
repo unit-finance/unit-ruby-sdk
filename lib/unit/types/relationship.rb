@@ -8,14 +8,14 @@ module Unit
 
       # @param id [String] The id of the relationship
       # @param type [String] The type
-      def initialize(id, type)
-        @id = id
+      def initialize(type, id)
         @type = type
+        @id = id
       end
 
       # @param nested [Boolean] Whether or not the relationship is nested
-      def represent(nested: true)
-        nested ? { "data": { "id": id, "type": type } } : { "id": id, "type": type }
+      def represent(nested = true)
+        nested ? { "data": { "type": type, "id": id } } : { "type": type, "id": id }
       end
     end
   end
