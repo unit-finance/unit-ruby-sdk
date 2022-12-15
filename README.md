@@ -45,8 +45,8 @@ response = Unit::Application.create_business_application(
 application = response.data
 
 puts application.id
+```
 
-```  
 ### Fetching a Customer
 
 ```ruby
