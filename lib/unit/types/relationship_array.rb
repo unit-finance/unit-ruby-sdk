@@ -8,26 +8,22 @@ module Unit
 
       # @param array [Array]
       def initialize(array)
-        relationships = []
-        array.map do |item|
-          relationships << if item.is_a?(Relationship)
-                             item
-                           else
-                             Relationship.new(item[:type], item[:id]).represent(false) end
-        end
-        @data = relationships
+        @data = array
       end
 
-      def represent
+      def to_hash
         { "data": data }
       end
 
-      def self.from_ids_array(type, ids)
-        relationships = []
-        ids.map do |id|
-          relationships << Relationship.new(type, id).represent(false)
+      def self.from_params_array(array)
+        @relationships = []
+        array.map do |item|
+          @relationships << if item.is_a?(Relationship)
+                              item.to_hash[:data]
+                            else
+                              Relationship.new(item[:type], item[:id]).to_hash[:data] end
         end
-        RelationshipArray.new(relationships).represent
+        RelationshipArray.new(@relationships).to_hash
       end
     end
   end

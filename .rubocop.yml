@@ -33,8 +33,5 @@ Style/ClassVars:
 Lint/UnderscorePrefixedVariableName:
   Enabled: false
 
-Style/OptionalBooleanParameter:
-  Enabled: false
-
 Metrics/BlockLength:
   Enabled: false

@@ -13,9 +13,8 @@ module Unit
         @id = id
       end
 
-      # @param nested [Boolean] Whether or not the relationship is nested
-      def represent(nested = true)
-        nested ? { "data": { "type": type, "id": id } } : { "type": type, "id": id }
+      def to_hash
+        { "data": { "type": type, "id": id } }
       end
     end
   end

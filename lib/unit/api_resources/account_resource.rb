@@ -33,9 +33,8 @@ module Unit
         # @param account_id [String]
         # @param reason [String]
         # @return [UnitResponse, UnitError]
-        def reopen_account(account_id, reason)
-          payload = { reason: reason }.to_json
-          response = HTTParty.post("#{api_url}/accounts/#{account_id}/reopen", body: payload, headers: headers)
+        def reopen_account(account_id)
+          response = HTTParty.post("#{api_url}/accounts/#{account_id}/reopen", headers: headers)
           response_handler(response)
         end
 
@@ -109,8 +108,7 @@ module Unit
         # @return [UnitResponse, UnitError]
         def add_owners(request)
           payload = request.to_json_api
-          account_id = "51502"
-          response = HTTParty.post("#{api_url}/accounts/#{account_id}/relationships/customers", body: payload, headers: headers)
+          response = HTTParty.post("#{api_url}/accounts/#{request.account_id}/relationships/customers", body: payload, headers: headers)
           response_handler(response)
         end
 

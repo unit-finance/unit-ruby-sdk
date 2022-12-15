@@ -40,7 +40,7 @@ RSpec.describe Unit::Account::Deposit do
   end
 
   it "Reopen account" do
-    reopen_response = described_class.reopen_account(account_id: 82_661, reason: "test")
+    reopen_response = described_class.reopen_account(account_id: 82_661)
     expect(reopen_response.data["type"]).to eq("depositAccount")
   end
 

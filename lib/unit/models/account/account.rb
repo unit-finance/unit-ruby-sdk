@@ -41,8 +41,8 @@ module Unit
         # @see https://docs.unit.co/deposit-accounts#reopen-account
         # @param account_id [String]
         # @param reason [String]
-        def reopen_account(account_id:, reason:)
-          Unit::Resource::AccountResource.reopen_account(account_id, reason)
+        def reopen_account(account_id:)
+          Unit::Resource::AccountResource.reopen_account(account_id)
         end
 
         # Get a deposit account by id
