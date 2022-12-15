@@ -62,7 +62,7 @@ RSpec.describe Unit::Application do
 
   it "Should return a UnitError when token is missing" do
     Unit.config(token: "")
-    response = described_class.upload_document(application_id: "836683", document_id: "125214", file: get_document_contents, file_type: "pdf", is_back_side: true)
+    response = described_class.get_application("123")
     expect(response).to be_a(Unit::UnitError)
     expect(response.errors[0].title).to eq "Bearer token is missing"
   end
