@@ -17,13 +17,7 @@ module Unit
     # @param [Hash] response The response returned from Unit's API
     # @return [UnitError] a new UnitError populated with values taken from the response
     def self.from_json_api(response)
-      errors = response["errors"]
-
-      if errors.is_a?(Array)
-        new(errors.map { |error| UnitErrorPayload.from_json_api(error) })
-      else
-        new(errors)
-      end
+      new((response["errors"] || []).map { |error| UnitErrorPayload.from_json_api(error) })
     end
   end
 end
