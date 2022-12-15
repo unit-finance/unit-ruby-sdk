@@ -20,6 +20,9 @@ module Unit
       @code = code
     end
 
+    # Creates a new UnitErrorPayload from given response error.
+    # @param [Hash] error One of the errors returned in a response from Unit's API
+    # @return [UnitErrorPayload] a new UnitErrorPayload populated with values taken from the response error
     def self.from_json_api(error)
       new(
         error["title"],
