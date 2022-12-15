@@ -7,11 +7,14 @@ module Unit
 
     # @param data [Hash] The JSON API payload
     # @param included [Array] The JSON API payload
-
     def initialize(data, included, meta)
       @data = data
       @included = included
       @meta = meta
+    end
+
+    def self.from_json_api(response)
+      new(response["data"], response["included"], response["meta"])
     end
   end
 end
