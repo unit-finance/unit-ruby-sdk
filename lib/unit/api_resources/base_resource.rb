@@ -7,11 +7,8 @@ module Unit
         # Check the response code and return a UnitResponse or UnitError
         # @param [Net::HTTPResponse] response
         def response_handler(response)
-          if response.code.between?(200, 299)
-            Unit::UnitResponse.new(response.body["data"], response.body["included"], response.body["meta"])
-          else
-            Unit::UnitError.from_json_api(response)
-          end
+          handler = response.code.between?(200, 299) ? Unit::UnitResponse : Unit::UnitError
+          handler.from_json_api(response)
         end
 
         protected

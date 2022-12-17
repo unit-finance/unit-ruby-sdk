@@ -40,7 +40,7 @@ RSpec.describe Unit::Application do
   end
 
   it "Should get application" do
-    response = described_class.get_application(824_008)
+    response = described_class.get_application("824008")
     expect(response.data["type"]).to eq "individualApplication"
   end
 
@@ -59,5 +59,12 @@ RSpec.describe Unit::Application do
   it "Should upload document back" do
     response = described_class.upload_document(application_id: "836683", document_id: "125214", file: get_document_contents, file_type: "pdf", is_back_side: true)
     expect(response.data["type"]).to eq "document"
+  end
+
+  it "Should return a UnitError when token is missing" do
+    Unit.config(token: "")
+    response = described_class.get_application("123")
+    expect(response).to be_a(Unit::UnitError)
+    expect(response.errors[0].title).to eq "Bearer token is missing"
   end
 end
