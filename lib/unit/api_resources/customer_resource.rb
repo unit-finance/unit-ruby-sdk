@@ -50,9 +50,11 @@ module Unit
         # @return [UnitResponse, UnitError]
         def add_authorized_users(request)
           payload = request.to_json_api
-          response = HttpHelper.post("#{api_url}/customers/#{request.customer_id}/authorized-users",
-                                   body: payload,
-                                   headers: headers)
+          response = HttpHelper.post(
+            "#{api_url}/customers/#{request.customer_id}/authorized-users",
+            body: payload,
+            headers: headers
+          )
           response_handler(response)
         end
 

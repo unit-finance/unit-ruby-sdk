@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "uri"
 require "net/http"
 require "json"
@@ -48,7 +50,7 @@ module HttpHelper
   end
 
   def self.append_key(root_key, key)
-    root_key.nil? ? key : "#{root_key}[#{key.to_s}]"
+    root_key.nil? ? key : "#{root_key}[#{key}]"
   end
 
   class HttpResponse
