@@ -14,7 +14,7 @@ module Unit
     end
 
     # Creates a new UnitResponse from given response.
-    # @param [Hash] response The response returned from Unit's API
+    # # @param [HttpHelper::HttpResponse] response The response returned from Unit's API
     # @return [UnitResponse] a new UnitResponse populated with values taken from the response
     def self.from_json_api(response)
       new(response.body["data"], response.body["included"], response.body["meta"])
