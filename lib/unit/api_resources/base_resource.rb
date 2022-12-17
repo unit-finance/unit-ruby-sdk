@@ -1,19 +1,14 @@
 # frozen_string_literal: true
 
-require "httparty"
-
 module Unit
   module Resource
     class BaseResource
       class << self
         # Check the response code and return a UnitResponse or UnitError
-        # @param [HTTParty::Response] response
+        # @param [Net::HTTPResponse] response
         def response_handler(response)
-          included = response["included"].nil? ? nil : response["included"]
-          meta = response["meta"].nil? ? nil : response["meta"]
-          case response.code
-          when 200...300
-            Unit::UnitResponse.new(response["data"], included, meta)
+          if response.code.between?(200, 299)
+            Unit::UnitResponse.new(response.body["data"], response.body["included"], response.body["meta"])
           else
             Unit::UnitError.from_json_api(response)
           end

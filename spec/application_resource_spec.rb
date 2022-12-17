@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'date'
 require_relative "./spec_helper"
 
 RSpec.describe Unit::Application do

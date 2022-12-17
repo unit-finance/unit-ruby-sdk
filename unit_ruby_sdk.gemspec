@@ -29,8 +29,12 @@ Gem::Specification.new do |spec|
   # spec.add_dependency "example-gem", "~> 1.0"
 
   # test framework
+  spec.add_development_dependency "factory_bot_rails", "~> 6.2.0"
+  spec.add_development_dependency "rake", "~> 13.0"
   spec.add_development_dependency "rspec"
-  spec.add_dependency "httparty", "~> 0.20"
+  spec.add_development_dependency "rubocop", "~> 1.21"
+  spec.add_development_dependency "ruby-debug-ide"
+
   # For more information and examples about making a new gem, check out our
   # guide at: https://bundler.io/guides/creating_gem.html
 end

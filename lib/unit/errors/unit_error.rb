@@ -16,7 +16,7 @@ module Unit
       # @param [Hash] response The response returned from Unit's API
       # @return [UnitError] a new UnitError populated with values taken from the response
       def from_json_api(response)
-        errors = response["errors"]
+        errors = response.body["errors"] || []
 
         errors&.map do |error|
           UnitErrorPayload.new(error["title"], error["status"],

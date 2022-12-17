@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require "httparty"
 require_relative "./base_resource"
+require_relative "../utils/http_helper"
 require "json"
 # class for creating requests for applications to Unit API and parsing responses
 # @see https://docs.unit.co/applications
@@ -14,7 +14,7 @@ module Unit
         # @return [UnitResponse, UnitError]
         def create_application(request)
           payload = request.to_json_api
-          response = HTTParty.post("#{api_url}/applications", body: payload, headers: headers)
+          response = HttpHelper.post("#{api_url}/applications", body: payload, headers: headers)
           response_handler(response)
         end
 
@@ -22,7 +22,7 @@ module Unit
         # @param [String] application_id
         # @return [UnitResponse, UnitError]
         def get_application(application_id)
-          response = HTTParty.get("#{api_url}/applications/#{application_id}", headers: headers)
+          response = HttpHelper.get("#{api_url}/applications/#{application_id}", headers: headers)
           response_handler(response)
         end
 
@@ -30,7 +30,7 @@ module Unit
         # @param [ListApplicationParams] params
         # @return [UnitResponse, UnitError]
         def list_applications(params = nil)
-          response = HTTParty.get("#{api_url}/applications", body: params&.to_hash&.to_json, headers: headers)
+          response = HttpHelper.get("#{api_url}/applications", params: params&.to_hash, headers: headers)
           response_handler(response)
         end
 
@@ -50,7 +50,7 @@ module Unit
           headers["Content-Type"] = "image/jpeg" if request.file_type == "jpeg"
           headers["Content-Type"] = "image/png" if request.file_type == "png"
 
-          response = HTTParty.put(url, body: request.file, headers: headers)
+          response = HttpHelper.put(url, body: request.file, headers: headers)
 
           response_handler(response)
         end
@@ -60,7 +60,7 @@ module Unit
         # @return [UnitResponse, UnitError]
         def update(request)
           payload = request.to_json_api
-          response = HTTParty.patch("#{api_url}/applications/#{request.application_id}", body: payload, headers: headers)
+          response = HttpHelper.patch("#{api_url}/applications/#{request.application_id}", body: payload, headers: headers)
           response_handler(response)
         end
       end
