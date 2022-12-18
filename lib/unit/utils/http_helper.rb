@@ -35,7 +35,8 @@ module HttpHelper
       request = net_http.new uri, headers
       request.body = body unless body.nil?
       response = http.request request
-      HttpResponse.new(response.code.to_i, JSON.parse(response.body))
+      response.body = JSON.parse(response.body)
+      response
     end
   end
 
@@ -51,14 +52,5 @@ module HttpHelper
 
   def self.append_key(root_key, key)
     root_key.nil? ? key : "#{root_key}[#{key}]"
-  end
-
-  class HttpResponse
-    attr_reader :code, :body
-
-    def initialize(code, body)
-      @code = code
-      @body = body
-    end
   end
 end

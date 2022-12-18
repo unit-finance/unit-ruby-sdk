@@ -5,9 +5,9 @@ module Unit
     class BaseResource
       class << self
         # Check the response code and return a UnitResponse or UnitError
-        # @param [HttpHelper::HttpResponse] response
+        # @param [HTTP::Response] response
         def response_handler(response)
-          handler = response.code.between?(200, 299) ? Unit::UnitResponse : Unit::UnitError
+          handler = response.code.to_i.between?(200, 299) ? Unit::UnitResponse : Unit::UnitError
           handler.from_json_api(response)
         end
 

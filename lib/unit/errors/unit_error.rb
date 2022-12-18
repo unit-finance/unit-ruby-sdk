@@ -14,7 +14,7 @@ module Unit
     end
 
     # Creates a new UnitError from given response.
-    # @param [HttpHelper::HttpResponse] response The response returned from Unit's API
+    # @param [HTTP::Response] response The response returned from Unit's API
     # @return [UnitError] a new UnitError populated with values taken from the response
     def self.from_json_api(response)
       new((response.body["errors"] || []).map { |error| UnitErrorPayload.from_json_api(error) })
