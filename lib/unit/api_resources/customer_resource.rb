@@ -1,10 +1,9 @@
 # frozen_string_literal: true
 
-require "httparty"
-
 require_relative "../api_resources/base_resource"
 require_relative "../models/unit_response"
 require_relative "../errors/unit_error"
+require_relative "../utils/http_helper"
 
 # class for creating requests for customers to Unit API and parsing responses
 # @see https://docs.unit.co/customers/
@@ -17,7 +16,7 @@ module Unit
         # @return [UnitResponse, UnitError]
         def update(request)
           payload = request.to_json_api
-          response = HTTParty.patch("#{api_url}/customers/#{request.customer_id}", body: payload, headers: headers)
+          response = HttpHelper.patch("#{api_url}/customers/#{request.customer_id}", body: payload, headers: headers)
           response_handler(response)
         end
 
@@ -25,7 +24,7 @@ module Unit
         # @param [String] customer_id
         # @return [UnitResponse, UnitError]
         def get(customer_id)
-          response = HTTParty.get("#{api_url}/customers/#{customer_id}", headers: headers)
+          response = HttpHelper.get("#{api_url}/customers/#{customer_id}", headers: headers)
           response_handler(response)
         end
 
@@ -33,7 +32,7 @@ module Unit
         # @param [ListCustomerParams] params
         # @return [UnitResponse, UnitError]
         def list(params = nil)
-          response = HTTParty.get("#{api_url}/customers", body: params&.to_hash&.to_json, headers: headers)
+          response = HttpHelper.get("#{api_url}/customers", params: params&.to_hash, headers: headers)
           response_handler(response)
         end
 
@@ -42,7 +41,7 @@ module Unit
         # @return [UnitResponse, UnitError]
         def archive(request)
           payload = request.to_json_api
-          response = HTTParty.post("#{api_url}/customers/#{request.customer_id}/archive", body: payload, headers: headers)
+          response = HttpHelper.post("#{api_url}/customers/#{request.customer_id}/archive", body: payload, headers: headers)
           response_handler(response)
         end
 
@@ -51,9 +50,11 @@ module Unit
         # @return [UnitResponse, UnitError]
         def add_authorized_users(request)
           payload = request.to_json_api
-          response = HTTParty.post("#{api_url}/customers/#{request.customer_id}/authorized-users",
-                                   body: payload,
-                                   headers: headers)
+          response = HttpHelper.post(
+            "#{api_url}/customers/#{request.customer_id}/authorized-users",
+            body: payload,
+            headers: headers
+          )
           response_handler(response)
         end
 
@@ -62,7 +63,7 @@ module Unit
         # @return [UnitResponse, UnitError]
         def remove_authorized_users(request)
           payload = request.to_json_api
-          response = HTTParty.delete("#{api_url}/customers/#{request.customer_id}/authorized-users", body: payload, headers: headers)
+          response = HttpHelper.delete("#{api_url}/customers/#{request.customer_id}/authorized-users", body: payload, headers: headers)
           response_handler(response)
         end
       end
