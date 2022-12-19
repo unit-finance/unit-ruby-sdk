@@ -6,13 +6,15 @@ module Unit
   module Account
     module Deposit
       class CloseDepositAccountRequest
-        attr_reader :account_id, :reason
+        attr_reader :account_id, :reason, :fraud_reason
 
         # @param account_id [String]
         # @param reason [String]
-        def initialize(account_id, reason)
+        # @param fraud_reason [String] - optional
+        def initialize(account_id, reason, fraud_reason = nil)
           @account_id = account_id
           @reason = reason
+          @fraud_reason = fraud_reason
         end
 
         def to_json_api
@@ -20,7 +22,8 @@ module Unit
             data: {
               type: "accountClose",
               attributes: {
-                reason: reason
+                reason: reason,
+                fraudReason: fraud_reason
               }
             }
           }

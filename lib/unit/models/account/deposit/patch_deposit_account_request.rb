@@ -9,7 +9,7 @@ module Unit
         attr_reader :account_id, :tags, :deposit_product
 
         # @param account_id [String]
-        # @param tags [Array<String>] - optional
+        # @param tags [Hash] - optional
         # @param deposit_product [String] - optional
         def initialize(account_id, tags = nil, deposit_product = nil)
           @account_id = account_id

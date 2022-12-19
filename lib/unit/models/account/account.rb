@@ -91,7 +91,7 @@ module Unit
         # Update a deposit account
         # @see https://docs.unit.co/deposit-accounts#update-accounts
         # @param account_id [String]
-        # @param tags [Array<String>] - optional
+        # @param tags [Hash] - optional
         # @param deposit_product [String] - optional
         # @return [UnitResponse, UnitError]
         def update_deposit_account(account_id:, tags: nil, deposit_product: nil)

@@ -12,8 +12,8 @@ module Unit
         # @param limit [Integer] - optional
         # @param offset [Integer] - optional
         # @param customer_id [String] - optional
-        # @param tags [Array<String>] - optional
-        # @param status [String] - optional
+        # @param tags [Hash] - optional
+        # @param status [Array<String>] - optional
         # @param from_balance [Integer] - optional
         # @param to_balance [Integer] - optional
         # @param include [String] - optional

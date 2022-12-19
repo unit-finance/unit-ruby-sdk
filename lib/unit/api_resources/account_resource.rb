@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require "httparty"
 require_relative "./base_resource"
+require_relative "../utils/http_helper"
 require "json"
 
 # class for creating request for accounts to Unit API and parsing responses
@@ -16,7 +16,7 @@ module Unit
         def create_account(request)
           payload = request.to_json_api
           puts payload
-          response = HTTParty.post("#{api_url}/accounts", body: payload, headers: headers)
+          response = HttpHelper.post("#{api_url}/accounts", body: payload, headers: headers)
           response_handler(response)
         end
 
@@ -25,7 +25,7 @@ module Unit
         # @return [UnitResponse, UnitError]
         def close_account(request)
           payload = request.to_json_api
-          response = HTTParty.post("#{api_url}/accounts/#{request.account_id}/close", body: payload, headers: headers)
+          response = HttpHelper.post("#{api_url}/accounts/#{request.account_id}/close", body: payload, headers: headers)
           response_handler(response)
         end
 
@@ -34,7 +34,7 @@ module Unit
         # @param reason [String]
         # @return [UnitResponse, UnitError]
         def reopen_account(account_id)
-          response = HTTParty.post("#{api_url}/accounts/#{account_id}/reopen", headers: headers)
+          response = HttpHelper.post("#{api_url}/accounts/#{account_id}/reopen", headers: headers)
           response_handler(response)
         end
 
@@ -43,7 +43,7 @@ module Unit
         # @return [UnitResponse, UnitError]
         def freeze_account(request)
           payload = request.to_json_api
-          response = HTTParty.post("#{api_url}/accounts/#{request.account_id}/freeze", body: payload, headers: headers)
+          response = HttpHelper.post("#{api_url}/accounts/#{request.account_id}/freeze", body: payload, headers: headers)
           response_handler(response)
         end
 
@@ -51,7 +51,7 @@ module Unit
         # @param account_id [String]
         # @return [UnitResponse, UnitError]
         def unfreeze_account(account_id)
-          response = HTTParty.post("#{api_url}/accounts/#{account_id}/unfreeze", headers: headers)
+          response = HttpHelper.post("#{api_url}/accounts/#{account_id}/unfreeze", headers: headers)
           response_handler(response)
         end
 
@@ -59,7 +59,7 @@ module Unit
         # @param account_id [String]
         # @return [UnitResponse, UnitError]
         def get_account(account_id)
-          response = HTTParty.get("#{api_url}/accounts/#{account_id}", headers: headers)
+          response = HttpHelper.get("#{api_url}/accounts/#{account_id}", headers: headers)
           response_handler(response)
         end
 
@@ -67,7 +67,7 @@ module Unit
         # @param params [ListAccountParams] - optional
         # @return [UnitResponse, UnitError]
         def list_accounts(params = nil)
-          response = HTTParty.get("#{api_url}/accounts", body: params&.to_hash, headers: headers)
+          response = HttpHelper.get("#{api_url}/accounts", params: params&.to_hash, headers: headers)
           response_handler(response)
         end
 
@@ -75,7 +75,7 @@ module Unit
         # @param request [PatchDepositAccountRequest]
         def update_account(request)
           payload = request.to_json_api
-          response = HTTParty.patch("#{api_url}/accounts/#{request.account_id}", body: payload, headers: headers)
+          response = HttpHelper.patch("#{api_url}/accounts/#{request.account_id}", body: payload, headers: headers)
           response_handler(response)
         end
 
@@ -83,7 +83,7 @@ module Unit
         # @param account_id [String]
         # @return [UnitResponse, UnitError]
         def limits(account_id)
-          response = HTTParty.get("#{api_url}/accounts/#{account_id}/limits", headers: headers)
+          response = HttpHelper.get("#{api_url}/accounts/#{account_id}/limits", headers: headers)
           response_handler(response)
         end
 
@@ -91,7 +91,7 @@ module Unit
         # @param account_id [String]
         # @return [UnitResponse, UnitError]
         def get_deposit_products(account_id)
-          response = HTTParty.get("#{api_url}/accounts/#{account_id}/deposit-products", headers: headers)
+          response = HttpHelper.get("#{api_url}/accounts/#{account_id}/deposit-products", headers: headers)
           response_handler(response)
         end
 
@@ -99,7 +99,7 @@ module Unit
         # @param params [BalanceHistoryRequest]
         # @return [UnitResponse, UnitError]
         def get_account_balance_history(params)
-          response = HTTParty.get("#{api_url}/account-end-of-day", body: params.to_hash.to_json, headers: headers)
+          response = HttpHelper.get("#{api_url}/account-end-of-day", body: params.to_hash.to_json, headers: headers)
           response_handler(response)
         end
 
@@ -108,7 +108,7 @@ module Unit
         # @return [UnitResponse, UnitError]
         def add_owners(request)
           payload = request.to_json_api
-          response = HTTParty.post("#{api_url}/accounts/#{request.account_id}/relationships/customers", body: payload, headers: headers)
+          response = HttpHelper.post("#{api_url}/accounts/#{request.account_id}/relationships/customers", body: payload, headers: headers)
           response_handler(response)
         end
 
@@ -117,7 +117,7 @@ module Unit
         # @return [UnitResponse, UnitError]
         def remove_owners(request)
           payload = request.to_json_api
-          response = HTTParty.delete("#{api_url}/accounts/#{request.account_id}/relationships/customers", body: payload, headers: headers)
+          response = HttpHelper.delete("#{api_url}/accounts/#{request.account_id}/relationships/customers", body: payload, headers: headers)
           response_handler(response)
         end
       end

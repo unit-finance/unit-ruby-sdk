@@ -9,9 +9,9 @@ module Unit
         attr_reader :deposit_product, :tags, :idempotency_key, :relationships
 
         # @param deposit_product [String]
-        # @param tags [Array<String>]- optional
+        # @param tags [Hash]- optional
         # @param idempotency_key [String] - optional
-        # @param relationships [Array] - optional
+        # @param relationships [Relationship, RelationshipArray] - optional
         def initialize(deposit_product, tags = nil, relationships = nil, idempotency_key = nil)
           @deposit_product = deposit_product
           @tags = tags

@@ -9,7 +9,7 @@ module HttpHelper
     make_request(Net::HTTP::Get, url, headers, params: params)
   end
 
-  def self.post(url, body:, headers:)
+  def self.post(url, headers:, body: nil)
     make_request(Net::HTTP::Post, url, headers, body: body)
   end
 
