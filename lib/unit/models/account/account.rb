@@ -19,9 +19,9 @@ module Unit
         # Create a deposit account
         # @see https://docs.unit.co/deposit-accounts#create-deposit-account
         # @param deposit_product [String]
-        # @param tags [Array<String>]- optional
+        # @param tags [Hash]- optional
         # @param idempotency_key [String] - optional
-        # @param relationships [Array] - optional
+        # @param relationships [Relationships, RelationshipArray] - optional
         # @return [UnitResponse, UnitError]
         def create_deposit_account(deposit_product:, tags: nil, relationships: nil, idempotency_key: nil)
           request = CreateDepositAccountRequest.new(deposit_product, tags, relationships, idempotency_key)
@@ -31,6 +31,8 @@ module Unit
         # Close deposit account
         # @see https://docs.unit.co/deposit-accounts#close-account
         # @param account_id [String]
+        # @param reason [String]
+        # @param fraud_reason [String] - optional
         # @return [UnitResponse, UnitError]
         def close_deposit_account(account_id:, reason:)
           request = CloseDepositAccountRequest.new(account_id, reason)
@@ -76,7 +78,7 @@ module Unit
         # @param limit [Integer] - optional
         # @param offset [Integer] - optional
         # @param customer_id [String] - optional
-        # @param tags [Array<String>] - optional
+        # @param tags [Hash] - optional
         # @param status [String] - optional
         # @param from_balance [Integer] - optional
         # @param to_balance [Integer] - optional
@@ -133,7 +135,7 @@ module Unit
         # Add account owners by calling Unit's API
         # @see https://docs.unit.co/deposit-accounts#account-add-owners
         # @param account_id [String]
-        # @param customers [Array<Customer>]
+        # @param customers [Array<String>]
         # @return [UnitResponse, UnitError]
         def add_owners(account_id:, customers:)
           request = AccountOwnersRequest.new(account_id, customers)

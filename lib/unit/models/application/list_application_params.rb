@@ -10,7 +10,7 @@ module Unit
       # @param offset [Integer] Number of resources to skip. See pagination: https://docs.unit.co/#intro-pagination
       # @param limit [Integer] The limit Maximum number of resources that will be returned. Maximum is 1000 resources.
       # @param email [String] Filter applications by email address (case sensitive).
-      # @param tags [String] Filter applications by tags. More information regarding tags: https://docs.unit.co/#tags
+      # @param tags [Hash] Filter applications by tags. More information regarding tags: https://docs.unit.co/#tags
       # @param query [String] Search term according to the: https://docs.unit.co/#full-text-search
       # @param status [String] Filter applications by status: https://docs.unit.co/applications/#application-statuses
       # @param sort [String] Sorts the resources by the specified field.

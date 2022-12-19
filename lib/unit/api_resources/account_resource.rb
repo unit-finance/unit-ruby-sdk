@@ -15,7 +15,6 @@ module Unit
         # @return [UnitResponse, UnitError]
         def create_account(request)
           payload = request.to_json_api
-          puts payload
           response = HttpHelper.post("#{api_url}/accounts", body: payload, headers: headers)
           response_handler(response)
         end
@@ -67,7 +66,7 @@ module Unit
         # @param params [ListAccountParams] - optional
         # @return [UnitResponse, UnitError]
         def list_accounts(params = nil)
-          response = HttpHelper.get("#{api_url}/accounts", params: params&.to_hash, headers: headers)
+          response = HttpHelper.get("#{api_url}/accounts", params: params, headers: headers)
           response_handler(response)
         end
 
@@ -99,7 +98,7 @@ module Unit
         # @param params [BalanceHistoryRequest]
         # @return [UnitResponse, UnitError]
         def get_account_balance_history(params)
-          response = HttpHelper.get("#{api_url}/account-end-of-day", body: params.to_hash.to_json, headers: headers)
+          response = HttpHelper.get("#{api_url}/account-end-of-day", params: params.to_hash.to_json, headers: headers)
           response_handler(response)
         end
 

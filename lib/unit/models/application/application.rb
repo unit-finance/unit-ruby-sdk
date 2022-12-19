@@ -78,7 +78,7 @@ module Unit
       # Update an application by calling Unit's API
       # @param application_id [String] The application id
       # @param type [String] The type
-      # @param tags [String] The tags
+      # @param tags [Hash] The tags
       # @return [UnitResponse, UnitError]
       def update_application(application_id:, type:, tags: nil)
         request = PatchApplicationRequest.new(application_id, type, tags)

@@ -18,7 +18,7 @@ RSpec.describe Unit::Account::Deposit do
   end
 
   it "List accounts" do
-    response = described_class.list_deposit_accounts(offset: 0, limit: 1)
+    response = described_class.list_deposit_accounts(offset: 0, limit: 1, customer_id: "751009", status: %w[Open Closed], from_balance: 0, to_balance: 1_000_000, include: ["customer"])
     response.data.each do |account|
       expect(account["type"]).to be_truthy
     end

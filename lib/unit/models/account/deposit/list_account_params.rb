@@ -16,7 +16,7 @@ module Unit
         # @param status [Array<String>] - optional
         # @param from_balance [Integer] - optional
         # @param to_balance [Integer] - optional
-        # @param include [String] - optional
+        # @param include [Array] - optional
         def initialize(limit = ACCOUNT_LIST_LIMIT, offset = ACCOUNT_LIST_OFFSET, customer_id = nil, tags = nil,
                        status = nil, from_balance = nil, to_balance = nil, include = nil)
           @limit = limit
@@ -34,10 +34,11 @@ module Unit
                      "page[offset]": offset,
                      "filter[customerId]": customer_id,
                      "filter[tags]": tags,
+                     "filter[status]": status&.join(","),
                      "filter[fromBalance]": from_balance,
                      "filter[toBalance]": to_balance,
-                     "include": include }
-          params.to_json
+                     "include": include&.join(",") }
+          params.compact!.to_json
         end
       end
     end
