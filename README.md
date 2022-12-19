@@ -58,3 +58,16 @@ customer = Unit::Customer.list_customers.first
 puts customer.id
 ```
 
+### Logging Errors
+
+```ruby
+require 'unit_ruby_sdk'
+
+Unit.config(api_url: ENV['API_URL'], token: "missing token")
+
+# response is a Unit::UnitError
+response = Unit::Application.get_application('123')
+
+# Prints "Bearer token is missing"
+response.errors.each{|error| puts error.title}
+```
