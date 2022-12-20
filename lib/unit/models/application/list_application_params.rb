@@ -35,7 +35,7 @@ module Unit
                    "filter[query]": query,
                    "filter[status]": status,
                    "sort": sort }
-        params.compact!
+        params.compact
       end
     end
   end

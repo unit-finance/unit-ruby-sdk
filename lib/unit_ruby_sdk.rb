@@ -6,11 +6,13 @@ module Unit
   autoload :Application, "unit/models/application/application"
   autoload :Customer, "unit/models/customer/customer"
   autoload :Account, "unit/models/account/account"
+  autoload :ApiToken, "unit/models/api_token/api_token"
 
   module Resource
     autoload :ApplicationResource, "unit/api_resources/application_resource"
     autoload :CustomerResource, "unit/api_resources/customer_resource"
     autoload :AccountResource, "unit/api_resources/account_resource"
+    autoload :ApiTokenResource, "unit/api_resources/api_token_resource"
   end
 
   module Types
@@ -26,6 +28,7 @@ module Unit
     autoload :PowerOfAttorneyAgent, "unit/types/power_of_attorney_agent"
     autoload :Relationship, "unit/types/relationship"
     autoload :RelationshipArray, "unit/types/relationship_array"
+    autoload :RestrictedResource, "unit/types/restricted_resource"
   end
 
   autoload :UnitErrorPayload, "unit/errors/unit_error_payload"

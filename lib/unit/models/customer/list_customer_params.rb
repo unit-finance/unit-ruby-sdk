@@ -33,7 +33,7 @@ module Unit
                    "filter[tags]": tags,
                    "filter[status]": status,
                    "sort": sort }
-        params.compact!
+        params.compact
       end
     end
   end
