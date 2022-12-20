@@ -29,7 +29,7 @@ module Unit
           @include = include
         end
 
-        def to_json_api
+        def to_hash
           params = { "page[limit]": limit,
                      "page[offset]": offset,
                      "filter[customerId]": customer_id,

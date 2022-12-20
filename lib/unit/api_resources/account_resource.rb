@@ -66,7 +66,7 @@ module Unit
         # @param params [ListAccountParams] - optional
         # @return [UnitResponse, UnitError]
         def list_accounts(params = nil)
-          response = HttpHelper.get("#{api_url}/accounts", params: params.to_json_api, headers: headers)
+          response = HttpHelper.get("#{api_url}/accounts", params: params.to_hash, headers: headers)
           response_handler(response)
         end
 
