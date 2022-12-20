@@ -21,7 +21,7 @@ module HttpHelper
     make_request(Net::HTTP::Patch, url, headers, body: body)
   end
 
-  def self.delete(url, body:, headers:)
+  def self.delete(url, headers:, body: nil)
     make_request(Net::HTTP::Delete, url, headers, body: body)
   end
 
