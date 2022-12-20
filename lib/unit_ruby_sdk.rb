@@ -5,10 +5,12 @@ require_relative "unit/version"
 module Unit
   autoload :Application, "unit/models/application/application"
   autoload :Customer, "unit/models/customer/customer"
+  autoload :Account, "unit/models/account/account"
 
   module Resource
     autoload :ApplicationResource, "unit/api_resources/application_resource"
     autoload :CustomerResource, "unit/api_resources/customer_resource"
+    autoload :AccountResource, "unit/api_resources/account_resource"
   end
 
   module Types

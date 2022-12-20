@@ -6,22 +6,24 @@ module Unit
     class RelationshipArray
       attr_reader :data
 
-      # @param array [Array] The array of relationships
+      # @param array [Array]
       def initialize(array)
-        relationships = []
-        array.map do |item|
-          relationships << if item.is_a?(Relationship)
-                             item
-                           else
-                             Relationship.new(item[:data][:id], item[:data][:type]).represent
-                           end
-          p item
-        end
-        @data = relationships
+        @data = array
       end
 
-      def represent
+      def to_hash
         { "data": data }
+      end
+
+      def self.from_params_array(array)
+        @relationships = []
+        array.map do |item|
+          @relationships << if item.is_a?(Relationship)
+                              item.to_hash[:data]
+                            else
+                              Relationship.new(item[:type], item[:id]).to_hash[:data] end
+        end
+        RelationshipArray.new(@relationships).to_hash
       end
     end
   end

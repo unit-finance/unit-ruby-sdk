@@ -21,6 +21,8 @@ module SpecHelper
     stub_const("AUTHORIZED_USERS", [Unit::Types::AuthorizedUser.new(FULL_NAME, EMAIL, PHONE), Unit::Types::AuthorizedUser.new(FULL_NAME, EMAIL1, PHONE)])
     stub_const("CUSTOMER_TYPES", %w[individualCustomer businessCustomer trustCustomer])
     stub_const("APPLICATION_TYPES", %w[individualApplication businessApplication trustApplication].freeze)
+    stub_const("RELATIONSHIPS", { "customer": Unit::Types::Relationship.new("customer", "751009").to_hash })
+    stub_const("OWNERS", %w[751009 760549])
     stub_const("UNIT_API_URL", "https://api.s.unit.sh")
     stub_const("UNIT_TOKEN", ENV["USER_TOKEN"])
     Unit.config(api_url: UNIT_API_URL, token: UNIT_TOKEN)
