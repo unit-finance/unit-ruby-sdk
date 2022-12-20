@@ -10,7 +10,7 @@ module Unit
         # @see https://docs.unit.co/org-api-tokens#create-org-api-token
         # @param user_id [String]
         # @param description [String]
-        # @param scope [String]
+        # @param scope [Array<String>]
         # @param expiration [Datetime]
         # @param source_ip [String] - optional
         # @param resources [Array<RestrictedResource>] - optional
@@ -48,7 +48,7 @@ module Unit
         # Create customer token by calling Unit's API
         # @see https://docs.unit.co/customer-api-tokens#customers-create-customer-bearer-token
         # @param customer_id [String]
-        # @param scope [String]
+        # @param scope [Array<String>]
         # @param verification_token [String]
         # @param verification_code [String] - optional
         # @param expires_in [Integer] - optional
@@ -63,7 +63,7 @@ module Unit
         # Create customer token using JWT by calling Unit's API
         # @see https://docs.unit.co/customer-api-tokens#customers-create-customer-bearer-token-jwt
         # @param customer_id [String]
-        # @param scope [String]
+        # @param scope [Array<String>]
         # @param jwt_token [String] - optional
         # @return [UnitResponse, UnitError]
         def create_customer_token_with_jwt(customer_id:, scope:, jwt_token: nil)

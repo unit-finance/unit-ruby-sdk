@@ -8,7 +8,7 @@ module Unit
       class CreateTokenUsingJwtRequest
         attr_reader :customer_id, :scope, :jwt_token
 
-        # @param scope [String]
+        # @param scope [Array<String>]
         # @param jwt_token [String]
         def initialize(customer_id, scope, jwt_token = nil)
           @customer_id = customer_id
@@ -19,7 +19,7 @@ module Unit
         def to_json_api
           result = { data: { type: "customerToken",
                              attributes:
-                               { scope: scope,
+                               { scope: scope&.join(" "),
                                  jwtToken: jwt_token } } }
           result[:data][:attributes].compact!
           result.to_json

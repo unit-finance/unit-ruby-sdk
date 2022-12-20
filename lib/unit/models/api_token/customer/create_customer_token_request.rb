@@ -9,8 +9,8 @@ module Unit
         attr_reader :customer_id, :scope, :verification_token, :verification_code, :expires_in, :resources
 
         # @param customer_id [String]
-        # @param scope [String]
-        # @param verification_token [String]
+        # @param scope [Array<String>]
+        # @param verification_token [String] - optional
         # @param verification_code [String] - optional
         # @param expires_in [Integer] - optional
         # @param resources [Array<RestrictedResource>] - optional
@@ -27,7 +27,7 @@ module Unit
         def to_json_api
           result = { data: { type: "customerToken",
                              attributes:
-                               { scope: scope,
+                               { scope: scope&.join(" "),
                                  verificationToken: verification_token,
                                  verificationCode: verification_code,
                                  expiresIn: expires_in,

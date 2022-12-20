@@ -31,7 +31,7 @@ module Unit
                      "filter[customerId]": customer_id,
                      "filter[since]": since,
                      "filter[until]": _until }
-          params.compact!
+          params.compact
         end
       end
     end

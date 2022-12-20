@@ -36,7 +36,7 @@ RSpec.describe Unit::ApiToken::Customer do
     let(:create_verification) { described_class.create_customer_token_verification(customer_id: "768867", channel: "sms") }
 
     it "should create a customer token" do
-      response = described_class.create_customer_token(customer_id: "768867", scope: "customers accounts payments",
+      response = described_class.create_customer_token(customer_id: "768867", scope: %w[customers accounts payments],
                                                        verification_token: create_verification.data["attributes"]["verificationToken"])
       expect(response.data["type"]).to eq("customerBearerToken")
     end
@@ -46,7 +46,7 @@ RSpec.describe Unit::ApiToken::Customer do
     end
 
     it "should create a customer token using JWT" do
-      response = described_class.create_customer_token_with_jwt(customer_id: "768867", scope: "customers accounts payments")
+      response = described_class.create_customer_token_with_jwt(customer_id: "768867", scope: %w[customers accounts payments])
       expect(response.data["type"]).to eq("customerBearerToken")
     end
   end
