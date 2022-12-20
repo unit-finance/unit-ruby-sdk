@@ -29,16 +29,18 @@ module Unit
           @include = include
         end
 
-        def to_hash
+        def to_json_api
           params = { "page[limit]": limit,
                      "page[offset]": offset,
                      "filter[customerId]": customer_id,
                      "filter[tags]": tags,
-                     "filter[status]": status&.join(","),
                      "filter[fromBalance]": from_balance,
                      "filter[toBalance]": to_balance,
                      "include": include&.join(",") }
-          params.compact!.to_json
+          status&.each_with_index&.map do |val, index|
+            params.merge!({ "filter[status][#{index}]": val })
+          end
+          params.compact
         end
       end
     end
