@@ -7,12 +7,14 @@ module Unit
   autoload :Customer, "unit/models/customer/customer"
   autoload :Account, "unit/models/account/account"
   autoload :ApiToken, "unit/models/api_token/api_token"
+  autoload :Payment, "unit/models/payment/payment"
 
   module Resource
     autoload :ApplicationResource, "unit/api_resources/application_resource"
     autoload :CustomerResource, "unit/api_resources/customer_resource"
     autoload :AccountResource, "unit/api_resources/account_resource"
     autoload :ApiTokenResource, "unit/api_resources/api_token_resource"
+    autoload :PaymentResource, "unit/api_resources/payment_resource"
   end
 
   module Types
