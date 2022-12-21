@@ -64,8 +64,6 @@ puts customer.id
 ```ruby
 require 'unit_ruby_sdk'
 
-Unit.config(api_url: ENV['API_URL'], token: ENV['TOKEN'])
-
 response = Unit::Payment.create_book_payment(
   amount: 10000,
   description: 'Payment for order #123',

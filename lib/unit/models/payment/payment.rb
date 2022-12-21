@@ -10,13 +10,15 @@ module Unit
       # @see https://docs.unit.co/book-payments#book-payments
       # @param amount [Integer]
       # @param description [String]
+      # @param account_id [String]
+      # @param counterparty_account_id [String]
       # @param transaction_summary_override [String] - optional
       # @param idempotency_key [String] - optional
       # @param tags [Hash] - optional
       # @return [UnitResponse, UnitError]
-      def create_book_payment(amount:, description:, relationships:, transaction_summary_override: nil,
+      def create_book_payment(amount:, description:, account_id:, counterparty_account_id:, transaction_summary_override: nil,
                               idempotency_key: nil, tags: nil)
-        request = Unit::Payment::CreateBookPaymentRequest.new(amount, description, relationships, transaction_summary_override,
+        request = Unit::Payment::CreateBookPaymentRequest.new(amount, description, account_id, counterparty_account_id, transaction_summary_override,
                                                               idempotency_key, tags)
         Unit::Resource::PaymentResource.create_payment(request)
       end

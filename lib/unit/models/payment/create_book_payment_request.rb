@@ -5,17 +5,21 @@
 module Unit
   module Payment
     class CreateBookPaymentRequest
-      attr_reader :amount, :description, :transaction_summary_override, :idempotency_key, :tags, :relationships
+      attr_reader :amount, :description, :account_id, :counterparty_account_id, :transaction_summary_override, :idempotency_key, :tags, :relationships
 
       # @param amount [Integer]
       # @param description [String]
+      # @param account_id [String]
+      # @param counterparty_account_id [String]
       # @param transaction_summary_override [String] - optional
       # @param idempotency_key [String] - optional
       # @param tags [Hash] - optional
-      def initialize(amount, description, relationships, transaction_summary_override = nil,
+      def initialize(amount, description, account_id, counterparty_account_id, relationships, transaction_summary_override = nil,
                      idempotency_key = nil, tags = nil)
         @amount = amount
         @description = description
+        @account_id = account_id
+        @counterparty_account_id = counterparty_account_id
         @relationships = relationships
         @transaction_summary_override = transaction_summary_override
         @idempotency_key = idempotency_key
@@ -33,7 +37,8 @@ module Unit
               idempotencyKey: idempotency_key,
               tags: tags
             },
-            relationships: relationships
+            relationships: { account: Unit::Types::Relationship.new("depositAccount", account_id).to_hash,
+                             counterpartyAccount: Unit::Types::Relationship.new("depositAccount", counterparty_account_id).to_hash }
           }
         }
         payload[:data][:attributes].compact!
