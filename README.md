@@ -58,6 +58,24 @@ customer = Unit::Customer.list_customers.first
 puts customer.id
 ```
 
+### 
+### Creating a Payment
+    
+```ruby
+require 'unit_ruby_sdk'
+
+Unit.config(api_url: ENV['API_URL'], token: ENV['TOKEN'])
+
+response = Unit::Payment.create_book_payment(
+  amount: 10000,
+  description: 'Payment for order #123',
+  relationships: { account: Unit::Types::Relationship.new("depositAccount", "12345").to_hash,
+                   counterpartyAccount: Unit::Types::Relationship.new("depositAccount", "36221").to_hash }
+)
+payment = response.data
+puts payment.id
+```
+
 ### Logging Errors
 
 ```ruby
