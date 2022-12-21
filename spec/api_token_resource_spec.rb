@@ -9,7 +9,7 @@ RSpec.describe Unit::ApiToken::Org do
   end
 
   describe "org token creation" do
-    let(:create_response) { described_class.create_api_token(user_id: "252", description: "test token", scope: "customers applications", expiration: "2022-12-21T13:47:17.000Z", source_ip: "192.11.1.1") }
+    let(:create_response) { described_class.create_api_token(user_id: "252", description: "test token", scope: "customers applications", expiration: "2023-12-21T13:47:17.000Z", source_ip: "192.11.1.1") }
     it "should create an org token" do
       expect(create_response.data["type"]).to eq("apiToken")
     end
