@@ -13,7 +13,7 @@ RSpec.describe Unit::Payment do
                                                                                                       counterpartyAccount: Unit::Types::Relationship.new("depositAccount", "36981").to_hash })
     end
     it "should create a book payment" do
-      expect(response.data["type"]).to eq("bookPayment")
+      expect(create_response.data["type"]).to eq("bookPayment")
     end
 
     it "update a book payment" do
