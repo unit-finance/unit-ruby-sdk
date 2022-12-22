@@ -13,7 +13,7 @@ RSpec.describe Unit::Transaction do
   end
 
   it "should list transactions" do
-    response = described_class.list_transactions(account_id: "1060441")
+    response = described_class.list_transactions(limit: 10, type: %w[OriginatedAch ReceivedAch ReturnedAch], include: %w[customer account])
     response.data.each do |transaction|
       expect(transaction["type"]).to be_truthy
     end

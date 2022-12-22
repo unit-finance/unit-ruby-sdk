@@ -30,13 +30,13 @@ module Unit
       # @param since [String] - optional
       # @param _until [String] - optional
       # @param card_id [String] - optional
-      # @param type [String] - optional
-      # @param from_amount [String] - optional
-      # @param to_amount [String] - optional
+      # @param type [Array<String>] - optional
+      # @param from_amount [Integer] - optional
+      # @param to_amount [Integer] - optional
       # @param direction [String] - optional
       # @param exclude_fees [Boolean] - optional
       # @param sort [String] - optional
-      # @param include [String] - optional
+      # @param include [Array<String>] - optional
       def list_transactions(limit: nil, offset: nil, account_id: nil, customer_id: nil,
                             query: nil, tags: nil, since: nil, _until: nil, card_id: nil, type: nil, from_amount: nil, to_amount: nil,
                             direction: nil, exclude_fees: nil, sort: nil, include: nil)

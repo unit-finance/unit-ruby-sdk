@@ -16,13 +16,13 @@ module Unit
       # @param since [String] - optional
       # @param _until [String] - optional
       # @param card_id [String] - optional
-      # @param type [String] - optional
-      # @param from_amount [String] - optional
-      # @param to_amount [String] - optional
+      # @param type [Array<String>] - optional
+      # @param from_amount [Integer] - optional
+      # @param to_amount [Integer] - optional
       # @param direction [String] - optional
       # @param exclude_fees [Boolean] - optional
       # @param sort [String] - optional
-      # @param include [String] - optional
+      # @param include [Array<String>] - optional
       def initialize(limit = TRANSACTION_LIST_LIMIT, offset = TRANSACTION_LIST_OFFSET, account_id = nil, customer_id = nil,
                      query = nil, tags = nil, since = nil, _until = nil, card_id = nil, type = nil, from_amount = nil, to_amount = nil,
                      direction = nil, exclude_fees = nil, sort = nil, include = nil)
@@ -54,13 +54,15 @@ module Unit
                    "filter[since]": since,
                    "filter[until]": _until,
                    "filter[cardId]": card_id,
-                   "filter[type]": type,
                    "filter[fromAmount]": from_amount,
                    "filter[toAmount]": to_amount,
                    "filter[direction]": direction,
                    "excludeFees": exclude_fees,
                    "sort": sort,
-                   "include": include }
+                   "include": include&.join(",") }
+        type&.each_with_index&.map do |val, index|
+          params.merge!({ "filter[type][#{index}]": val })
+        end
         params.compact
       end
     end

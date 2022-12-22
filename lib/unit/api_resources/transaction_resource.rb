@@ -22,7 +22,8 @@ module Unit
         # @param params [ListTransactionParams]
         # @return [UnitResponse, UnitError]
         def list_transactions(params = nil)
-          response = HttpHelper.get("#{api_url}/transactions", params: params&.to_hash, headers: headers)
+          p params.to_hash
+          response = HttpHelper.get("#{api_url}/transactions", params: params.to_hash, headers: headers)
           response_handler(response)
         end
 

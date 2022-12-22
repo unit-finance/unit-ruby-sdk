@@ -77,8 +77,6 @@ puts payment.id
 ### Get a transaction by id
 
 ```ruby
-require 'unit_ruby_sdk'
-
 response = Unit::Transaction.get_transaction(transaction_id: '12345', account_id: '72345')
 transaction = response.data
 puts transaction.id
