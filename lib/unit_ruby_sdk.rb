@@ -8,6 +8,7 @@ module Unit
   autoload :Account, "unit/models/account/account"
   autoload :ApiToken, "unit/models/api_token/api_token"
   autoload :Payment, "unit/models/payment/payment"
+  autoload :Transaction, "unit/models/transaction/transaction"
 
   module Resource
     autoload :ApplicationResource, "unit/api_resources/application_resource"
@@ -15,6 +16,7 @@ module Unit
     autoload :AccountResource, "unit/api_resources/account_resource"
     autoload :ApiTokenResource, "unit/api_resources/api_token_resource"
     autoload :PaymentResource, "unit/api_resources/payment_resource"
+    autoload :TransactionResource, "unit/api_resources/transaction_resource"
   end
 
   module Types
