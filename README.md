@@ -82,6 +82,19 @@ transaction = response.data
 puts transaction.id
 ```
 
+### Creating an individual debit card
+```ruby
+response = Unit::Card.create_individual_debit_card(
+  account_id: '1234',
+  type: "depositAccount",
+  shipping_address: address,
+  design: "default",
+  additional_embossed_text: "Second Cardholder"
+)
+card = response.data
+puts card.id
+```
+
 ### Logging Errors
 
 ```ruby
