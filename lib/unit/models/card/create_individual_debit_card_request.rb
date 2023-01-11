@@ -5,10 +5,10 @@
 module Unit
   module Card
     class CreateIndividualDebitCardRequest
-      attr_reader :account_id, :type, :shipping_address, :design, :additional_embossed_text, :idempotency_key, :tags, :limits, :print_only_business_name
+      attr_reader :account_id, :customer_id, :shipping_address, :design, :additional_embossed_text, :idempotency_key, :tags, :limits, :print_only_business_name
 
       # @param account_id [String]
-      # @param type [String]
+      # @param customer_id [String] - optional
       # @param shipping_address [String] - optional
       # @param design [String] - optional
       # @param additional_embossed_text [String] - optional
@@ -16,10 +16,10 @@ module Unit
       # @param tags [Hash] - optional
       # @param limits [Hash] - optional
       # @param print_only_business_name [String] - optional
-      def initialize(account_id, type, shipping_address = nil, design = nil, additional_embossed_text = nil,
+      def initialize(account_id, customer_id = nil, shipping_address = nil, design = nil, additional_embossed_text = nil,
                      idempotency_key = nil, tags = nil, limits = nil, print_only_business_name = nil)
         @account_id = account_id
-        @type = type
+        @customer_id = customer_id
         @shipping_address = shipping_address
         @design = design
         @additional_embossed_text = additional_embossed_text
@@ -34,7 +34,7 @@ module Unit
           "data": {
             "type": "individualDebitCard",
             "attributes": {
-              "shippingAddress": shipping_address,
+              "shippingAddress": shipping_address&.represent,
               "design": design,
               "additionalEmbossedText": additional_embossed_text,
               "idempotencyKey": idempotency_key,
@@ -47,6 +47,8 @@ module Unit
             }
           }
         }
+        customer = { "customer": Unit::Types::Relationship.new("customer", customer_id).to_hash } unless customer_id.nil?
+        payload[:data][:relationships].merge!(customer) unless customer.nil?
         payload[:data][:attributes].compact!
         payload.to_json
       end

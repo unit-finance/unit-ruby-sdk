@@ -8,7 +8,7 @@ module Unit
       attr_reader :card_id, :shipping_address
 
       # @param card_id [String]
-      # @param shipping_address [String] - optional
+      # @param shipping_address [Address] - optional
       def initialize(card_id, shipping_address = nil)
         @card_id = card_id
         @shipping_address = shipping_address
@@ -19,7 +19,7 @@ module Unit
           "data": {
             "type": "replaceCard",
             "attributes": {
-              "shippingAddress": shipping_address
+              "shippingAddress": shipping_address&.represent
             }
           }
         }

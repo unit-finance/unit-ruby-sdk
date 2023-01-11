@@ -13,7 +13,7 @@ module Unit
       # @param customer_id [String] - optional
       # @param tags [String] - optional
       # @param status [Array<String>] - optional
-      # @param include [String] - optional
+      # @param include [Array] - optional
       # @param sort [String] - optional
       def initialize(limit = CARD_LIST_LIMIT, offset = CARD_LIST_OFFSET, account_id = nil,
                      customer_id = nil, tags = nil, status = nil, include = nil, sort = nil)
