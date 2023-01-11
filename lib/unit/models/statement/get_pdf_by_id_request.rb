@@ -6,6 +6,7 @@ module Unit
   module Statement
     class GetPdfByIdRequest
       attr_accessor :statement_id, :customer_id, :language
+
       # @param statement_id [String]
       # @param customer_id [String]
       # @param language [String]

@@ -6,6 +6,7 @@ module Unit
   module Statement
     class GetBankVerificationPdf
       attr_accessor :account_id, :include_proof_of_funds
+
       # @param account_id [String]
       # @param include_proof_of_funds [Boolean]
       def initialize(account_id, include_proof_of_funds = false)
