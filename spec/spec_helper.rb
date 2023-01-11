@@ -22,6 +22,7 @@ module SpecHelper
     stub_const("CUSTOMER_TYPES", %w[individualCustomer businessCustomer trustCustomer])
     stub_const("APPLICATION_TYPES", %w[individualApplication businessApplication trustApplication].freeze)
     stub_const("RELATIONSHIPS", { "customer": Unit::Types::Relationship.new("customer", "751009").to_hash })
+    stub_const("RELATIONSHIPS_BUSINESS", { "customer": Unit::Types::Relationship.new("customer", "798787").to_hash })
     stub_const("OWNERS", %w[751009 760549])
     stub_const("RESTRICTED_RESOURCE", Unit::Types::RestrictedResource.new(["27573"], "account").to_json_api)
     stub_const("UNIT_API_URL", "https://api.s.unit.sh")

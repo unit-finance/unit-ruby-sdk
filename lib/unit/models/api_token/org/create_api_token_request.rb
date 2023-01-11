@@ -10,7 +10,7 @@ module Unit
 
         # @param user_id [String]
         # @param description [String]
-        # @param scope [String]
+        # @param scope [Array<String>]
         # @param expiration [String]
         # @param source_ip [String] - optional
         # @param resources [Array<RestrictedResource>] - optional
@@ -27,7 +27,7 @@ module Unit
           result = { data: { type: "apiToken",
                              attributes:
                                { description: description,
-                                 scope: scope,
+                                 scope: scope.join(" "),
                                  expiration: expiration,
                                  sourceIp: source_ip,
                                  resources: resources } } }

@@ -11,6 +11,10 @@ module Unit
           handler.from_json_api(response)
         end
 
+        def file_response_handler(response)
+          response.code.to_i.between?(200, 299) ? response.body : Unit::UnitError
+        end
+
         protected
 
         def api_url
