@@ -47,7 +47,7 @@ module Unit
       # @param account_id [String]
       # @param include_proof_of_funds [Boolean]
       def get_bank_verification_pdf(account_id:, include_proof_of_funds: false)
-        request = GetBankVerificationPdf.new(account_id, include_proof_of_funds)
+        request = GetBankVerificationPdf.new(account_id, include_proof_of_funds: include_proof_of_funds)
         Unit::Resource::StatementResource.get_bank_verification(request)
       end
     end
