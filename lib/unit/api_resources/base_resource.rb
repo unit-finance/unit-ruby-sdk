@@ -29,7 +29,7 @@ module Unit
           {
             "Content-Type" => "application/vnd.api+json",
             "Authorization" => "Bearer #{Unit.config[:token]}",
-            "User-Agent" => "unit-ruby-sdk"
+            "X-UNIT-SDK" => "unit-ruby-sdk@v#{version}"
           }
         end
       end
