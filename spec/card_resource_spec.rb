@@ -80,5 +80,10 @@ RSpec.describe Unit::Card do
         expect(card["type"]).to be_truthy
       end
     end
+
+    it "gets card limits" do
+      response = described_class.limits(card_id: create_debit_response.data["id"])
+      expect(response.data["type"]).to eq("limits")
+    end
   end
 end

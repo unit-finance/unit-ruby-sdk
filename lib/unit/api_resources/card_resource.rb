@@ -90,6 +90,14 @@ module Unit
           response = HttpHelper.get("#{api_url}/cards", params: params&.to_hash, headers: headers)
           response_handler(response)
         end
+
+        # Get card limits by calling Unit's API
+        # @param card_id [String]
+        # @return [UnitResponse, UnitError]
+        def limits(card_id)
+          response = HttpHelper.get("#{api_url}/cards/#{card_id}/limits", headers: headers)
+          response_handler(response)
+        end
       end
     end
   end
