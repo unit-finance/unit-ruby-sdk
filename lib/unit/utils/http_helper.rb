@@ -35,8 +35,16 @@ module HttpHelper
       request = net_http.new uri, headers
       request.body = body unless body.nil?
       response = http.request request
-      response.body = JSON.parse(response.body)
+      response.body = response_check(response)
       response
+    end
+  end
+
+  def self.response_check(response)
+    if response.body.include?("html") || response.body.include?("PDF")
+      response.body
+    else
+      JSON.parse(response.body)
     end
   end
 
