@@ -13,8 +13,9 @@ RSpec.describe Unit::Card do
     let(:frozen_card_id) { described_class.list_cards(limit: 10, offset: 0, status: %w[Frozen]).data[0]["id"] }
     let(:create_deposit_account) { Unit::Account::Deposit.create_deposit_account(deposit_product: "checking", tags: { "purpose": "checking" }, relationships: RELATIONSHIPS) }
     let(:create_debit_response) { described_class.create_individual_debit_card(account_id: create_deposit_account.data["id"]) }
-    let(:business_debit_response) { described_class.create_business_debit_card(account_id: "1111383", full_name: FULL_NAME, date_of_birth: DATE_OF_BIRTH, address: ADDRESS, phone: PHONE, email: EMAIL) }
-    let(:business_virtual_response) { described_class.create_business_virtual_card(account_id: "1111383", full_name: FULL_NAME, date_of_birth: DATE_OF_BIRTH, address: ADDRESS, phone: PHONE, email: EMAIL) }
+    let(:account_for_business) { Unit::Account::Deposit.create_deposit_account(deposit_product: "checking", tags: { "purpose": "checking" }, relationships: RELATIONSHIPS_BUSINESS).data["id"] }
+    let(:business_debit_response) { described_class.create_business_debit_card(account_id: account_for_business, full_name: FULL_NAME, date_of_birth: DATE_OF_BIRTH, address: ADDRESS, phone: PHONE, email: EMAIL) }
+    let(:business_virtual_response) { described_class.create_business_virtual_card(account_id: account_for_business, full_name: FULL_NAME, date_of_birth: DATE_OF_BIRTH, address: ADDRESS, phone: PHONE, email: EMAIL) }
     let(:create_virtual_response) { described_class.create_individual_virtual_card(account_id: create_deposit_account.data["id"]) }
     let(:activate_card_response) { described_class.activate(card_id: list_inactive_cards.data[2]["id"]) }
 
