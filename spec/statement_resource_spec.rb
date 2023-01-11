@@ -17,7 +17,6 @@ RSpec.describe Unit::Statement do
 
     it "should get html by id" do
       response = described_class.get_html_by_id(statement_id: "9755166", customer_id: "22603", language: "en")
-      p response
       expect(response).to include("html")
     end
 

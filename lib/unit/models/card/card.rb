@@ -138,6 +138,12 @@ module Unit
         request = ListCardParams.new(limit, offset, account_id, customer_id, tags, status, include, sort)
         Unit::Resource::CardResource.list_cards(request)
       end
+
+      # Get a card limits by calling Unit's API
+      # @param card_id [String]
+      def limits(card_id:)
+        Unit::Resource::CardResource.limits(card_id)
+      end
     end
   end
 end
