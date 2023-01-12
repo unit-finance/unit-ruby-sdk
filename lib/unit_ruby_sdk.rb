@@ -37,6 +37,7 @@ module Unit
     autoload :Relationship, "unit/types/relationship"
     autoload :RelationshipArray, "unit/types/relationship_array"
     autoload :RestrictedResource, "unit/types/restricted_resource"
+    autoload :DocumentFileType, "unit/types/document_file_type"
   end
 
   autoload :UnitErrorPayload, "unit/errors/unit_error_payload"

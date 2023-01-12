@@ -45,6 +45,19 @@ response = Unit::Application.create_business_application(
 application = response.data
 
 puts application.id
+
+file = File.open("./spec/test.pdf", "rb")
+contents = file.read
+file.close
+
+upload_document_request = Unit::Application.upload_document(
+  application_id: "836683", 
+  document_id: "125214", 
+  file: contents, 
+  file_type: Unit::Types::DocumentFileType::PDF, 
+  is_back_side: true)
+
+puts upload_document_request.data.id
 ```
 
 ### Fetching a Customer
@@ -65,10 +78,10 @@ puts customer.id
 require 'unit_ruby_sdk'
 
 response = Unit::Payment.create_book_payment(
-  amount: 10000,
-  description: 'Payment for order #123',
-  relationships: { account: Unit::Types::Relationship.new("depositAccount", "12345").to_hash,
-                   counterpartyAccount: Unit::Types::Relationship.new("depositAccount", "36221").to_hash }
+  amount: 1000, 
+  description: "test payment", 
+  account_id: "27573", 
+  counterparty_account_id: "36981"
 )
 payment = response.data
 puts payment.id

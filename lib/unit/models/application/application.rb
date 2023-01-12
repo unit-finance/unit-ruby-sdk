@@ -111,11 +111,8 @@ module Unit
       # Upload an application document by calling Unit's API
       # @param application_id [String] The application ID
       # @param document_id [String] The document ID
-      # @param file [String] The file path
-      # @param file_type [String] The file type
-      # @option file_type [String] :pdf
-      # @option file_type [String] :jpg
-      # @option file_type [String] :png
+      # @param file [String] The file content
+      # @param file_type [String] The file type. One of the Unit::Types::DocumentFileType constants.
       # @param is_back_side [Boolean] The file is back side
       # @return [UnitResponse, UnitError]
       def upload_document(application_id:, document_id:, file:, file_type:, is_back_side: false)
