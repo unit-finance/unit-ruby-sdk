@@ -57,7 +57,7 @@ RSpec.describe Unit::Application do
   end
 
   it "Should upload document back" do
-    response = described_class.upload_document(application_id: "836683", document_id: "125214", file: get_document_contents, file_type: "pdf", is_back_side: true)
+    response = described_class.upload_document(application_id: "836683", document_id: "125214", file: get_document_contents, file_type: Unit::Types::DocumentFileType::PDF, is_back_side: true)
     expect(response.data["type"]).to eq "document"
   end
 
