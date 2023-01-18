@@ -48,7 +48,7 @@ module HttpHelper
     end
   end
 
-  def self.encode(value, key = nil)
+  def self.value_check(value, key = nil)
     case value
     when Hash then value.map { |k, v| encode(v, append_key(key, k)) }.join("&")
     when Array then value.map { |v| encode(v, "#{key}[]") }.join("&")
@@ -56,6 +56,10 @@ module HttpHelper
     else
       "#{key}=#{CGI.escape(value.to_s)}"
     end
+  end
+
+  def self.encode(value, key = nil)
+    value.instance_of?(Hash) && value.key?(:"filter[searchRadius]") ? value.map { |k, v| "#{k}=#{v}" }.join("&") : value_check(value, key)
   end
 
   def self.append_key(root_key, key)

@@ -11,7 +11,7 @@ module Unit
   autoload :Transaction, "unit/models/transaction/transaction"
   autoload :Card, "unit/models/card/card"
   autoload :Statement, "unit/models/statement/statement"
-
+  autoload :AtmLocation, "unit/models/atm_location/atm_location"
   module Resource
     autoload :ApplicationResource, "unit/api_resources/application_resource"
     autoload :CustomerResource, "unit/api_resources/customer_resource"
@@ -21,6 +21,7 @@ module Unit
     autoload :TransactionResource, "unit/api_resources/transaction_resource"
     autoload :CardResource, "unit/api_resources/card_resource"
     autoload :StatementResource, "unit/api_resources/statement_resource"
+    autoload :AtmLocationResource, "unit/api_resources/atm_location_resource"
   end
 
   module Types
@@ -38,6 +39,7 @@ module Unit
     autoload :RelationshipArray, "unit/types/relationship_array"
     autoload :RestrictedResource, "unit/types/restricted_resource"
     autoload :DocumentFileType, "unit/types/document_file_type"
+    autoload :Coordinates, "unit/types/coordinates"
   end
 
   autoload :UnitErrorPayload, "unit/errors/unit_error_payload"
