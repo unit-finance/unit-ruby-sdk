@@ -60,7 +60,7 @@ module HttpHelper
   end
 
   def self.encode(value, key = nil)
-    value.instance_of?(Hash) && value.key?(VALUES.map { |value| value }) ? value.map { |k, v| "#{k}=#{v}" }.join("&") : value_check(value, key)
+    value.instance_of?(Hash) && value.key?(VALUES.map { |val| val }) ? value.map { |k, v| "#{k}=#{v}" }.join("&") : value_check(value, key)
   end
 
   def self.append_key(root_key, key)
