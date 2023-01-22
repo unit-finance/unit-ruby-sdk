@@ -3,6 +3,7 @@
 require "rspec"
 require "unit_ruby_sdk"
 
+
 module SpecHelper
   def configure_tests
     stub_const("FULL_NAME", Unit::Types::FullName.new("John", "Doe"))
