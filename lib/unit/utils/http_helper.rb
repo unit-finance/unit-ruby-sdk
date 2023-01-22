@@ -4,6 +4,7 @@ require "uri"
 require "net/http"
 require "json"
 
+
 module HttpHelper
   VALUES = [:"filter[searchRadius]"].freeze
   def self.get(url, headers:, params: nil)
