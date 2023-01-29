@@ -110,7 +110,7 @@ puts card.id
 
 ### Creating a check deposit
 ```ruby
-response = Unit::Deposit.create_deposit(
+response = Unit::CheckDeposit.create_deposit(
   account_id: account_id,
   amount: 50_000,
   description: "test check deposit"
