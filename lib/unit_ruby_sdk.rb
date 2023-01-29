@@ -12,6 +12,7 @@ module Unit
   autoload :Card, "unit/models/card/card"
   autoload :Statement, "unit/models/statement/statement"
   autoload :AtmLocation, "unit/models/atm_location/atm_location"
+  autoload :CheckDeposit, "unit/models/check_deposit/check_deposit"
   module Resource
     autoload :ApplicationResource, "unit/api_resources/application_resource"
     autoload :CustomerResource, "unit/api_resources/customer_resource"
@@ -22,6 +23,7 @@ module Unit
     autoload :CardResource, "unit/api_resources/card_resource"
     autoload :StatementResource, "unit/api_resources/statement_resource"
     autoload :AtmLocationResource, "unit/api_resources/atm_location_resource"
+    autoload :CheckDepositResource, "unit/api_resources/check_deposit_resource"
   end
 
   module Types

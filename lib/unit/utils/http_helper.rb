@@ -6,8 +6,9 @@ require "json"
 
 module HttpHelper
   VALUES = [:"filter[searchRadius]"].freeze
-  def self.get(url, headers:, params: nil)
-    make_request(Net::HTTP::Get, url, headers, params: params)
+  RESPONSE_TYPES = %w[delete image].freeze
+  def self.get(url, headers:, params: nil, response_type: nil)
+    make_request(Net::HTTP::Get, url, headers, params: params, response_type: response_type)
   end
 
   def self.post(url, headers:, body: nil)
@@ -22,11 +23,11 @@ module HttpHelper
     make_request(Net::HTTP::Patch, url, headers, body: body)
   end
 
-  def self.delete(url, headers:, body: nil)
-    make_request(Net::HTTP::Delete, url, headers, body: body)
+  def self.delete(url, headers:, body: nil, response_type: nil)
+    make_request(Net::HTTP::Delete, url, headers, body: body, response_type: response_type)
   end
 
-  def self.make_request(net_http, url, headers, body: nil, params: nil)
+  def self.make_request(net_http, url, headers, body: nil, params: nil, response_type: nil)
     uri = params.nil? ? URI(url) : URI("#{url}?#{encode(params)}")
     host = uri.host.to_s
     port = uri.port
@@ -36,13 +37,13 @@ module HttpHelper
       request = net_http.new uri, headers
       request.body = body unless body.nil?
       response = http.request request
-      response.body = response_check(response)
+      response.body = response_check(response, response_type)
       response
     end
   end
 
-  def self.response_check(response)
-    if response.body.include?("html") || response.body.include?("PDF")
+  def self.response_check(response, response_type = nil)
+    if RESPONSE_TYPES.include?(response_type) || response.body.include?("html") || response.body.include?("PDF")
       response.body
     else
       JSON.parse(response.body)
