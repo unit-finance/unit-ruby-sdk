@@ -54,7 +54,7 @@ module Unit
       # @param file [String] - optional
       # @param is_front_side [Boolean] - optional
       def upload_image_front(deposit_id:, file:, is_front_side: true)
-        request = ImageRequest.new(deposit_id, file, is_front_side)
+        request = ImageRequest.new(deposit_id, file, is_front_side: is_front_side)
         Unit::Resource::CheckDepositResource.upload(request)
       end
 
@@ -64,7 +64,7 @@ module Unit
       # @param file [String] - optional
       # @param is_front_side [Boolean] - optional
       def upload_image_back(deposit_id:, file:, is_front_side: false)
-        request = ImageRequest.new(deposit_id, file, is_front_side)
+        request = ImageRequest.new(deposit_id, file, is_front_side: is_front_side)
         Unit::Resource::CheckDepositResource.upload(request)
       end
 
@@ -74,7 +74,7 @@ module Unit
       # @param file [String] - optional
       # @param is_front_side [Boolean] - optional
       def get_image_front(deposit_id:, file: nil, is_front_side: true)
-        request = ImageRequest.new(deposit_id, file, is_front_side)
+        request = ImageRequest.new(deposit_id, file, is_front_side: is_front_side)
         Unit::Resource::CheckDepositResource.get_image(request)
       end
 
@@ -84,7 +84,7 @@ module Unit
       # @param file [String] - optional
       # @param is_front_side [Boolean] - optional
       def get_image_back(deposit_id:, file: nil, is_front_side: false)
-        request = ImageRequest.new(deposit_id, file, is_front_side)
+        request = ImageRequest.new(deposit_id, file, is_front_side: is_front_side)
         Unit::Resource::CheckDepositResource.get_image(request)
       end
 

@@ -13,7 +13,7 @@ module Unit
       # @param deposit_id [String]
       # @param file [String] - optional
       # @param is_front_side [Boolean] - optional
-      def initialize(deposit_id, file = nil, is_front_side = true)
+      def initialize(deposit_id, file = nil, is_front_side: true)
         @deposit_id = deposit_id
         @file = file
         @is_front_side = is_front_side
