@@ -52,27 +52,26 @@ module Unit
       # Upload an image front side for a check deposit
       # @see https://docs.unit.co/check-deposits#upload-front-side-image
       # @param deposit_id [String]
-      # @param file [String] - The file content - optional
+      # @param file_content [String] - optional
       # @param is_front_side [Boolean] - optional
-      def upload_image_front(deposit_id:, file:, is_front_side: true)
-        request = UploadImageRequest.new(deposit_id, file, is_front_side: is_front_side)
+      def upload_image_front(deposit_id:, file_content:, is_front_side: true)
+        request = UploadImageRequest.new(deposit_id, file_content, is_front_side: is_front_side)
         Unit::Resource::CheckDepositResource.upload(request)
       end
 
       # Upload an image back side for a check deposit
       # @see https://docs.unit.co/check-deposits#upload-back-side-image
       # @param deposit_id [String]
-      # @param file [String] - optional
+      # @param file_content [String] - optional
       # @param is_front_side [Boolean] - optional
-      def upload_image_back(deposit_id:, file:, is_front_side: false)
-        request = UploadImageRequest.new(deposit_id, file, is_front_side: is_front_side)
+      def upload_image_back(deposit_id:, file_content:, is_front_side: false)
+        request = UploadImageRequest.new(deposit_id, file_content, is_front_side: is_front_side)
         Unit::Resource::CheckDepositResource.upload(request)
       end
 
       # Get a check deposit image front side
       # @see https://docs.unit.co/check-deposits#get-specific-check-deposit-front-image
       # @param deposit_id [String]
-      # @param file [String] - optional
       # @param is_front_side [Boolean] - optional
       def get_image_front(deposit_id:, is_front_side: true)
         request = GetImageRequest.new(deposit_id, is_front_side: is_front_side)
@@ -82,7 +81,6 @@ module Unit
       # Get a check deposit image back side
       # @see https://docs.unit.co/check-deposits#get-specific-check-deposit-back-image
       # @param deposit_id [String]
-      # @param file [String] - optional
       # @param is_front_side [Boolean] - optional
       def get_image_back(deposit_id:, is_front_side: false)
         request = GetImageRequest.new(deposit_id, is_front_side: is_front_side)

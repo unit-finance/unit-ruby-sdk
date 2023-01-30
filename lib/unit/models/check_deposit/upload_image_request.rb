@@ -7,14 +7,14 @@
 module Unit
   module CheckDeposit
     class UploadImageRequest
-      attr_reader :deposit_id, :file, :is_front_side
+      attr_reader :deposit_id, :file_content, :is_front_side
 
       # @param deposit_id [String]
-      # @param file [String] - The file content - optional
+      # @param file_content [String] - optional
       # @param is_front_side [Boolean] - optional
-      def initialize(deposit_id, file = nil, is_front_side: true)
+      def initialize(deposit_id, file_content = nil, is_front_side: true)
         @deposit_id = deposit_id
-        @file = file
+        @file_content = file_content
         @is_front_side = is_front_side
       end
     end

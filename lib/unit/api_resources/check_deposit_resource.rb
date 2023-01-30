@@ -54,7 +54,7 @@ module Unit
 
           headers_updated["Content-Type"] = "image/jpeg"
 
-          response = HttpHelper.put("#{api_url}/check-deposits/#{request.deposit_id}#{side}", body: request.file, headers: headers_updated)
+          response = HttpHelper.put("#{api_url}/check-deposits/#{request.deposit_id}#{side}", body: request.file_content, headers: headers_updated)
 
           response_handler(response)
         end

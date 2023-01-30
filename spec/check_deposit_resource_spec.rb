@@ -31,12 +31,12 @@ RSpec.describe Unit::CheckDeposit do
     end
 
     it "uploads image front" do
-      response = Unit::CheckDeposit.upload_image_front(deposit_id: check_deposit.data["id"], file: get_image_contents)
+      response = Unit::CheckDeposit.upload_image_front(deposit_id: check_deposit.data["id"], file_content: get_image_contents)
       expect(response.data["type"]).to eq("checkDeposit")
     end
 
     it "uploads image back" do
-      response = Unit::CheckDeposit.upload_image_back(deposit_id: "16559", file: get_image_contents, is_front_side: false)
+      response = Unit::CheckDeposit.upload_image_back(deposit_id: "16559", file_content: get_image_contents, is_front_side: false)
       expect(response.data["type"]).to eq("checkDeposit")
     end
 
