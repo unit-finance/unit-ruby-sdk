@@ -27,7 +27,7 @@ module Unit
           response_handler(response)
         end
 
-        # Get a check deposits by calling Unit's API
+        # Get a list of check deposits by calling Unit's API
         # @param params [ListDepositRequest]
         # @return [UnitResponse, UnitError]
         def list(params = nil)
@@ -45,38 +45,25 @@ module Unit
         end
 
         # Upload a check deposit image by calling Unit's API
-        # @param request [ImageRequest]
+        # @param request [UploadImageRequest]
         # @return [UnitResponse, UnitError]
         def upload(request)
-          url = "#{api_url}/check-deposits/#{request.deposit_id}"
-          url += "/front" if request.is_front_side
-          url += "/back" unless request.is_front_side
+          side = request.is_front_side ? "/front" : "/back"
 
-          headers = {
-            "Authorization" => "Bearer #{Unit.config[:token]}",
-            "X-UNIT-SDK" => "unit-ruby-sdk@v#{Unit::VERSION}"
-          }
+          headers_updated = headers
 
-          headers["Content-Type"] = "image/jpeg"
+          headers_updated["Content-Type"] = "image/jpeg"
 
-          response = HttpHelper.put(url, body: request.file, headers: headers)
+          response = HttpHelper.put("#{api_url}/check-deposits/#{request.deposit_id}#{side}", body: request.file, headers: headers_updated)
 
           response_handler(response)
         end
 
         # Get a check deposit image by calling Unit's API
-        # @param request [ImageRequest]
+        # @param request [GetImageRequest]
         # @return [UnitResponse, UnitError]
         def get_image(request)
           side = request.is_front_side ? "front" : "back"
-
-          headers = {
-            "Authorization" => "Bearer #{Unit.config[:token]}",
-            "X-UNIT-SDK" => "unit-ruby-sdk@v#{Unit::VERSION}"
-          }
-
-          headers["Content-Type"] = "image/jpeg"
-
           response = HttpHelper.get("#{api_url}/check-deposits/#{request.deposit_id}/#{side}", headers: headers, response_type: "image")
           file_response_handler(response)
         end
