@@ -52,7 +52,7 @@ module Unit
       # Upload an image front side for a check deposit
       # @see https://docs.unit.co/check-deposits#upload-front-side-image
       # @param deposit_id [String]
-      # @param file_content [String] - optional
+      # @param file_content [String]
       # @param is_front_side [Boolean] - optional
       def upload_image_front(deposit_id:, file_content:, is_front_side: true)
         request = UploadImageRequest.new(deposit_id, file_content, is_front_side: is_front_side)
@@ -62,7 +62,7 @@ module Unit
       # Upload an image back side for a check deposit
       # @see https://docs.unit.co/check-deposits#upload-back-side-image
       # @param deposit_id [String]
-      # @param file_content [String] - optional
+      # @param file_content [String]
       # @param is_front_side [Boolean] - optional
       def upload_image_back(deposit_id:, file_content:, is_front_side: false)
         request = UploadImageRequest.new(deposit_id, file_content, is_front_side: is_front_side)

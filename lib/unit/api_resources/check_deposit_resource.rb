@@ -50,7 +50,7 @@ module Unit
         def upload(request)
           side = request.is_front_side ? "/front" : "/back"
 
-          headers_updated = headers
+          headers_updated = headers.clone
 
           headers_updated["Content-Type"] = "image/jpeg"
 
