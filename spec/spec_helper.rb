@@ -36,6 +36,13 @@ module SpecHelper
     file.close
     contents
   end
+
+  def get_image_contents
+    file = File.open("./spec/check.jpg", "rb")
+    contents = file.read
+    file.close
+    contents
+  end
 end
 
 RSpec.configure do |config|

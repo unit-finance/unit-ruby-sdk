@@ -110,6 +110,17 @@ card = response.data
 puts card.id
 ```
 
+### Creating a check deposit
+```ruby
+response = Unit::CheckDeposit.create_deposit(
+  account_id: account_id,
+  amount: 50_000,
+  description: "test check deposit"
+)
+deposit = response.data
+puts deposit.id
+```
+
 ### Logging Errors
 
 ```ruby
