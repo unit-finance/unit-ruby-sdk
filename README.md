@@ -14,6 +14,8 @@ gem install unit_ruby_sdk
 
 ## Usage
 
+ Bellow are a few exapmles of the Ruby SDK application. For full documentation of the Unit API please refer to the full documentation at https://docs.unit.co/
+
 ### Creating a Business Application
 
 ```ruby
@@ -118,6 +120,7 @@ response = Unit::CheckDeposit.create_deposit(
 deposit = response.data
 puts deposit.id
 ```
+
 ### Creating a counterparty with a plaid token
 ```ruby
 response = Unit::Counterparty.create_with_plaid_token(
@@ -129,6 +132,7 @@ response = Unit::Counterparty.create_with_plaid_token(
 counterparty = response.data
 puts counterparty.id
 ```
+
 ### Logging Errors
 
 ```ruby
