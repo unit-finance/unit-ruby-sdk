@@ -118,7 +118,17 @@ response = Unit::CheckDeposit.create_deposit(
 deposit = response.data
 puts deposit.id
 ```
+### Creating a counterparty with a plaid token
+```ruby
+response = Unit::Counterparty.create_with_plaid_token(
+  customer_id: "823139", 
+  type: "Business", 
+  name: "Jo Joel", 
+  plaid_processor_token: "processor-sandbox-7cc7c614-47f6-4532-86b8-e15fdc680bf3")
 
+counterparty = response.data
+puts counterparty.id
+```
 ### Logging Errors
 
 ```ruby
