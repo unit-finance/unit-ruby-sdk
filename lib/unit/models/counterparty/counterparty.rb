@@ -64,7 +64,7 @@ module Unit
 
       # Get counterparty balance
       # @param counterparty_id [String]
-      # @see https://docs.unit.co/payments-counterparties/#get-one-counterparty
+      # @see https://docs.unit.co/payments-counterparties/#get-counterparty-balance
       def get_counterparty_balance(counterparty_id:)
         Unit::Resource::CounterpartyResource.get_counterparty_balance(counterparty_id)
       end
