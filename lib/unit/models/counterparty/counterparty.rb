@@ -50,8 +50,9 @@ module Unit
       # @param account_number [String] - optional
       # @param routing_number [String] - optional
       # @param tags [Hash] - optional
-      def list_counterparty(limit: COUNTER_PARTY_LIMIT, offset: COUNTER_PARTY_OFFSET, customer_id: nil, account_number: nil, routing_number: nil, tags: nil)
-        params = ListCounterpartyParams.new(limit, offset, customer_id, account_number, routing_number, tags)
+      # @param permissions [Array<String>] - optional
+      def list_counterparty(limit: COUNTER_PARTY_LIMIT, offset: COUNTER_PARTY_OFFSET, customer_id: nil, account_number: nil, routing_number: nil, tags: nil, permissions: nil)
+        params = ListCounterpartyParams.new(limit, offset, customer_id, account_number, routing_number, tags, permissions)
         Unit::Resource::CounterpartyResource.list(params)
       end
 

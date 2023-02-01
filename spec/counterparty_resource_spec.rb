@@ -29,7 +29,7 @@ RSpec.describe Unit::Counterparty do
   end
 
   it "lists counterparty" do
-    response = Unit::Counterparty.list_counterparty
+    response = Unit::Counterparty.list_counterparty(permissions: %w[DebitOnly])
     expect(response.data[0]["type"]).to eq("achCounterparty")
   end
 
