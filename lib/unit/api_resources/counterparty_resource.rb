@@ -11,7 +11,7 @@ module Unit
     class CounterpartyResource < Unit::Resource::BaseResource
       class << self
         # Create a counterparty by calling Unit's API
-        # @param request [CreateCounterpartyRequest]
+        # @param request [CreateCounterpartyRequest, CreateWithPlaidTokenRequest]
         # @return [UnitResponse, UnitError]
         def create_counterparty(request)
           payload = request.to_json_api
