@@ -127,7 +127,7 @@ response = Unit::Counterparty.create_with_plaid_token(
   customer_id: "823139", 
   type: "Business", 
   name: "Jo Joel", 
-  plaid_processor_token: "processor-sandbox-7cc7c614-47f6-4532-86b8-e15fdc680bf3")
+  plaid_processor_token: "processor-sandbox-plaid-token")
 
 counterparty = response.data
 puts counterparty.id
