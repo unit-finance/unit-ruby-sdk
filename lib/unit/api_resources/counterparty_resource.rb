@@ -56,7 +56,7 @@ module Unit
         # @param params [ListCounterpartyParams]
         # @return [UnitResponse, UnitError]
         def list(params = nil)
-          response = HttpHelper.get("#{api_url}/counterparties", params: params, headers: headers)
+          response = HttpHelper.get("#{api_url}/counterparties", params: params.to_hash, headers: headers)
           response_handler(response)
         end
       end
