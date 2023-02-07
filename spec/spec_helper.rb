@@ -12,6 +12,8 @@ module SpecHelper
     stub_const("ADDRESS", Unit::Types::Address.new("123 Main St", "San Francisco", "CA", "94205", "US"))
     stub_const("PHONE", Unit::Types::Phone.new("380", "555123222"))
     stub_const("CONTACT", Unit::Types::BusinessContact.new(FULL_NAME, EMAIL, PHONE))
+    stub_const("COUNTERPARTY", Unit::Types::Counterparty.new("Jane Doe", "27573", "812345678", "Checking"))
+    stub_const("WIRE_COUNTERPARTY", Unit::Types::WireCounterparty.new("Jane Doe", "27573", "812345678", ADDRESS))
     stub_const("SSN", "123456789")
     stub_const("EIN", "123456789")
     stub_const("STATE", "CA")
