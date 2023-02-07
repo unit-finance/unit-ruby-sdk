@@ -45,6 +45,8 @@ module Unit
     autoload :RestrictedResource, "unit/types/restricted_resource"
     autoload :DocumentFileType, "unit/types/document_file_type"
     autoload :Coordinates, "unit/types/coordinates"
+    autoload :Counterparty, "unit/types/counterparty"
+    autoload :WireCounterparty, "unit/types/wire_counterparty"
   end
 
   autoload :UnitErrorPayload, "unit/errors/unit_error_payload"
