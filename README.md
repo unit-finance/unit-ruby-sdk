@@ -79,7 +79,7 @@ puts customer.id
 ```ruby
 require 'unit_ruby_sdk'
 
-response = Unit::Payment::Book.create_book_payment(
+response = Unit::Payment.create_book_payment(
   amount: 1000, 
   description: "test payment", 
   account_id: "27573", 
@@ -92,7 +92,7 @@ puts payment.id
 ### Creating a Payment to linked counterparty
 
 ```ruby
-response = Unit::Payment::Ach.create_ach_payment_linked(
+response = Unit::Payment.create_ach_payment_linked(
   account_id: "123456", 
   counterparty_id: "56784", 
   amount: 1000, 
@@ -107,7 +107,7 @@ puts ach_payment.id
 
 ```ruby
 address = Unit::Types::Address.new('123 Main St', 'San Francisco', 'CA', '94205', 'US')
-response = Unit::Payment::Wire.create_wire_payment(
+response = Unit::Payment.create_wire_payment(
   account_id: "1234", 
   amount: 1000, 
   description: "test payment", 

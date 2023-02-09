@@ -7,23 +7,21 @@ RSpec.describe Unit::Payment do
     configure_tests
   end
 
-  describe Unit::Payment::Book do
-    describe "create book payment" do
-      let(:create_response) do
-        described_class.create_book_payment(amount: 1000, description: "test payment", account_id: "27573", counterparty_account_id: "36981")
-      end
-      it "should create a book payment" do
-        expect(create_response.data["type"]).to eq("bookPayment")
-      end
+  describe "book payment" do
+    let(:create_response) do
+      described_class.create_book_payment(amount: 1000, description: "test payment", account_id: "27573", counterparty_account_id: "36981")
+    end
+    it "should create a book payment" do
+      expect(create_response.data["type"]).to eq("bookPayment")
+    end
 
-      it "update a book payment" do
-        response = described_class.update_book_payment(payment_id: create_response.data["id"], tags: { purspose: "test" })
-        expect(response.data["type"]).to eq("bookPayment")
-      end
+    it "update a book payment" do
+      response = described_class.update_book_payment(payment_id: create_response.data["id"], tags: { purspose: "test" })
+      expect(response.data["type"]).to eq("bookPayment")
     end
   end
 
-  describe Unit::Payment::Ach do
+  describe "ach payment" do
     let(:inline_payment) do
       described_class.create_ach_payment_inline(account_id: "27573", amount: 1000, direction: "Credit", counterparty: COUNTERPARTY, description: "test payment")
     end
@@ -68,7 +66,7 @@ RSpec.describe Unit::Payment do
     end
   end
 
-  describe Unit::Payment::Wire do
+  describe "wire payment" do
     it "creates wire payment" do
       response = described_class.create_wire_payment(account_id: "27573", amount: 1000, description: "test payment", counterparty: WIRE_COUNTERPARTY)
       expect(response.data["type"]).to eq("wirePayment")
