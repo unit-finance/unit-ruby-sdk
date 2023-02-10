@@ -34,8 +34,8 @@ module Unit
         # @param reason [String]
         # @param fraud_reason [String] - optional
         # @return [UnitResponse, UnitError]
-        def close_deposit_account(account_id:, reason:)
-          request = CloseDepositAccountRequest.new(account_id, reason)
+        def close_deposit_account(account_id:, reason:, fraud_reason: nil)
+          request = CloseDepositAccountRequest.new(account_id, reason, fraud_reason)
           Unit::Resource::AccountResource.close_account(request)
         end
 
