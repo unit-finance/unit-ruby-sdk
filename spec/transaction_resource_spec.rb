@@ -23,4 +23,9 @@ RSpec.describe Unit::Transaction do
     response = described_class.update_transaction(transaction_id: "2246427", account_id: "1060441", tags: { "purpose": "test" })
     expect(response.data["type"]).to eq("originatedAchTransaction")
   end
+
+  it "should update the book transaction" do
+    response = described_class.update_book_transaction(account_id: "36099", transaction_id: "2158678", summary: "Counterparty: Unit Inc | Description: Funding", tags: { "purpose": "test" })
+    expect(response.data["type"]).to eq("bookTransaction")
+  end
 end

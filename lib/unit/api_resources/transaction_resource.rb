@@ -34,6 +34,15 @@ module Unit
           response = HttpHelper.patch("#{api_url}/accounts/#{request.account_id}/transactions/#{request.transaction_id}", body: payload, headers: headers)
           response_handler(response)
         end
+
+        # Update a transaction by calling Unit's API
+        # @param request [PatchTagsRequest]
+        # @return [UnitResponse, UnitError]
+        def update_transaction(request)
+          payload = request.to_json_api
+          response = HttpHelper.patch("#{api_url}/transactions/#{request.transaction_id}", body: payload, headers: headers)
+          response_handler(response)
+        end
       end
     end
   end
