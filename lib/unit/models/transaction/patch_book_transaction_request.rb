@@ -31,7 +31,6 @@ module Unit
             }
           }
         }
-        p payload
         payload[:data][:attributes].compact!
         payload.to_json
       end
