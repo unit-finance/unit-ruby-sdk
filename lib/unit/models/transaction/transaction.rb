@@ -7,6 +7,8 @@ module Unit
     autoload :GetTransactionParams, "unit/models/transaction/get_transaction_params"
     autoload :ListTransactionParams, "unit/models/transaction/list_transaction_params"
     autoload :PatchTagsRequest, "unit/models/transaction/patch_tags_request"
+    autoload :PatchBookTransactionRequest, "unit/models/transaction/patch_book_transaction_request"
+    autoload :PatchChargebackTransactionRequest, "unit/models/transaction/patch_chargeback_transaction_request"
 
     class << self
       # Get a transaction by id
@@ -54,6 +56,28 @@ module Unit
       def update_transaction(account_id:, transaction_id:, tags: nil)
         request = PatchTagsRequest.new(account_id, transaction_id, tags)
         Unit::Resource::TransactionResource.update_tags(request)
+      end
+
+      # Update a book transaction
+      # @see https://docs.unit.co/transactions#update-book-transaction
+      # @param account_id [String]
+      # @param transaction_id [String]
+      # @param summary [String]
+      # @param tags [Hash] - optional
+      def update_book_transaction(account_id:, transaction_id:, summary:, tags: nil)
+        request = PatchBookTransactionRequest.new(account_id, transaction_id, summary, tags)
+        Unit::Resource::TransactionResource.update_transaction(request)
+      end
+
+      # Update a chargeback transaction
+      # @see https://docs.unit.co/transactions#update-chargeback-transaction
+      # @param account_id [String]
+      # @param transaction_id [String]
+      # @param summary [String]
+      # @param tags [Hash] - optional
+      def update_chargeback_transaction(account_id:, transaction_id:, summary:, tags: nil)
+        request = PatchChargebackTransactionRequest.new(account_id, transaction_id, summary, tags)
+        Unit::Resource::TransactionResource.update_transaction(request)
       end
     end
   end
