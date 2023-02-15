@@ -62,6 +62,28 @@ upload_document_request = Unit::Application.upload_document(
 puts upload_document_request.data.id
 ```
 
+### Creating a deposit account request
+```ruby
+relationships = { "customer": Unit::Types::Relationship.new("customer", "111009").to_hash }
+response = Unit::Account::Deposit.create_deposit_account(
+  deposit_product: "checking", 
+  tags: { "purpose": "checking" }, 
+  relationships: relationships)
+deposit_account = response.data
+puts deposit_account.id
+```
+
+### Creating a credit account request
+```ruby
+response = Unit::Account::Credit.create_credit_account(
+  credit_terms: "credit_terms_test", 
+  credit_limit: 20_000, 
+  customer_id: "851228", 
+  tags: { "purpose": "tax" })
+credit_account = response.data
+puts credit_account.id
+```
+
 ### Fetching a Customer
 
 ```ruby
