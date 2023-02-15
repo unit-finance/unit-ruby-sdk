@@ -153,5 +153,113 @@ module Unit
         end
       end
     end
+
+    module Credit
+      ACCOUNT_LIST_LIMIT = 100
+      ACCOUNT_LIST_OFFSET = 0
+      BALANCE_HISTORY_LIMIT = 100
+      BALANCE_HISTORY_OFFSET = 0
+      autoload :CreateAccountRequest, "unit/models/account/credit/create_account_request"
+      autoload :CloseAccountRequest, "unit/models/account/credit/close_account_request"
+      autoload :PatchAccountRequest, "unit/models/account/credit/patch_account_request"
+      autoload :BalanceHistoryRequest, "unit/models/account/credit/balance_history_request"
+      autoload :FreezeAccountRequest, "unit/models/account/credit/freeze_account_request"
+      autoload :ListAccountParams, "unit/models/account/credit/list_account_params"
+
+      class << self
+        # Create a credit account
+        # @see https://docs.unit.co/credit-accounts#create-credit-account
+        # @param credit_terms [String]
+        # @param credit_limit [Integer]
+        # @param customer_id [String] - optional
+        # @param tags [Hash] - optional
+        # @param idempotency_key [String] - optional
+        def create_credit_account(credit_terms:, credit_limit:, customer_id: nil, tags: nil, idempotency_key: nil)
+          request = CreateAccountRequest.new(credit_terms, credit_limit, customer_id, tags, idempotency_key)
+          Unit::Resource::AccountResource.create_account(request)
+        end
+
+        # Close a credit account
+        # @see https://docs.unit.co/credit-accounts#close-account
+        # @param account_id [String]
+        # @param reason [String]
+        # @param fraud_reason [String] - optional
+        def close_credit_account(account_id:, reason:, fraud_reason: nil)
+          request = CloseAccountRequest.new(account_id, reason, fraud_reason)
+          Unit::Resource::AccountResource.close_account(request)
+        end
+
+        # Get a credit account by id
+        # @see https://docs.unit.co/credit-accounts#get-specific-credit-account
+        # @param account_id [String]
+        def get_credit_account(account_id:)
+          Unit::Resource::AccountResource.get_account(account_id)
+        end
+
+        # Freeze credit account
+        # @see https://docs.unit.co/credit-accounts#freeze-account
+        # @param account_id [String]
+        # @param reason [String]
+        # @param reason_text [String] - optional
+        def freeze_credit_account(account_id:, reason:, reason_text: nil)
+          request = FreezeAccountRequest.new(account_id, reason, reason_text)
+          Unit::Resource::AccountResource.freeze_account(request)
+        end
+
+        # Unfreeze credit account
+        # @see https://docs.unit.co/credit-accounts#unfreeze-account
+        # @param account_id [String]
+        def unfreeze_credit_account(account_id:)
+          Unit::Resource::AccountResource.unfreeze_account(account_id)
+        end
+
+        # List credit accounts by calling Unit's API
+        # @see https://docs.unit.co/credit-accounts#list-credit-accounts
+        # @param limit [Integer] - optional
+        # @param offset [Integer] - optional
+        # @param customer_id [String] - optional
+        # @param tags [Hash] - optional
+        # @param status [Array<String>] - optional
+        # @param from_balance [Integer] - optional
+        # @param to_balance [Integer] - optional
+        # @param include [Array] - optional
+        # @param type [String] - optional
+        def list_credit_accounts(limit: ACCOUNT_LIST_LIMIT, offset: ACCOUNT_LIST_OFFSET, customer_id: nil, tags: nil,
+                                 status: nil, from_balance: nil, to_balance: nil, include: nil, type: nil)
+          request = ListAccountParams.new(limit, offset, customer_id, tags, status, from_balance, to_balance, include, type)
+          Unit::Resource::AccountResource.list_accounts(request)
+        end
+
+        # Update a credit account by calling Unit's API
+        # @see https://docs.unit.co/credit-accounts#update-accounts
+        # @param tags [Hash] - optional
+        # @param credit_limit [Integer] - optional
+        def update_credit_account(account_id:, tags: nil, credit_limit: nil)
+          request = PatchAccountRequest.new(account_id, tags, credit_limit)
+          Unit::Resource::AccountResource.update_account(request)
+        end
+
+        # Limit a credit account
+        # @see https://docs.unit.co/credit-accounts#account-limits
+        # @param account_id [String]
+        def limits(account_id:)
+          Unit::Resource::AccountResource.limits(account_id)
+        end
+
+        # Get account balance history by calling Unit's API
+        # @see https://docs.unit.co/credit-accounts#get-account-balance-history
+        # @param limit [Integer] - optional
+        # @param offset [Integer] - optional
+        # @param account_id [String] - optional
+        # @param customer_id [String] - optional
+        # @param since [String] - optional
+        # @param _until [String] - optional
+        def get_balance_history(limit = BALANCE_HISTORY_LIMIT, offset = BALANCE_HISTORY_OFFSET, account_id: nil, customer_id: nil,
+                                since: nil, _until: nil)
+          request = BalanceHistoryRequest.new(limit, offset, account_id, customer_id, since, _until)
+          Unit::Resource::AccountResource.get_account_balance_history(request)
+        end
+      end
+    end
   end
 end

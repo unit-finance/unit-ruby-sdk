@@ -98,7 +98,7 @@ module Unit
         # @param params [BalanceHistoryRequest]
         # @return [UnitResponse, UnitError]
         def get_account_balance_history(params)
-          response = HttpHelper.get("#{api_url}/account-end-of-day", params: params.to_hash.to_json, headers: headers)
+          response = HttpHelper.get("#{api_url}/account-end-of-day", params: params.to_hash, headers: headers)
           response_handler(response)
         end
 
