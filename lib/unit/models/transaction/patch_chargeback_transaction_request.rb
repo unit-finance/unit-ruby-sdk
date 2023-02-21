@@ -9,9 +9,9 @@ module Unit
 
       # @param account_id [String]
       # @param transaction_id [String]
-      # @param summary [String]
+      # @param summary [String] - optional
       # @param tags [Hash] - optional
-      def initialize(account_id, transaction_id, summary, tags = nil)
+      def initialize(account_id, transaction_id, summary = nil, tags = nil)
         @account_id = account_id
         @summary = summary
         @tags = tags

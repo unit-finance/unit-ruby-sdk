@@ -36,7 +36,7 @@ module Unit
         end
 
         # Update a transaction by calling Unit's API
-        # @param request [PatchTagsRequest]
+        # @param request [PatchBookTransactionRequest, PatchChargeTransactionRequest]
         # @return [UnitResponse, UnitError]
         def update_transaction(request)
           payload = request.to_json_api

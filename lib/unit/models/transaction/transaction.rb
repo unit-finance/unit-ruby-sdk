@@ -62,7 +62,7 @@ module Unit
       # @see https://docs.unit.co/transactions#update-book-transaction
       # @param account_id [String]
       # @param transaction_id [String]
-      # @param summary [String]
+      # @param summary [String] - optional
       # @param tags [Hash] - optional
       def update_book_transaction(account_id:, transaction_id:, summary:, tags: nil)
         request = PatchBookTransactionRequest.new(account_id, transaction_id, summary, tags)
@@ -73,7 +73,7 @@ module Unit
       # @see https://docs.unit.co/transactions#update-chargeback-transaction
       # @param account_id [String]
       # @param transaction_id [String]
-      # @param summary [String]
+      # @param summary [String] - optional
       # @param tags [Hash] - optional
       def update_chargeback_transaction(account_id:, transaction_id:, summary:, tags: nil)
         request = PatchChargebackTransactionRequest.new(account_id, transaction_id, summary, tags)
