@@ -20,6 +20,8 @@ module SpecHelper
     stub_const("BUSINESS_NAME", "Acme Inc.")
     stub_const("AUTHORIZED_USERS", [Unit::Types::AuthorizedUser.new(FULL_NAME, EMAIL, PHONE), Unit::Types::AuthorizedUser.new(FULL_NAME, EMAIL1, PHONE)])
     stub_const("CUSTOMER_TYPES", %w[individualCustomer businessCustomer trustCustomer])
+    stub_const("COUNTERPARTY", Unit::Types::Counterparty.new("Jane Doe", "27573", "812345678", "Checking"))
+    stub_const("WIRE_COUNTERPARTY", Unit::Types::WireCounterparty.new("Jane Doe", "27573", "812345678", ADDRESS))
     stub_const("APPLICATION_TYPES", %w[individualApplication businessApplication trustApplication].freeze)
     stub_const("RELATIONSHIPS", { "customer": Unit::Types::Relationship.new("customer", "751009").to_hash })
     stub_const("RELATIONSHIPS_BUSINESS", { "customer": Unit::Types::Relationship.new("customer", "798787").to_hash })

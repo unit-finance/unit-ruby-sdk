@@ -155,6 +155,32 @@ counterparty = response.data
 puts counterparty.id
 ```
 
+
+### Creating a Payment to linked counterparty
+```ruby
+ response = Unit::Payment.create_ach_payment_linked(
+   account_id: "123456", 
+   counterparty_id: "56784", 
+   amount: 1000, 
+   direction: "Credit",
+   description: "test payment"
+ )
+ ach_payment = response.data
+ puts ach_payment.id
+```
+
+### Creating a wire payment
+```ruby
+ address = Unit::Types::Address.new('123 Main St', 'San Francisco', 'CA', '94205', 'US')
+ response = Unit::Payment.create_wire_payment(
+   account_id: "1234", 
+   amount: 1000, 
+   description: "test payment", 
+   counterparty: Unit::Types::WireCounterparty.new("Jane Doe", "27573", "812345678", address))
+ wire_payment = response.data
+ puts wire_payment.id
+```
+
 ### Logging Errors
 
 ```ruby
