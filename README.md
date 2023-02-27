@@ -132,7 +132,7 @@ card = response.data
 puts card.id
 ```
 
-### Creating an individual credit card
+### Updating a received payment
 ```ruby
 response = Unit::ReceivedPayment.update_payment(
   payment_id: "1232", 
