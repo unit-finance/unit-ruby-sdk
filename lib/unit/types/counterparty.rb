@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# @see https://docs.unit.co/types/#counterparty
 module Unit
   module Types
     class Counterparty
