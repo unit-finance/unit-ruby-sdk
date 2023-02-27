@@ -3,13 +3,14 @@
 require_relative "./base_resource"
 require_relative "../utils/http_helper"
 
-# class for creating requests for book payments to Unit API and parsing responses
+# class for creating requests for payments to Unit API and parsing responses
 # @see https://docs.unit.co/book-payments#book-payments
+# @see https://docs.unit.co/ach-origination
 module Unit
   module Resource
     class PaymentResource < Unit::Resource::BaseResource
       class << self
-        # Create a new book payment by calling Unit's API
+        # Create a new payment by calling Unit's API
         # @param request [CreateAchPaymentInlineRequest, CreatePaymentLinkedRequest, CreateBookPaymentRequest, CreateWithPlaidTokenRequest, CreateWirePaymentRequest]
         # @return [UnitResponse, UnitError]
         def create_payment(request)
@@ -18,7 +19,7 @@ module Unit
           response_handler(response)
         end
 
-        # Update a book payment by calling Unit's API
+        # Update a payment by calling Unit's API
         # @param request [PatchBookPaymentRequest, PatchAchPaymentRequest]
         # @return [UnitResponse, UnitError]
         def update_payment(request)
