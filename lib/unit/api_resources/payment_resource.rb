@@ -10,7 +10,7 @@ module Unit
     class PaymentResource < Unit::Resource::BaseResource
       class << self
         # Create a new book payment by calling Unit's API
-        # @param request [CreatePaymentRequest]
+        # @param request [CreateAchPaymentInlineRequest, CreatePaymentLinkedRequest, CreateBookPaymentRequest, CreateWithPlaidTokenRequest, CreateWirePaymentRequest]
         # @return [UnitResponse, UnitError]
         def create_payment(request)
           payload = request.to_json_api
@@ -19,7 +19,7 @@ module Unit
         end
 
         # Update a book payment by calling Unit's API
-        # @param request [PatchBookPaymentRequest]
+        # @param request [PatchBookPaymentRequest, PatchAchPaymentRequest]
         # @return [UnitResponse, UnitError]
         def update_payment(request)
           payload = request.to_json_api
