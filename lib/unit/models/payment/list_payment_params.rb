@@ -18,7 +18,7 @@ module Unit
       # @param type [Array<String>] - optional
       # @param direction [Array<String>] - optional
       # @param since [String] - optional
-      # @param until_ [String] - optional
+      # @param _until [String] - optional
       # @param from_amount [Integer] - optional
       # @param to_amount [Integer] - optional
       # @param recurring_payment_id [String] - optional
@@ -27,7 +27,7 @@ module Unit
       # @param include [Array<String>] - optional
       def initialize(limit = PAYMENT_LIMIT, offset = PAYMENT_OFFSET, account_id = nil, customer_id = nil,
                      counterparty_account_id = nil, tags = nil, status = nil,
-                     type = nil, direction = nil, since = nil, until_ = nil,
+                     type = nil, direction = nil, since = nil, _until = nil,
                      from_amount = nil, to_amount = nil, recurring_payment_id = nil,
                      feature = nil, sort = nil, include = nil)
         @limit = limit

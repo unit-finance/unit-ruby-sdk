@@ -147,7 +147,7 @@ module Unit
       # @param type [Array<String>] - optional
       # @param direction [Array<String>] - optional
       # @param since [String] - optional
-      # @param until_ [String] - optional
+      # @param _until [String] - optional
       # @param from_amount [Integer] - optional
       # @param to_amount [Integer] - optional
       # @param recurring_payment_id [String] - optional
