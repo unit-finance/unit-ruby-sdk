@@ -13,7 +13,7 @@ RSpec.describe Unit::Counterparty do
   end
 
   let(:counterparty_with_plaid_token) do
-    Unit::Counterparty.create_with_plaid_token(customer_id: "823139", type: "Business", name: "Jo Joel", plaid_processor_token: "processor-sandbox-7cc7c614-47f6-4532-86b8-e15fdc680bf3")
+    Unit::Counterparty.create_with_plaid_token(customer_id: "823139", type: "Business", name: "Jo Joel", plaid_processor_token: "processor-sandbox-fc8b9c23-b400-40f9-8ee8-c2cabd719721")
   end
   it "creates a counterparty" do
     expect(counterparty.data["type"]).to eq("achCounterparty")
