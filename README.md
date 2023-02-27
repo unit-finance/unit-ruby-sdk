@@ -154,7 +154,22 @@ response = Unit::Counterparty.create_with_plaid_token(
 counterparty = response.data
 puts counterparty.id
 ```
-
+### Creating an application form
+```ruby
+application_form_prefill = Unit::Types::ApplicationFormPrefill.new("Individual", FULL_NAME, SSN, nil, "US", DATE_OF_BIRTH, EMAIL, "Pied Piper", "DE",  "Corporation", CONTACT, OFFICER, BENEFICIAL_OWNERS, "https://www.piedpiper.com", "Piedpiper Inc", "123456789", INDUSTRY, ADDRESS, PHONE)
+settings_override =  Unit::Types::ApplicationFormSettingsOverride.new("https://www.unit.co", "https://www.unit.co")
+require_id_verification = Unit::Types::RequireIdVerification.new(false, false, true)
+response =  Unit::ApplicationForm.create_application_form(
+tags: { "tag1" => "value1", "tag2" => "value2" },
+applicant_details: application_form_prefill,
+allowed_application_types: %w[Business], lang: "en",
+settings_override: settings_override,
+require_id_verification: require_id_verification,
+hide_application_progress_tracker: false
+)
+application_form = response.data
+puts application_form.id
+```
 ### Logging Errors
 
 ```ruby
