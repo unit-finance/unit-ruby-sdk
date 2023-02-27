@@ -40,7 +40,7 @@ module Unit
         @type = type
         @direction = direction
         @since = since
-        @until = until_
+        @until = _until
         @from_amount = from_amount
         @to_amount = to_amount
         @recurring_payment_id = recurring_payment_id
