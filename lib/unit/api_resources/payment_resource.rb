@@ -26,6 +26,24 @@ module Unit
           response = HttpHelper.patch("#{api_url}/payments/#{request.payment_id}", body: payload, headers: headers)
           response_handler(response)
         end
+
+        # Get a payment by calling Unit's API
+        # @param request [GetRequest]
+        # @return [UnitResponse, UnitError]
+        def get_payment(request)
+          payload = request.to_hash
+          response = HttpHelper.get("#{api_url}/payments/#{request.payment_id}", params: payload, headers: headers)
+          response_handler(response)
+        end
+
+        # List payments by calling Unit's API
+        # @param request [ListPaymentParams]
+        # @return [UnitResponse, UnitError]
+        def list_payments(request)
+          payload = request.to_hash
+          response = HttpHelper.get("#{api_url}/payments", params: payload, headers: headers)
+          response_handler(response)
+        end
       end
     end
   end
