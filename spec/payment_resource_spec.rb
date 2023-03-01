@@ -9,7 +9,7 @@ RSpec.describe Unit::Payment do
 
   describe "create book payment" do
     let(:create_response) do
-      described_class.create_book_payment(amount: 1000, description: "test payment", account_id: "27573", counterparty_account_id: "36981")
+      described_class.create_book_payment(amount: 1000, description: "test payment", account_id: "27573", counterparty_account_id: "36981", tags: { "test": "test-tag" })
     end
     it "should create a book payment" do
       expect(create_response.data["type"]).to eq("bookPayment")

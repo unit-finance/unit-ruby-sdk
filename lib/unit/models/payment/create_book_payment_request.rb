@@ -5,7 +5,7 @@
 module Unit
   module Payment
     class CreateBookPaymentRequest
-      attr_reader :amount, :description, :account_id, :counterparty_account_id, :transaction_summary_override, :idempotency_key, :tags, :relationships
+      attr_reader :amount, :description, :account_id, :counterparty_account_id, :transaction_summary_override, :idempotency_key, :tags
 
       # @param amount [Integer]
       # @param description [String]
@@ -14,13 +14,12 @@ module Unit
       # @param transaction_summary_override [String] - optional
       # @param idempotency_key [String] - optional
       # @param tags [Hash] - optional
-      def initialize(amount, description, account_id, counterparty_account_id, relationships, transaction_summary_override = nil,
+      def initialize(amount, description, account_id, counterparty_account_id, transaction_summary_override = nil,
                      idempotency_key = nil, tags = nil)
         @amount = amount
         @description = description
         @account_id = account_id
         @counterparty_account_id = counterparty_account_id
-        @relationships = relationships
         @transaction_summary_override = transaction_summary_override
         @idempotency_key = idempotency_key
         @tags = tags
