@@ -154,22 +154,33 @@ response = Unit::Counterparty.create_with_plaid_token(
 counterparty = response.data
 puts counterparty.id
 ```
-### Creating an application form
+
+
+### Creating a Payment to linked counterparty
 ```ruby
-application_form_prefill = Unit::Types::ApplicationFormPrefill.new("Individual", FULL_NAME, SSN, nil, "US", DATE_OF_BIRTH, EMAIL, "Pied Piper", "DE",  "Corporation", CONTACT, OFFICER, BENEFICIAL_OWNERS, "https://www.piedpiper.com", "Piedpiper Inc", "123456789", INDUSTRY, ADDRESS, PHONE)
-settings_override =  Unit::Types::ApplicationFormSettingsOverride.new("https://www.unit.co", "https://www.unit.co")
-require_id_verification = Unit::Types::RequireIdVerification.new(false, false, true)
-response =  Unit::ApplicationForm.create_application_form(
-tags: { "tag1" => "value1", "tag2" => "value2" },
-applicant_details: application_form_prefill,
-allowed_application_types: %w[Business], lang: "en",
-settings_override: settings_override,
-require_id_verification: require_id_verification,
-hide_application_progress_tracker: false
-)
-application_form = response.data
-puts application_form.id
+ response = Unit::Payment.create_ach_payment_linked(
+   account_id: "123456", 
+   counterparty_id: "56784", 
+   amount: 1000, 
+   direction: "Credit",
+   description: "test payment"
+ )
+ ach_payment = response.data
+ puts ach_payment.id
 ```
+
+### Creating a wire payment
+```ruby
+ address = Unit::Types::Address.new('123 Main St', 'San Francisco', 'CA', '94205', 'US')
+ response = Unit::Payment.create_wire_payment(
+   account_id: "1234", 
+   amount: 1000, 
+   description: "test payment", 
+   counterparty: Unit::Types::WireCounterparty.new("Jane Doe", "27573", "812345678", address))
+ wire_payment = response.data
+ puts wire_payment.id
+```
+
 ### Logging Errors
 
 ```ruby

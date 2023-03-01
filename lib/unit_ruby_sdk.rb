@@ -38,6 +38,8 @@ module Unit
     autoload :BusinessContact, "unit/types/business_contact"
     autoload :DeviceFingerprint, "unit/types/device_fingerprint"
     autoload :EvaluationParams, "unit/types/evaluation_params"
+    autoload :Counterparty, "unit/types/counterparty"
+    autoload :WireCounterparty, "unit/types/wire_counterparty"
     autoload :FullName, "unit/types/full_name"
     autoload :Officer, "unit/types/officer"
     autoload :Phone, "unit/types/phone"
