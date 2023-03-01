@@ -22,6 +22,8 @@ module SpecHelper
     stub_const("AUTHORIZED_USERS", [Unit::Types::AuthorizedUser.new(FULL_NAME, EMAIL, PHONE), Unit::Types::AuthorizedUser.new(FULL_NAME, EMAIL1, PHONE)])
     stub_const("CUSTOMER_TYPES", %w[individualCustomer businessCustomer trustCustomer])
     stub_const("BENEFICIAL_OWNERS", [Unit::Types::BeneficialOwner.new(FULL_NAME, DATE_OF_BIRTH, ADDRESS, PHONE, EMAIL, SSN).represent])
+    stub_const("COUNTERPARTY", Unit::Types::Counterparty.new("Jane Doe", "27573", "812345678", "Checking"))
+    stub_const("WIRE_COUNTERPARTY", Unit::Types::WireCounterparty.new("Jane Doe", "27573", "812345678", ADDRESS))
     stub_const("APPLICATION_TYPES", %w[individualApplication businessApplication trustApplication].freeze)
     stub_const("APPLICATION_FORM_PREFILL", Unit::Types::ApplicationFormPrefill.new("Individual", FULL_NAME, SSN, nil, "US", DATE_OF_BIRTH, EMAIL, "Pied Piper", "DE", "Corporation", CONTACT, OFFICER, BENEFICIAL_OWNERS, "https://www.piedpiper.com", "Piedpiper Inc", "123456789", INDUSTRY, ADDRESS, PHONE))
     stub_const("SETTINGS_OVERRIDE", Unit::Types::ApplicationFormSettingsOverride.new("https://www.unit.co", "https://www.unit.co"))
