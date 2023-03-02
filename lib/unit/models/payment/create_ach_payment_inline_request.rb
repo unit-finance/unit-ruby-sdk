@@ -18,8 +18,8 @@ module Unit
       # @param tags [Hash] - optional
       # @param same_day [Boolean] - optional
       # @param sec_code [String] - optional
-      def initialize(account_id, amount, direction, counterparty, description,
-                     addenda = nil, idempotency_key = nil, tags = nil, same_day = nil, sec_code = nil)
+      def initialize(account_id:, amount:, direction:, counterparty:, description:,
+                     addenda: nil, idempotency_key: nil, tags: nil, same_day: nil, sec_code: nil)
         @account_id = account_id
         @amount = amount
         @direction = direction
@@ -34,26 +34,36 @@ module Unit
 
       def to_json_api
         payload = {
-          "data": {
-            "type": "achPayment",
-            "attributes": {
-              amount: amount,
-              direction: direction,
-              counterparty: counterparty.represent,
-              description: description,
-              addenda: addenda,
-              idempotencyKey: idempotency_key,
-              tags: tags,
-              sameDay: same_day,
-              secCode: sec_code
-            },
-            "relationships": {
-              "account": Unit::Types::Relationship.new("account", account_id).to_hash
-            }
-          }
+          "data": to_hash
         }
         payload[:data][:attributes].compact!
         payload.to_json
+      end
+
+      def to_hash
+        {
+          "type": "achPayment",
+          "attributes": {
+            amount: amount,
+            direction: direction,
+            counterparty: counterparty.represent,
+            description: description,
+            addenda: addenda,
+            idempotencyKey: idempotency_key,
+            tags: tags,
+            sameDay: same_day,
+            secCode: sec_code
+          },
+          "relationships": {
+            "account": Unit::Types::Relationship.new("account", account_id).to_hash
+          }
+        }
+      end
+
+      def change_attributes
+        payload = to_hash
+        payload[:attributes].compact!
+        payload
       end
     end
   end

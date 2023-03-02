@@ -22,9 +22,9 @@ module Unit
       # @param verify_counterparty_balance [Boolean] - optional
       # @param same_day [Boolean] - optional
       # @param sec_code [String] - optional
-      def initialize(account_id, amount, direction, description, plaid_processor_token,
-                     addenda = nil, idempotency_key = nil, counterparty_name = nil, tags = nil,
-                     verify_counterparty_balance = nil, same_day = nil, sec_code = nil)
+      def initialize(account_id:, amount:, direction:, description:, plaid_processor_token:,
+                     addenda: nil, idempotency_key: nil, counterparty_name: nil, tags: nil,
+                     verify_counterparty_balance: nil, same_day: nil, sec_code: nil)
         @account_id = account_id
         @amount = amount
         @direction = direction
@@ -41,28 +41,38 @@ module Unit
 
       def to_json_api
         payload = {
-          "data": {
-            "type": "achPayment",
-            "attributes": {
-              amount: amount,
-              direction: direction,
-              description: description,
-              plaidProcessorToken: plaid_processor_token,
-              addenda: addenda,
-              idempotencyKey: idempotency_key,
-              counterpartyName: counterparty_name,
-              tags: tags,
-              verifyCounterpartyBalance: verify_counterparty_balance,
-              sameDay: same_day,
-              secCode: sec_code
-            },
-            "relationships": {
-              "account": Unit::Types::Relationship.new("account", account_id).to_hash
-            }
-          }
+          "data": to_hash
         }
         payload[:data][:attributes].compact!
         payload.to_json
+      end
+
+      def to_hash
+        {
+          "type": "achPayment",
+          "attributes": {
+            amount: amount,
+            direction: direction,
+            description: description,
+            plaidProcessorToken: plaid_processor_token,
+            addenda: addenda,
+            idempotencyKey: idempotency_key,
+            counterpartyName: counterparty_name,
+            tags: tags,
+            verifyCounterpartyBalance: verify_counterparty_balance,
+            sameDay: same_day,
+            secCode: sec_code
+          },
+          "relationships": {
+            "account": Unit::Types::Relationship.new("account", account_id).to_hash
+          }
+        }
+      end
+
+      def change_attributes
+        payload = to_hash
+        payload[:attributes].compact!
+        payload
       end
     end
   end
