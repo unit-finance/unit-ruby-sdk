@@ -181,6 +181,18 @@ puts counterparty.id
  puts wire_payment.id
 ```
 
+### Creating a bulk payment
+```ruby
+address = Unit::Types::Address.new('123 Main St', 'San Francisco', 'CA', '94205', 'US')
+response = Unit::Payment.create_bulk_payment(
+  requests: [Unit::Payment::CreateBookPaymentRequest.new(amount: 1000, description: "test payment", account_id: "27573", counterparty_account_id: "36981", tags: { "test": "test-tag" }),
+                                  Unit::Payment::CreateWirePaymentRequest.new(amount: 1000, description: "test payment", account_id: "27573", counterparty: Unit::Types::WireCounterparty.new("Jane Doe", "27573", "812345678", address), tags: { "test": "test-tag" }),
+                                  Unit::Payment::CreateAchPaymentInlineRequest.new(amount: 1000, direction: "Credit", counterparty: Unit::Types::Counterparty.new("Jane Doe", "27573", "812345678", "Checking"), description: "test payment", account_id: "27573", tags: { "test": "test-tag" }),
+                                  Unit::Payment::CreatePaymentLinkedRequest.new(amount: 1000, direction: "Credit", description: "test payment", account_id: "27573", counterparty_id: "313118", tags: { "test": "test-tag" }),
+                                  Unit::Payment::CreateWithPlaidTokenRequest.new(amount: 1000, direction: "Credit", description: "test payment", account_id: "27573", plaid_processor_token: "processor-sandbox-fc8b9c23-b400-40f9-8ee8-c2cabd719721", tags: { "test": "test-tag" })])
+bulk_payment = response.data
+puts bulk_payment.id
+```
 ### Logging Errors
 
 ```ruby
