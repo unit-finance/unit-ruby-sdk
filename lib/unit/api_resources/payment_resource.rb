@@ -19,6 +19,14 @@ module Unit
           response_handler(response)
         end
 
+        # Create a new bulk payment by calling Unit's API
+        # @param request [BulkPaymentRequest]
+        # @return [UnitResponse, UnitError]
+        def create_bulk_payment(request)
+          response = HttpHelper.post("#{api_url}/payments/bulk", body: request, headers: headers)
+          response_handler(response)
+        end
+
         # Update a payment by calling Unit's API
         # @param request [PatchBookPaymentRequest, PatchAchPaymentRequest]
         # @return [UnitResponse, UnitError]

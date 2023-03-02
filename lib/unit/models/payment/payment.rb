@@ -13,6 +13,7 @@ module Unit
     autoload :CreateWirePaymentRequest, "unit/models/payment/create_wire_payment_request"
     autoload :ListPaymentParams, "unit/models/payment/list_payment_params"
     autoload :GetRequest, "unit/models/payment/get_request"
+    autoload :BulkPaymentRequest, "unit/models/payment/bulk_payment_request"
     class << self
       # Create a new book payment by calling Unit's API
       # @see https://docs.unit.co/book-payments#book-payments
@@ -26,8 +27,9 @@ module Unit
       # @return [UnitResponse, UnitError]
       def create_book_payment(amount:, description:, account_id:, counterparty_account_id:, transaction_summary_override: nil,
                               idempotency_key: nil, tags: nil)
-        request = Unit::Payment::CreateBookPaymentRequest.new(amount, description, account_id, counterparty_account_id, transaction_summary_override,
-                                                              idempotency_key, tags)
+        request = Unit::Payment::CreateBookPaymentRequest.new(amount: amount, description: description, account_id: account_id, counterparty_account_id: counterparty_account_id, transaction_summary_override: transaction_summary_override,
+                                                              idempotency_key: idempotency_key, tags: tags)
+
         Unit::Resource::PaymentResource.create_payment(request)
       end
 
@@ -56,8 +58,8 @@ module Unit
       def create_ach_payment_inline(account_id:, amount:, direction:, counterparty:,
                                     description:, addenda: nil, idempotency_key: nil, tags: nil,
                                     same_day: nil, sec_code: nil)
-        request = Unit::Payment::CreateAchPaymentInlineRequest.new(account_id, amount, direction, counterparty, description,
-                                                                   addenda, idempotency_key, tags, same_day, sec_code)
+        request = Unit::Payment::CreateAchPaymentInlineRequest.new(account_id: account_id, amount: amount, direction: direction, counterparty: counterparty, description: description, addenda: addenda, idempotency_key: idempotency_key,
+                                                                   tags: tags, same_day: same_day, sec_code: sec_code)
         Unit::Resource::PaymentResource.create_payment(request)
       end
 
@@ -77,9 +79,8 @@ module Unit
       def create_ach_payment_linked(account_id:, counterparty_id:, amount:, direction:,
                                     description:, addenda: nil, idempotency_key: nil, tags: nil,
                                     verify_counterparty_balance: nil, same_day: nil, sec_code: nil)
-        request = Unit::Payment::CreatePaymentLinkedRequest.new(account_id, counterparty_id, amount, direction,
-                                                                description, addenda, idempotency_key, tags,
-                                                                verify_counterparty_balance, same_day, sec_code)
+        request = Unit::Payment::CreatePaymentLinkedRequest.new(account_id: account_id, counterparty_id: counterparty_id, amount: amount, direction: direction, description: description, addenda: addenda, idempotency_key: idempotency_key,
+                                                                tags: tags, verify_counterparty_balance: verify_counterparty_balance, same_day: same_day, sec_code: sec_code)
         Unit::Resource::PaymentResource.create_payment(request)
       end
 
@@ -100,9 +101,8 @@ module Unit
       def create_ach_payment_with_plaid_token(account_id:, amount:, direction:, description:, plaid_processor_token:,
                                               addenda: nil, idempotency_key: nil, counterparty_name: nil, tags: nil,
                                               verify_counterparty_balance: nil, same_day: nil, sec_code: nil)
-        request = Unit::Payment::CreateWithPlaidTokenRequest.new(account_id, amount, direction, description, plaid_processor_token,
-                                                                 addenda, idempotency_key, counterparty_name, tags,
-                                                                 verify_counterparty_balance, same_day, sec_code)
+        request = Unit::Payment::CreateWithPlaidTokenRequest.new(account_id: account_id, amount: amount, direction: direction, description: description, plaid_processor_token: plaid_processor_token, addenda: addenda, idempotency_key: idempotency_key,
+                                                                 counterparty_name: counterparty_name, tags: tags, verify_counterparty_balance: verify_counterparty_balance, same_day: same_day, sec_code: sec_code)
         Unit::Resource::PaymentResource.create_payment(request)
       end
 
@@ -131,7 +131,7 @@ module Unit
       # @param idempotency_key [String] - optional
       # @param tags [Hash] - optional
       def create_wire_payment(account_id:, amount:, description:, counterparty:, idempotency_key: nil, tags: nil)
-        request = Unit::Payment::CreateWirePaymentRequest.new(account_id, amount, description, counterparty, idempotency_key, tags)
+        request = Unit::Payment::CreateWirePaymentRequest.new(account_id: account_id, amount: amount, description: description, counterparty: counterparty, idempotency_key: idempotency_key, tags: tags)
         Unit::Resource::PaymentResource.create_payment(request)
       end
 
@@ -172,6 +172,14 @@ module Unit
       def get_payment(payment_id:, include: nil)
         request = Unit::Payment::GetRequest.new(payment_id, include)
         Unit::Resource::PaymentResource.get_payment(request)
+      end
+
+      # Create a bulk payment by calling Unit's API
+      # @see https://docs.unit.co/payments/#bulk-payments
+      # @param requests [Array<CreateAchPaymentInlineRequest, CreatePaymentLinkedRequest, CreateBookPaymentRequest, CreateWithPlaidTokenRequest, CreateWirePaymentRequest>]
+      def create_bulk_payment(requests:)
+        request = Unit::Payment::BulkPaymentRequest.serialize(requests)
+        Unit::Resource::PaymentResource.create_bulk_payment(request)
       end
     end
   end
