@@ -15,8 +15,15 @@ module Unit
         # @return [UnitResponse, UnitError]
         def create_payment(request)
           payload = request.to_json_api
-          p payload
           response = HttpHelper.post("#{api_url}/payments", body: payload, headers: headers)
+          response_handler(response)
+        end
+
+        # Create a new bulk payment by calling Unit's API
+        # @param request [BulkPaymentRequest]
+        # @return [UnitResponse, UnitError]
+        def create_bulk_payment(request)
+          response = HttpHelper.post("#{api_url}/payments/bulk", body: request, headers: headers)
           response_handler(response)
         end
 

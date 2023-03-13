@@ -48,6 +48,15 @@ RSpec.describe Unit::Payment do
         response = described_class.list_payments(status: ["Pending"], direction: %w[Credit Debit], type: %w[BillPayment AchPayment])
         expect(response.data[0]["type"]).to eq("achPayment")
       end
+
+      it "creates bulk payment" do
+        response = described_class.create_bulk_payment(requests: [Unit::Payment::CreateBookPaymentRequest.new(amount: 1000, description: "test payment", account_id: "27573", counterparty_account_id: "36981", tags: { "test": "test-tag" }),
+                                                                  Unit::Payment::CreateWirePaymentRequest.new(amount: 1000, description: "test payment", account_id: "27573", counterparty: WIRE_COUNTERPARTY, tags: { "test": "test-tag" }),
+                                                                  Unit::Payment::CreateAchPaymentInlineRequest.new(amount: 1000, direction: "Credit", counterparty: COUNTERPARTY, description: "test payment", account_id: "27573", tags: { "test": "test-tag" }),
+                                                                  Unit::Payment::CreatePaymentLinkedRequest.new(amount: 1000, direction: "Credit", description: "test payment", account_id: "27573", counterparty_id: "313118", tags: { "test": "test-tag" }),
+                                                                  Unit::Payment::CreateWithPlaidTokenRequest.new(amount: 1000, direction: "Credit", description: "test payment", account_id: "27573", plaid_processor_token: "processor-sandbox-fc8b9c23-b400-40f9-8ee8-c2cabd719721", tags: { "test": "test-tag" })])
+        expect(response.data["type"]).to eq("bulkPayments")
+      end
     end
 
     describe "wire payment" do

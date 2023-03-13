@@ -13,7 +13,7 @@ module Unit
       # @param counterparty [WireCounterparty]
       # @param idempotency_key [String] - optional
       # @param tags [Hash] - optional
-      def initialize(account_id, amount, description, counterparty, idempotency_key = nil, tags = nil)
+      def initialize(account_id:, amount:, description:, counterparty:, idempotency_key: nil, tags: nil)
         @account_id = account_id
         @amount = amount
         @description = description
@@ -24,20 +24,30 @@ module Unit
 
       def to_json_api
         payload = {
-          data: {
-            type: "wirePayment",
-            attributes: {
-              amount: amount,
-              description: description,
-              counterparty: counterparty.represent,
-              idempotencyKey: idempotency_key,
-              tags: tags
-            },
-            relationships: { account: Unit::Types::Relationship.new("account", account_id).to_hash }
-          }
+          data: to_hash
         }
         payload[:data][:attributes].compact!
         payload.to_json
+      end
+
+      def to_hash
+        {
+          type: "wirePayment",
+          attributes: {
+            amount: amount,
+            description: description,
+            counterparty: counterparty.represent,
+            idempotencyKey: idempotency_key,
+            tags: tags
+          },
+          relationships: { account: Unit::Types::Relationship.new("account", account_id).to_hash }
+        }
+      end
+
+      def change_attributes
+        payload = to_hash
+        payload[:attributes].compact!
+        payload
       end
     end
   end
