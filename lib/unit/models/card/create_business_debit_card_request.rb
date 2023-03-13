@@ -5,7 +5,7 @@
 module Unit
   module Card
     class CreateBusinessDebitCardRequest
-      attr_reader :account_id, :full_name, :date_of_birth, :address, :shipping_address, :phone, :email, :design, :additional_embossed_text, :idempotency_key, :tags, :limits, :print_only_business_name
+      attr_reader :account_id, :full_name, :date_of_birth, :address, :shipping_address, :phone, :email, :design, :additional_embossed_text, :idempotency_key, :tags, :limits, :print_only_business_name, :type
 
       # @param account_id [String]
       # @param full_name [FullName]
@@ -35,12 +35,13 @@ module Unit
         @tags = tags
         @limits = limits
         @print_only_business_name = print_only_business_name
+        @type = "businessDebitCard"
       end
 
       def to_json_api
         payload = {
           "data": {
-            "type": "businessDebitCard",
+            "type": type,
             "attributes": {
               "fullName": full_name&.represent,
               "dateOfBirth": date_of_birth,

@@ -132,6 +132,25 @@ card = response.data
 puts card.id
 ```
 
+### Creating a business credit card
+```ruby
+full_name = Unit::Types::FullName.new('John', 'Doe')
+date_of_birth = '1980-08-10'
+address = Unit::Types::Address.new('123 Main St', 'San Francisco', 'CA', '94205', 'US')
+phone = Unit::Types::Phone.new('380', '555123222')
+email = 'jone.doe@unit-finance.com'
+response = Unit::Card.create_business_credit_card(
+  account_id: "1234", 
+  full_name: full_name,
+  date_of_birth: date_of_birth, 
+  address: address, 
+  phone: phone, 
+  email: email
+)
+charge_card = response.data
+puts charge_card.id
+```
+
 ### Creating a check deposit
 ```ruby
 response = Unit::CheckDeposit.create_deposit(

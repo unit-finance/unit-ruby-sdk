@@ -5,7 +5,7 @@
 module Unit
   module Card
     class CreateBusinessVirtualDebitCardRequest
-      attr_reader :account_id, :full_name, :date_of_birth, :address, :phone, :email, :idempotency_key, :tags, :limits
+      attr_reader :account_id, :full_name, :date_of_birth, :address, :phone, :email, :idempotency_key, :tags, :limits, :type
 
       # @param account_id [String]
       # @param full_name [FullName]
@@ -27,12 +27,13 @@ module Unit
         @idempotency_key = idempotency_key
         @tags = tags
         @limits = limits
+        @type = "businessVirtualDebitCard"
       end
 
       def to_json_api
         payload = {
           "data": {
-            "type": "businessVirtualDebitCard",
+            "type": type,
             "attributes": {
               "fullName": full_name&.represent,
               "dateOfBirth": date_of_birth,

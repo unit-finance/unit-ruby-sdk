@@ -15,7 +15,7 @@ module Unit
         def create_card(request)
           payload = request.to_json_api
           response = HttpHelper.post("#{api_url}/cards", body: payload, headers: headers)
-          response_handler(response)
+          p response_handler(response)
         end
 
         # Get pin status by calling Unit's API
@@ -80,6 +80,12 @@ module Unit
         # @return [UnitResponse, UnitError]
         def get_card(card_id)
           response = HttpHelper.get("#{api_url}/cards/#{card_id}", headers: headers)
+          response_handler(response)
+        end
+
+        def update(request)
+          payload = request.to_json_api
+          response = HttpHelper.patch("#{api_url}/cards/#{request.card_id}", headers: headers, body: payload)
           response_handler(response)
         end
 
