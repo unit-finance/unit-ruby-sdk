@@ -132,6 +132,17 @@ card = response.data
 puts card.id
 ```
 
+### Updating a received payment
+```ruby
+response = Unit::ReceivedPayment.update_payment(
+  payment_id: "1232", 
+  tags: { purpose: "test" })
+received_payment = response.data
+puts received_payment.id
+```
+
+```
+
 ### Creating a check deposit
 ```ruby
 response = Unit::CheckDeposit.create_deposit(
