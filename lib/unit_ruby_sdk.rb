@@ -14,6 +14,7 @@ module Unit
   autoload :AtmLocation, "unit/models/atm_location/atm_location"
   autoload :CheckDeposit, "unit/models/check_deposit/check_deposit"
   autoload :Counterparty, "unit/models/counterparty/counterparty"
+  autoload :RecurringPayment, "unit/models/recurring_payment/recurring_payment"
 
   module Resource
     autoload :ApplicationResource, "unit/api_resources/application_resource"
@@ -27,6 +28,7 @@ module Unit
     autoload :AtmLocationResource, "unit/api_resources/atm_location_resource"
     autoload :CheckDepositResource, "unit/api_resources/check_deposit_resource"
     autoload :CounterpartyResource, "unit/api_resources/counterparty_resource"
+    autoload :RecurringPaymentResource, "unit/api_resources/recurring_payment_resource"
   end
 
   module Types
@@ -47,6 +49,7 @@ module Unit
     autoload :RestrictedResource, "unit/types/restricted_resource"
     autoload :DocumentFileType, "unit/types/document_file_type"
     autoload :Coordinates, "unit/types/coordinates"
+    autoload :CreateSchedule, "unit/types/create_schedule"
   end
 
   autoload :UnitErrorPayload, "unit/errors/unit_error_payload"

@@ -169,6 +169,16 @@ puts counterparty.id
  puts ach_payment.id
 ```
 
+### Creating a recurring payment
+```ruby
+ schedule = Unit::Types::CreateSchedule.new("Monthly", 3)
+ response = Unit::RecurringPayment.create_recurring_credit_book_payment(account_id: "27573", counterparty_id: "36099", amount: 1000, 
+                                                                        description: "test payme", schedule: schedule)
+ recurring_payment = response.data
+ puts recurring_payment.id
+```
+
+
 ### Creating a wire payment
 ```ruby
  address = Unit::Types::Address.new('123 Main St', 'San Francisco', 'CA', '94205', 'US')
