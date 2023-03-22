@@ -65,5 +65,18 @@ RSpec.describe Unit::Payment do
         expect(response.data["type"]).to eq("wirePayment")
       end
     end
+
+    describe "batch release" do
+      let(:requests) do
+        [
+          { account_id: "49230", batch_account_id: "1296383", amount: 100, description: "Description 1", sender_name: "Sender Name 1", sender_address: ADDRESS, sender_account_number: "1234" },
+          { account_id: "49230", batch_account_id: "1296383", amount: 100, description: "Description 1", sender_name: "Sender Name 1", sender_address: ADDRESS, sender_account_number: "12324" }
+        ]
+      end
+      it "creates a batch release" do
+        response = described_class.create_batch_release(requests)
+        expect(response.data[0]["type"]).to eq("batchRelease")
+      end
+    end
   end
 end

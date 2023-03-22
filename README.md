@@ -14,7 +14,7 @@ gem install unit_ruby_sdk
 
 ## Usage
 
- Bellow are a few exapmles of the Ruby SDK application. For full documentation of the Unit API please refer to the full documentation at https://docs.unit.co/
+ Bellow are a few examples of the Ruby SDK application. For full documentation of the Unit API please refer to the full documentation at https://docs.unit.co/
 
 ### Creating a Business Application
 
@@ -83,6 +83,19 @@ response = Unit::Account::Credit.create_credit_account(
 credit_account = response.data
 puts credit_account.id
 ```
+
+### Creating a batch release request
+```ruby
+requests =
+  [
+    { account_id: "49230", batch_account_id: "1296383", amount: 100, description: "Description 1", sender_name: "Sender Name 1", sender_address: ADDRESS, sender_account_number: "1234" },
+    { account_id: "49230", batch_account_id: "1296383", amount: 100, description: "Description 1", sender_name: "Sender Name 1", sender_address: ADDRESS, sender_account_number: "12324" }
+  ]
+response = Unit::Payment.create_batch_release(requests)
+batch_release = response.data
+puts batch_release[0].id
+```
+
 
 ### Fetching a Customer
 
