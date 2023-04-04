@@ -12,7 +12,7 @@ module Unit
       # @param query [String] - optional
       # @param email [String] - optional
       # @param tags [Hash] - optional
-      # @param status [String] - optional
+      # @param status [Array<String>] - optional
       # @param sort [String] - optional
       def initialize(limit = CUSTOMER_LIST_LIMIT, offset = CUSTOMER_LIST_OFFSET, query = nil, email = nil, tags = nil, status = nil,
                      sort = nil)
@@ -31,8 +31,10 @@ module Unit
                    "filter[query]": query,
                    "filter[email]": email,
                    "filter[tags]": tags,
-                   "filter[status]": status,
                    "sort": sort }
+        status&.each_with_index&.map do |val, index|
+          params.merge!({ "filter[status][#{index}]": val })
+        end
         params.compact
       end
     end

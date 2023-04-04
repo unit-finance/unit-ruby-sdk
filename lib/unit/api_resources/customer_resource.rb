@@ -32,7 +32,8 @@ module Unit
         # @param [ListCustomerParams] params
         # @return [UnitResponse, UnitError]
         def list(params = nil)
-          response = HttpHelper.get("#{api_url}/customers", params: params&.to_hash, headers: headers)
+          p params
+          response = HttpHelper.get("#{api_url}/customers", params: params.to_hash, headers: headers)
           response_handler(response)
         end
 

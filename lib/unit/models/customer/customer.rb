@@ -60,7 +60,7 @@ module Unit
       # @param tags [Hash] - optional
       # @param status [String] - optional
       # @param sort [String] - optional
-      def list_customers(offset: CUSTOMER_LIST_OFFSET, limit: CUSTOMER_LIST_LIMIT, email: nil, tags: nil, status: nil, query: nil, sort: nil)
+      def list_customers(limit: CUSTOMER_LIST_LIMIT, offset: CUSTOMER_LIST_OFFSET, email: nil, tags: nil, status: nil, query: nil, sort: nil)
         request = ListCustomerParams.new(offset, limit, email, tags, status, query, sort)
         Unit::Resource::CustomerResource.list(request)
       end
