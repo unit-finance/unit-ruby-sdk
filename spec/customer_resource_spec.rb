@@ -2,49 +2,47 @@
 
 require_relative "./spec_helper"
 
-RSpec.describe Unit::Counterparty do
+RSpec.describe Unit::Customer do
   before do
     configure_tests
   end
 
-  let(:counterparty) do
-    Unit::Counterparty.create_counterparty(customer_id: "823139", name: "Jo Joel", routing_number: "812345678",
-                                           account_number: "1000000001", account_type: "Checking", type: "Business")
+  it "Should update individual customer" do
+    response = described_class.update_individual_customer(customer_id: "733576", address: ADDRESS)
+    expect(response.data["type"]).to eq "individualCustomer"
   end
 
-  let(:counterparty_with_plaid_token) do
-    Unit::Counterparty.create_with_plaid_token(customer_id: "823139", type: "Business", name: "Jo Joel", plaid_processor_token: "processor-sandbox-e5877120-b5fd-43a1-ab69-1e438161a7e3")
-  end
-  it "creates a counterparty" do
-    expect(counterparty.data["type"]).to eq("achCounterparty")
+  it "Should update business customer" do
+    response = described_class.update_business_customer(customer_id: "733565", address: ADDRESS, phone: PHONE, contact: CONTACT)
+    expect(response.data["type"]).to eq "businessCustomer"
   end
 
-  it "creates a counterparty with plaid token" do
-    expect(counterparty_with_plaid_token.data["type"]).to eq("achCounterparty")
+  it "Should get individual customer" do
+    response = described_class.get_customer("733576")
+    expect(response.data["type"]).to eq "individualCustomer"
   end
 
-  it "updates a counterparty" do
-    response = Unit::Counterparty.update_counterparty(counterparty_id: counterparty_with_plaid_token.data["id"], plaid_processor_token: "processor-sandbox-80c31769-53a4-4ed9-92db-ae7fddc1681f")
-    expect(response.data["type"]).to eq("achCounterparty")
+  it "Should get business customer" do
+    response = described_class.get_customer("733565")
+    expect(response.data["type"]).to eq "businessCustomer"
   end
 
-  it "lists counterparty" do
-    response = Unit::Counterparty.list_counterparty(limit: 100, offset: 10, permissions: %w[CreditOnly DebitOnly])
-    expect(response.data[0]["type"]).to eq("achCounterparty")
+  it "Should list customers" do
+    response = described_class.list_customers(limit: 20, offset: 10)
+    p response
+    response.data.each do |customer|
+      expect(CUSTOMER_TYPES).to include customer["type"]
+    end
   end
 
-  it "gets a counterparty" do
-    response = Unit::Counterparty.get_counterparty(counterparty_id: counterparty.data["id"])
-    expect(response.data["type"]).to eq("achCounterparty")
+  it "Should add authorised users" do
+    response = described_class.add_authorized_users(customer_id: "733565", authorized_users: AUTHORIZED_USERS)
+    expect(response.data["type"]).to eq "businessCustomer"
   end
 
-  it "gets a counterparty balance" do
-    response = Unit::Counterparty.get_counterparty_balance(counterparty_id: counterparty_with_plaid_token.data["id"])
-    expect(response.data["type"]).to eq("counterpartyBalance")
-  end
-
-  it "deletes a counterparty" do
-    response = Unit::Counterparty.delete_counterparty(counterparty_id: counterparty.data["id"])
-    expect(response).to be_nil
+  it "Should remove authorised users" do
+    response = described_class.remove_authorized_users(customer_id: "733565", authorized_users: ["april.doe@unit-finance.com"])
+    expect(response.data["type"]).to eq "businessCustomer"
+    expect(response.data["attributes"]["authorizedUsers"].length).to eq 3
   end
 end
