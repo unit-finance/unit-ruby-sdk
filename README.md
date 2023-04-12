@@ -236,13 +236,11 @@ Unit.config(api_url: ENV['API_URL'], token: "missing token")
 # response is a Unit::UnitError
 response = Unit::Application.get_application('123')
 
-# Prints "Bearer token is missing"
-response.errors.each{|error| puts error.title}
-
 # Checks the response to be an instance of UnitResponse
 if response.instance_of?(Unit::UnitResponse)
   # handle response
 else
-  # the current logging errors here
+  # handle error
+  response.errors.each{|error| puts error.title}
 end
 ```
