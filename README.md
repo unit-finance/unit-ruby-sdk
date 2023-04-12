@@ -226,7 +226,7 @@ response = Unit::Payment.create_bulk_payment(
 bulk_payment = response.data
 puts bulk_payment["id"]
 ```
-### Logging Errors
+### Handling Response
 
 ```ruby
 require 'unit_ruby_sdk'
@@ -236,6 +236,11 @@ Unit.config(api_url: ENV['API_URL'], token: "missing token")
 # response is a Unit::UnitError
 response = Unit::Application.get_application('123')
 
-# Prints "Bearer token is missing"
-response.errors.each{|error| puts error.title}
+# Checks the response to be an instance of UnitResponse
+if response.instance_of?(Unit::UnitResponse)
+  # handle response
+else
+  # handle error
+  response.errors.each{|error| puts error.title}
+end
 ```
