@@ -226,7 +226,7 @@ response = Unit::Payment.create_bulk_payment(
 bulk_payment = response.data
 puts bulk_payment["id"]
 ```
-### Logging Errors
+### Handling Response
 
 ```ruby
 require 'unit_ruby_sdk'
@@ -241,6 +241,8 @@ response.errors.each{|error| puts error.title}
 
 # Checks the response to be an instance of UnitResponse
 if response.instance_of?(Unit::UnitResponse)
-  # Do something
+  # handle response
+else
+  # the current logging errors here
 end
 ```
