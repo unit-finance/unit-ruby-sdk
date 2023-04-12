@@ -209,4 +209,9 @@ response = Unit::Application.get_application('123')
 
 # Prints "Bearer token is missing"
 response.errors.each{|error| puts error.title}
+
+# Checks the response to be an instance of UnitResponse
+if response.instance_of?(Unit::UnitResponse)
+  # Do something
+end
 ```
