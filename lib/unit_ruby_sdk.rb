@@ -47,6 +47,10 @@ module Unit
     autoload :RestrictedResource, "unit/types/restricted_resource"
     autoload :DocumentFileType, "unit/types/document_file_type"
     autoload :Coordinates, "unit/types/coordinates"
+    autoload :TrustContact, "unit/types/trust_contact"
+    autoload :Trustee, "unit/types/trustee"
+    autoload :Grantor, "unit/types/grantor"
+    autoload :Beneficiary, "unit/types/beneficiary"
   end
 
   autoload :UnitErrorPayload, "unit/errors/unit_error_payload"
