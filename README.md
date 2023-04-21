@@ -197,6 +197,20 @@ response = Unit::Payment.create_bulk_payment(
 bulk_payment = response.data
 puts bulk_payment.id
 ```
+
+### Creating a reward request
+```ruby
+response = Unit::Reward.create_reward(
+  receiving_account_id: "1234",
+  amount: 1000,
+  description: "test reward",
+  tags: { "test": "test-tag" },
+  idempotency_key: "12345"
+)
+reward = response.data
+puts reward["id"]
+```
+
 ### Logging Errors
 
 ```ruby
