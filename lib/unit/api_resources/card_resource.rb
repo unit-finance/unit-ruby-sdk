@@ -15,7 +15,7 @@ module Unit
         def create_card(request)
           payload = request.to_json_api
           response = HttpHelper.post("#{api_url}/cards", body: payload, headers: headers)
-          p response_handler(response)
+          response_handler(response)
         end
 
         # Get pin status by calling Unit's API
@@ -83,6 +83,8 @@ module Unit
           response_handler(response)
         end
 
+        # Update card by calling Unit's API
+        # @param request [PatchBusinessCardRequest, PatchBusinessCreditCardRequest, PatchBusinessVirtualCardRequest, PatchBusinessVirtualCreditCardRequest]
         def update(request)
           payload = request.to_json_api
           response = HttpHelper.patch("#{api_url}/cards/#{request.card_id}", headers: headers, body: payload)
