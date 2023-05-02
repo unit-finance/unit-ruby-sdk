@@ -14,6 +14,7 @@ module Unit
   autoload :AtmLocation, "unit/models/atm_location/atm_location"
   autoload :CheckDeposit, "unit/models/check_deposit/check_deposit"
   autoload :Counterparty, "unit/models/counterparty/counterparty"
+  autoload :Event, "unit/models/event/event"
 
   module Resource
     autoload :ApplicationResource, "unit/api_resources/application_resource"
@@ -27,6 +28,7 @@ module Unit
     autoload :AtmLocationResource, "unit/api_resources/atm_location_resource"
     autoload :CheckDepositResource, "unit/api_resources/check_deposit_resource"
     autoload :CounterpartyResource, "unit/api_resources/counterparty_resource"
+    autoload :EventResource, "unit/api_resources/event_resource"
   end
 
   module Types

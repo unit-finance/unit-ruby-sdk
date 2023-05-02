@@ -181,6 +181,13 @@ puts counterparty.id
  puts wire_payment.id
 ```
 
+### Get an event by id
+```ruby
+response = Unit::Event.get_event(event_id: "12605774")
+event = response.data
+puts event.id
+```
+
 ### Creating a bulk payment
 ```ruby
 address = Unit::Types::Address.new('123 Main St', 'San Francisco', 'CA', '94205', 'US')
