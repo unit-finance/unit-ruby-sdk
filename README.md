@@ -14,7 +14,7 @@ gem install unit_ruby_sdk
 
 ## Usage
 
- Bellow are a few examples of the Ruby SDK application. For full documentation of the Unit API please refer to the full documentation at https://docs.unit.co/
+Bellow are a few usage examples of Unit's Ruby SDK. For full documentation of Unit's API please refer to the full documentation at https://docs.unit.co/
 
 ### Creating a Business Application
 
