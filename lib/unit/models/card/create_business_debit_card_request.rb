@@ -5,7 +5,8 @@
 module Unit
   module Card
     class CreateBusinessDebitCardRequest
-      attr_reader :account_id, :full_name, :date_of_birth, :address, :shipping_address, :phone, :email, :design, :additional_embossed_text, :idempotency_key, :tags, :limits, :print_only_business_name, :type
+      attr_reader :account_id, :full_name, :date_of_birth, :address, :shipping_address, :phone, :email, :design, :additional_embossed_text,
+                  :idempotency_key, :tags, :limits, :print_only_business_name, :expiry_date, :type
 
       # @param account_id [String]
       # @param full_name [FullName]
@@ -20,8 +21,9 @@ module Unit
       # @param tags [Hash] - optional
       # @param limits [Hash] - optional
       # @param print_only_business_name [Boolean] - optional
+      # @param expiry_date [String] - optional
       def initialize(account_id, full_name, date_of_birth, address, shipping_address = nil, phone = nil, email = nil, design = nil,
-                     additional_embossed_text = nil, idempotency_key = nil, tags = nil, limits = nil, print_only_business_name = nil)
+                     additional_embossed_text = nil, idempotency_key = nil, tags = nil, limits = nil, print_only_business_name = nil, expiry_date = nil)
         @account_id = account_id
         @full_name = full_name
         @date_of_birth = date_of_birth
@@ -35,6 +37,7 @@ module Unit
         @tags = tags
         @limits = limits
         @print_only_business_name = print_only_business_name
+        @expiry_date = expiry_date
         @type = "businessDebitCard"
       end
 
@@ -54,14 +57,14 @@ module Unit
               "idempotencyKey": idempotency_key,
               "tags": tags,
               "limits": limits,
-              "printOnlyBusinessName": print_only_business_name
-            },
+              "printOnlyBusinessName": print_only_business_name,
+              "expiryDate": expiry_date
+            }.compact!,
             "relationships": {
               "account": Unit::Types::Relationship.new("account", account_id).to_hash
             }
           }
         }
-        payload[:data][:attributes].compact!
         payload.to_json
       end
     end

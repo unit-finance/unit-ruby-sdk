@@ -126,7 +126,8 @@ response = Unit::Card.create_individual_debit_card(
   type: "depositAccount",
   shipping_address: address,
   design: "default",
-  additional_embossed_text: "Second Cardholder"
+  additional_embossed_text: "Second Cardholder",
+  expiry_date: "03/27"
 )
 card = response.data
 puts card["id"]

@@ -18,8 +18,9 @@ module Unit
       # @param tags [Hash] - optional
       # @param limits [Hash] - optional
       # @param print_only_business_name [Boolean] - optional
+      # @param expiry_date [String] - optional
       def initialize(account_id, full_name, date_of_birth, address, shipping_address = nil, phone = nil, email = nil, design = nil,
-                     additional_embossed_text = nil, idempotency_key = nil, tags = nil, limits = nil, print_only_business_name = nil)
+                     additional_embossed_text = nil, idempotency_key = nil, tags = nil, limits = nil, print_only_business_name = nil, expiry_date = nil)
         super
         @type = "businessCreditCard"
       end

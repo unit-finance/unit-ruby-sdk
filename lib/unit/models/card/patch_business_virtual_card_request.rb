@@ -33,10 +33,9 @@ module Unit
               "email": email,
               "tags": tags,
               "limits": limits
-            }
+            }.compact!
           }
         }
-        payload[:data][:attributes].compact!
         payload.to_json
       end
     end

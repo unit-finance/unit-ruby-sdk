@@ -28,10 +28,11 @@ module Unit
       # @param tags [Hash] - optional
       # @param limits [Hash] - optional
       # @param print_only_business_name [String] - optional
+      # @param expiry_date [String] - optional
       def create_individual_debit_card(account_id:, customer_id: nil, shipping_address: nil, design: nil, additional_embossed_text: nil,
-                                       idempotency_key: nil, tags: nil, limits: nil, print_only_business_name: nil)
+                                       idempotency_key: nil, tags: nil, limits: nil, print_only_business_name: nil, expiry_date: nil)
         request = CreateIndividualDebitCardRequest.new(account_id, customer_id, shipping_address, design, additional_embossed_text,
-                                                       idempotency_key, tags, limits, print_only_business_name)
+                                                       idempotency_key, tags, limits, print_only_business_name, expiry_date)
         Unit::Resource::CardResource.create_card(request)
       end
 
@@ -49,10 +50,11 @@ module Unit
       # @param tags [Hash] - optional
       # @param limits [Hash] - optional
       # @param print_only_business_name [Boolean] - optional
+      # @param expiry_date [String] - optional
       def create_business_debit_card(account_id:, full_name:, date_of_birth:, address:, phone:, email:, shipping_address: nil,
-                                     design: nil, additional_embossed_text: nil, idempotency_key: nil, tags: nil, limits: nil, print_only_business_name: nil)
+                                     design: nil, additional_embossed_text: nil, idempotency_key: nil, tags: nil, limits: nil, print_only_business_name: nil, expiry_date: nil)
         request = CreateBusinessDebitCardRequest.new(account_id, full_name, date_of_birth, address, shipping_address, phone, email, design, additional_embossed_text,
-                                                     idempotency_key, tags, limits, print_only_business_name)
+                                                     idempotency_key, tags, limits, print_only_business_name, expiry_date)
         Unit::Resource::CardResource.create_card(request)
       end
 
@@ -71,8 +73,9 @@ module Unit
       # @param tags [Hash] - optional
       # @param limits [Hash] - optional
       # @param print_only_business_name [Boolean] - optional
-      def create_business_credit_card(account_id:, full_name:, date_of_birth:, address:, shipping_address: nil, phone: nil, email: nil, design: nil, additional_embossed_text: nil, idempotency_key: nil, tags: nil, limits: nil, print_only_business_name: nil)
-        request = CreateBusinessCreditCardRequest.new(account_id, full_name, date_of_birth, address, shipping_address, phone, email, design, additional_embossed_text, idempotency_key, tags, limits, print_only_business_name)
+      # @param expiry_date [String] - optional
+      def create_business_credit_card(account_id:, full_name:, date_of_birth:, address:, shipping_address: nil, phone: nil, email: nil, design: nil, additional_embossed_text: nil, idempotency_key: nil, tags: nil, limits: nil, print_only_business_name: nil, expiry_date: nil)
+        request = CreateBusinessCreditCardRequest.new(account_id, full_name, date_of_birth, address, shipping_address, phone, email, design, additional_embossed_text, idempotency_key, tags, limits, print_only_business_name, expiry_date)
         Unit::Resource::CardResource.create_card(request)
       end
 
@@ -83,8 +86,9 @@ module Unit
       # @param idempotency_key [String] - optional
       # @param tags [Hash] - optional
       # @param limits [Hash] - optional
-      def create_business_virtual_credit_card(account_id:, full_name:, date_of_birth:, address:, phone: nil, email: nil, idempotency_key: nil, tags: nil, limits: nil)
-        request = CreateBusinessVirtualCreditCardRequest.new(account_id, full_name, date_of_birth, address, phone, email, idempotency_key, tags, limits)
+      # @param expiry_date [String] - optional
+      def create_business_virtual_credit_card(account_id:, full_name:, date_of_birth:, address:, phone: nil, email: nil, idempotency_key: nil, tags: nil, limits: nil, expiry_date: nil)
+        request = CreateBusinessVirtualCreditCardRequest.new(account_id, full_name, date_of_birth, address, phone, email, idempotency_key, tags, limits, expiry_date)
         Unit::Resource::CardResource.create_card(request)
       end
 

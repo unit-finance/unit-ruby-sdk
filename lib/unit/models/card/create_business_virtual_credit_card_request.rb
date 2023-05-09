@@ -13,9 +13,10 @@ module Unit
     # @param idempotency_key [String] - optional
     # @param tags [Hash] - optional
     # @param limits [Hash] - optional
+    # @param expiry_date [String] - optional
     class CreateBusinessVirtualCreditCardRequest < CreateBusinessVirtualDebitCardRequest
-      def initialize(account_id, full_name, date_of_birth, address, phone, email,
-                     idempotency_key, tags, limits)
+      def initialize(account_id, full_name, date_of_birth, address, phone = nil, email = nil,
+                     idempotency_key = nil, tags = nil, limits = nil, expiry_date = nil)
         super
         @type = "businessVirtualCreditCard"
       end
