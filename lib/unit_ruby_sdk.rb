@@ -4,6 +4,7 @@ require_relative "unit/version"
 
 module Unit
   autoload :Application, "unit/models/application/application"
+  autoload :ApplicationForm, "unit/models/application_form/application_form"
   autoload :Customer, "unit/models/customer/customer"
   autoload :Account, "unit/models/account/account"
   autoload :ApiToken, "unit/models/api_token/api_token"
@@ -18,6 +19,7 @@ module Unit
 
   module Resource
     autoload :ApplicationResource, "unit/api_resources/application_resource"
+    autoload :ApplicationFormResource, "unit/api_resources/application_form_resource"
     autoload :CustomerResource, "unit/api_resources/customer_resource"
     autoload :AccountResource, "unit/api_resources/account_resource"
     autoload :ApiTokenResource, "unit/api_resources/api_token_resource"
@@ -53,6 +55,9 @@ module Unit
     autoload :Trustee, "unit/types/trustee"
     autoload :Grantor, "unit/types/grantor"
     autoload :Beneficiary, "unit/types/beneficiary"
+    autoload :ApplicationFormSettingsOverride, "unit/types/application_form_settings_override"
+    autoload :ApplicationFormPrefill, "unit/types/application_form_prefill"
+    autoload :RequireIdVerification, "unit/types/require_id_verification"
   end
 
   autoload :UnitErrorPayload, "unit/errors/unit_error_payload"
