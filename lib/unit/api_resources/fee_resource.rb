@@ -3,9 +3,8 @@
 require_relative "./base_resource"
 require_relative "../utils/http_helper"
 
-# class for creating requests for payments to Unit API and parsing responses
-# @see https://docs.unit.co/book-payments#book-payments
-# @see https://docs.unit.co/ach-origination
+# class for creating requests for fees to Unit API and parsing responses
+# @see https://docs.unit.co/fees/
 module Unit
   module Resource
     class FeeResource < Unit::Resource::BaseResource
