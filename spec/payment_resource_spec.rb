@@ -35,7 +35,7 @@ RSpec.describe Unit::Payment do
       end
 
       it "creates ach payment with plaid token" do
-        response = described_class.create_ach_payment_with_plaid_token(account_id: "27573", amount: 1000, direction: "Credit", description: "test payment", plaid_processor_token: "processor-sandbox-fc8b9c23-b400-40f9-8ee8-c2cabd719721")
+        response = described_class.create_ach_payment_with_plaid_token(account_id: "27573", amount: 1000, direction: "Credit", description: "test payment", plaid_processor_token: "processor-sandbox-80c31769-53a4-4ed9-92db-ae7fddc1681f")
         expect(response.data["type"]).to eq("achPayment")
       end
 
