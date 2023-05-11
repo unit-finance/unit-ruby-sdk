@@ -126,7 +126,8 @@ response = Unit::Card.create_individual_debit_card(
   type: "depositAccount",
   shipping_address: address,
   design: "default",
-  additional_embossed_text: "Second Cardholder"
+  additional_embossed_text: "Second Cardholder",
+  expiry_date: "03/27"
 )
 card = response.data
 puts card["id"]
@@ -159,6 +160,25 @@ received_payment = response.data
 puts received_payment.id
 ```
 
+```
+
+### Creating a business credit card
+```ruby
+full_name = Unit::Types::FullName.new('John', 'Doe')
+date_of_birth = '1980-08-10'
+address = Unit::Types::Address.new('123 Main St', 'San Francisco', 'CA', '94205', 'US')
+phone = Unit::Types::Phone.new('380', '555123222')
+email = 'jone.doe@unit-finance.com'
+response = Unit::Card.create_business_credit_card(
+  account_id: "1234", 
+  full_name: full_name,
+  date_of_birth: date_of_birth, 
+  address: address, 
+  phone: phone, 
+  email: email
+)
+charge_card = response.data
+puts charge_card.id
 ```
 
 ### Creating a check deposit
