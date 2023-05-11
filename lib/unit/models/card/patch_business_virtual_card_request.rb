@@ -33,7 +33,7 @@ module Unit
               "email": email,
               "tags": tags,
               "limits": limits
-            }.compact!
+            }.compact
           }
         }
         payload.to_json
