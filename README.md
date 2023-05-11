@@ -132,6 +132,18 @@ transaction = response.data
 puts transaction["id"]
 ```
 
+### Get an authorization by id
+
+```ruby
+response = Unit::Authorization.get_authorization(
+  authorization_id: '12345',
+  include_non_authorized: true
+)
+authorization = response.data
+puts authorization.id
+```
+
+
 ### Creating an individual debit card
 ```ruby
 response = Unit::Card.create_individual_debit_card(
