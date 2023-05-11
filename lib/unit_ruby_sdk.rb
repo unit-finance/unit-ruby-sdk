@@ -16,6 +16,7 @@ module Unit
   autoload :AtmLocation, "unit/models/atm_location/atm_location"
   autoload :CheckDeposit, "unit/models/check_deposit/check_deposit"
   autoload :Counterparty, "unit/models/counterparty/counterparty"
+  autoload :AuthorizationRequest, "unit/models/authorization_request/authorization_request"
   autoload :RecurringPayment, "unit/models/recurring_payment/recurring_payment"
 
   module Resource
@@ -32,6 +33,7 @@ module Unit
     autoload :AtmLocationResource, "unit/api_resources/atm_location_resource"
     autoload :CheckDepositResource, "unit/api_resources/check_deposit_resource"
     autoload :CounterpartyResource, "unit/api_resources/counterparty_resource"
+    autoload :AuthorizationRequestResource, "unit/api_resources/authorization_request_resource"
     autoload :RecurringPaymentResource, "unit/api_resources/recurring_payment_resource"
   end
 
