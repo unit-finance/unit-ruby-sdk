@@ -197,6 +197,21 @@ response = Unit::Payment.create_bulk_payment(
 bulk_payment = response.data
 puts bulk_payment.id
 ```
+
+### Creating a book repayment
+```ruby
+response = Unit::Repayment.create_book_repayment(
+  account_id: "10001",
+  credit_account_id: "10002",
+  counterparty_account_id: "10003", 
+  description: "test", amount: 100,
+  transaction_summary_override: "override", 
+  tags: { purpose: "test" }, 
+  idempotency_key: "3a1a33be-4e12-4603-9ed0-820922389fb8")
+book_repayment = response.data
+puts book_repayment.id
+```
+
 ### Logging Errors
 
 ```ruby
