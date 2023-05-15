@@ -36,6 +36,7 @@ module SpecHelper
     stub_const("TRUST_CONTACT", Unit::Types::TrustContact.new(FULL_NAME, EMAIL, PHONE, ADDRESS))
     stub_const("GRANTOR", Unit::Types::Grantor.new(FULL_NAME, SSN, EMAIL, PHONE, ADDRESS, DATE_OF_BIRTH))
     stub_const("BENEFICIARIES", [Unit::Types::Beneficiary.new(FULL_NAME, DATE_OF_BIRTH).represent])
+    stub_const("SCHEDULE", Unit::Types::CreateSchedule.new("Monthly", 3))
     stub_const("UNIT_API_URL", "https://api.s.unit.sh")
     stub_const("UNIT_TOKEN", ENV["USER_TOKEN"])
     Unit.config(api_url: UNIT_API_URL, token: UNIT_TOKEN)

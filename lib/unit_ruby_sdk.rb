@@ -16,6 +16,9 @@ module Unit
   autoload :AtmLocation, "unit/models/atm_location/atm_location"
   autoload :CheckDeposit, "unit/models/check_deposit/check_deposit"
   autoload :Counterparty, "unit/models/counterparty/counterparty"
+  autoload :Authorization, "unit/models/authorization/authorization"
+  autoload :AuthorizationRequest, "unit/models/authorization_request/authorization_request"
+  autoload :RecurringPayment, "unit/models/recurring_payment/recurring_payment"
 
   module Resource
     autoload :ApplicationResource, "unit/api_resources/application_resource"
@@ -31,6 +34,9 @@ module Unit
     autoload :AtmLocationResource, "unit/api_resources/atm_location_resource"
     autoload :CheckDepositResource, "unit/api_resources/check_deposit_resource"
     autoload :CounterpartyResource, "unit/api_resources/counterparty_resource"
+    autoload :AuthorizationResource, "unit/api_resources/authorization_resource"
+    autoload :AuthorizationRequestResource, "unit/api_resources/authorization_request_resource"
+    autoload :RecurringPaymentResource, "unit/api_resources/recurring_payment_resource"
   end
 
   module Types
@@ -55,6 +61,7 @@ module Unit
     autoload :Trustee, "unit/types/trustee"
     autoload :Grantor, "unit/types/grantor"
     autoload :Beneficiary, "unit/types/beneficiary"
+    autoload :CreateSchedule, "unit/types/create_schedule"
     autoload :ApplicationFormSettingsOverride, "unit/types/application_form_settings_override"
     autoload :ApplicationFormPrefill, "unit/types/application_form_prefill"
     autoload :RequireIdVerification, "unit/types/require_id_verification"
