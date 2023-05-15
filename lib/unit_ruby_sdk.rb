@@ -4,6 +4,7 @@ require_relative "unit/version"
 
 module Unit
   autoload :Application, "unit/models/application/application"
+  autoload :ApplicationForm, "unit/models/application_form/application_form"
   autoload :Customer, "unit/models/customer/customer"
   autoload :Account, "unit/models/account/account"
   autoload :ApiToken, "unit/models/api_token/api_token"
@@ -16,9 +17,13 @@ module Unit
   autoload :CheckDeposit, "unit/models/check_deposit/check_deposit"
   autoload :Counterparty, "unit/models/counterparty/counterparty"
   autoload :Reward, "unit/models/reward/reward"
+  autoload :Authorization, "unit/models/authorization/authorization"
+  autoload :AuthorizationRequest, "unit/models/authorization_request/authorization_request"
+  autoload :RecurringPayment, "unit/models/recurring_payment/recurring_payment"
 
   module Resource
     autoload :ApplicationResource, "unit/api_resources/application_resource"
+    autoload :ApplicationFormResource, "unit/api_resources/application_form_resource"
     autoload :CustomerResource, "unit/api_resources/customer_resource"
     autoload :AccountResource, "unit/api_resources/account_resource"
     autoload :ApiTokenResource, "unit/api_resources/api_token_resource"
@@ -31,6 +36,9 @@ module Unit
     autoload :CheckDepositResource, "unit/api_resources/check_deposit_resource"
     autoload :CounterpartyResource, "unit/api_resources/counterparty_resource"
     autoload :RewardResource, "unit/api_resources/reward_resource"
+    autoload :AuthorizationResource, "unit/api_resources/authorization_resource"
+    autoload :AuthorizationRequestResource, "unit/api_resources/authorization_request_resource"
+    autoload :RecurringPaymentResource, "unit/api_resources/recurring_payment_resource"
   end
 
   module Types
@@ -51,6 +59,10 @@ module Unit
     autoload :RestrictedResource, "unit/types/restricted_resource"
     autoload :DocumentFileType, "unit/types/document_file_type"
     autoload :Coordinates, "unit/types/coordinates"
+    autoload :CreateSchedule, "unit/types/create_schedule"
+    autoload :ApplicationFormSettingsOverride, "unit/types/application_form_settings_override"
+    autoload :ApplicationFormPrefill, "unit/types/application_form_prefill"
+    autoload :RequireIdVerification, "unit/types/require_id_verification"
   end
 
   autoload :UnitErrorPayload, "unit/errors/unit_error_payload"
