@@ -28,7 +28,7 @@ RSpec.describe Unit::Customer do
   end
 
   it "Should list customers" do
-    response = described_class.list_customers(limit: 10, offset: 0)
+    response = described_class.list_customers(limit: 20, offset: 10)
     response.data.each do |customer|
       expect(CUSTOMER_TYPES).to include customer["type"]
     end
