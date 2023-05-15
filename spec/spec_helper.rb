@@ -32,6 +32,7 @@ module SpecHelper
     stub_const("RELATIONSHIPS_BUSINESS", { "customer": Unit::Types::Relationship.new("customer", "798787").to_hash })
     stub_const("OWNERS", %w[751009 760549])
     stub_const("RESTRICTED_RESOURCE", Unit::Types::RestrictedResource.new(["27573"], "account").to_json_api)
+    stub_const("SCHEDULE", Unit::Types::CreateSchedule.new("Monthly", 3))
     stub_const("UNIT_API_URL", "https://api.s.unit.sh")
     stub_const("UNIT_TOKEN", ENV["USER_TOKEN"])
     Unit.config(api_url: UNIT_API_URL, token: UNIT_TOKEN)
