@@ -14,7 +14,7 @@ gem install unit_ruby_sdk
 
 ## Usage
 
-Bellow are a few exapmles of the Ruby SDK application. For full documentation of the Unit API please refer to the full documentation at https://docs.unit.co/
+Bellow are a few usage examples of Unit's Ruby SDK. For full documentation of Unit's API please refer to the full documentation at https://docs.unit.co/
 
 ### Creating a Business Application
 
@@ -84,6 +84,19 @@ credit_account = response.data
 puts credit_account["id"]
 ```
 
+### Creating a batch release request
+```ruby
+requests =
+  [
+    { account_id: "49230", batch_account_id: "1296383", amount: 100, description: "Description 1", sender_name: "Sender Name 1", sender_address: ADDRESS, sender_account_number: "1234" },
+    { account_id: "49230", batch_account_id: "1296383", amount: 100, description: "Description 1", sender_name: "Sender Name 1", sender_address: ADDRESS, sender_account_number: "12324" }
+  ]
+response = Unit::Payment.create_batch_release(requests)
+batch_release = response.data
+puts batch_release[0].id
+```
+
+
 ### Fetching a Customer
 
 ```ruby
@@ -95,7 +108,6 @@ customer = Unit::Customer.list_customers(limit: 20, offset: 10).data.first
 puts customer["id"]
 ```
 
-### 
 ### Creating a Payment
 
 ```ruby
@@ -119,6 +131,18 @@ transaction = response.data
 puts transaction["id"]
 ```
 
+### Get an authorization by id
+
+```ruby
+response = Unit::Authorization.get_authorization(
+  authorization_id: '12345',
+  include_non_authorized: true
+)
+authorization = response.data
+puts authorization.id
+```
+
+
 ### Creating an individual debit card
 ```ruby
 response = Unit::Card.create_individual_debit_card(
@@ -126,7 +150,8 @@ response = Unit::Card.create_individual_debit_card(
   type: "depositAccount",
   shipping_address: address,
   design: "default",
-  additional_embossed_text: "Second Cardholder"
+  additional_embossed_text: "Second Cardholder",
+  expiry_date: "03/27"
 )
 card = response.data
 puts card["id"]
@@ -157,6 +182,25 @@ response = Unit::ReceivedPayment.update_payment(
   tags: { purpose: "test" })
 received_payment = response.data
 puts received_payment.id
+```
+
+### Creating a business credit card
+```ruby
+full_name = Unit::Types::FullName.new('John', 'Doe')
+date_of_birth = '1980-08-10'
+address = Unit::Types::Address.new('123 Main St', 'San Francisco', 'CA', '94205', 'US')
+phone = Unit::Types::Phone.new('380', '555123222')
+email = 'jone.doe@unit-finance.com'
+response = Unit::Card.create_business_credit_card(
+  account_id: "1234", 
+  full_name: full_name,
+  date_of_birth: date_of_birth, 
+  address: address, 
+  phone: phone, 
+  email: email
+)
+charge_card = response.data
+puts charge_card.id
 ```
 
 ### Creating a check deposit
@@ -195,6 +239,16 @@ puts counterparty["id"]
  ach_payment = response.data
  puts ach_payment["id"]
 ```
+
+### Creating a recurring payment
+```ruby
+ schedule = Unit::Types::CreateSchedule.new("Monthly", 3)
+ response = Unit::RecurringPayment.create_recurring_credit_book_payment(account_id: "27573", counterparty_id: "36099", amount: 1000, 
+                                                                        description: "test payme", schedule: schedule)
+ recurring_payment = response.data
+ puts recurring_payment.id
+```
+
 
 ### Creating a wire payment
 ```ruby
