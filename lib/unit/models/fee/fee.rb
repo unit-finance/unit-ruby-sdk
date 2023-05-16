@@ -25,7 +25,7 @@ module Unit
       # @param description [String]
       # @param tags [Hash] - optional
       # @param idempotency_key [String] - optional
-      def reverse_fee(account_id:, transaction_id:, description:, tags:, idempotency_key:)
+      def reverse_fee(account_id:, transaction_id:, description:, tags: nil, idempotency_key: nil)
         request = ReverseFeeRequest.new(account_id, transaction_id, description, tags, idempotency_key)
         Unit::Resource::FeeResource.reverse_fee(request)
       end
