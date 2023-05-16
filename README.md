@@ -279,6 +279,21 @@ response = Unit::Payment.create_bulk_payment(
 bulk_payment = response.data
 puts bulk_payment["id"]
 ```
+
+### Creating a fee
+```ruby
+response = Unit::Fee.create_fee(
+  account_id: "27573", 
+  amount: 12_345, 
+  description: "test", 
+  tags: { purpose: "test" }, 
+  idempotency_key: "123"
+)
+fee = response.data
+puts fee["id"]
+```
+
+
 ### Handling Response
 
 ```ruby
