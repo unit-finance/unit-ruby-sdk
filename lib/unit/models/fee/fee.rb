@@ -13,7 +13,7 @@ module Unit
       # @param description [String]
       # @param tags [Hash] - optional
       # @param idempotency_key [String] - optional
-      def create_fee(account_id:, amount:, description:, tags:, idempotency_key:)
+      def create_fee(account_id:, amount:, description:, tags: nil, idempotency_key: nil)
         request = CreateFeeRequest.new(account_id, amount, description, tags, idempotency_key)
         Unit::Resource::FeeResource.create_fee(request)
       end
