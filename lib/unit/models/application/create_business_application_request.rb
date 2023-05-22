@@ -1,19 +1,14 @@
 # frozen_string_literal: true
 
-require "unit/types/full_name"
-require "unit/types/address"
-require "unit/types/phone"
-require "unit/types/business_contact"
-require "unit/types/beneficial_owner"
-require "unit/types/officer"
-
 # Request to create a business application
 # @see https://docs.unit.co/applications/#create-business-application
 module Unit
   module Application
     class CreateBusinessApplicationRequest
       attr_reader :name, :address, :phone, :state_of_incorporation, :ein, :industry, :contact, :officer, :beneficial_owners,
-                  :entity_type, :dba, :ip, :website, :tags, :idempotency_key, :device_fingerprints, :type
+                  :entity_type, :dba, :ip, :website, :tags, :idempotency_key, :device_fingerprints,
+                  :annual_revenue, :number_of_employees, :cash_flow, :year_of_incorporation,
+                  :countries_of_operation, :stock_symbol, :business_vertical, :type
 
       # @param name [String]
       # @param address [Address]
@@ -31,9 +26,18 @@ module Unit
       # @param tags [Hash] - optional
       # @param idempotency_key [String] - optional
       # @param device_fingerprints [DeviceFingerprint] - optional
+      # @param annual_revenue [String] - optional
+      # @param number_of_employees [String] - optional
+      # @param cash_flow [String] - optional
+      # @param year_of_incorporation [String] - optional
+      # @param countries_of_operation [Array<String>] - optional
+      # @param stock_symbol [String] - optional
+      # @param business_vertical [String] - optional
       def initialize(name, address, phone, state_of_incorporation, ein, industry, contact, officer,
                      beneficial_owners, entity_type, dba = nil, ip = nil, website = nil, tags = nil, idempotency_key = nil,
-                     device_fingerprints = nil)
+                     device_fingerprints = nil, annual_revenue = nil, number_of_employees = nil,
+                     cash_flow = nil, year_of_incorporation = nil, countries_of_operation = nil,
+                     stock_symbol = nil, business_vertical = nil)
         @name = name
         @address = address
         @phone = phone
@@ -50,6 +54,13 @@ module Unit
         @tags = tags
         @idempotency_key = idempotency_key
         @device_fingerprints = device_fingerprints
+        @annual_revenue = annual_revenue
+        @number_of_employees = number_of_employees
+        @cash_flow = cash_flow
+        @year_of_incorporation = year_of_incorporation
+        @countries_of_operation = countries_of_operation
+        @stock_symbol = stock_symbol
+        @business_vertical = business_vertical
         @type = "businessApplication"
       end
 
@@ -70,7 +81,17 @@ module Unit
               entityType: entity_type,
               dba: dba,
               ip: ip,
-              website: website
+              website: website,
+              tags: tags,
+              idempotency_key: idempotency_key,
+              device_fingerprints: device_fingerprints,
+              annual_revenue: annual_revenue,
+              number_of_employees: number_of_employees,
+              cashFlow: cash_flow,
+              yearOfIncorporation: year_of_incorporation,
+              countriesOfOperation: countries_of_operation&.join(","),
+              stockSymbol: stock_symbol,
+              businessVertical: business_vertical
             }
           }
         }
