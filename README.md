@@ -143,7 +143,6 @@ customer = Unit::Customer.list_customers(limit: 20, offset: 10).data.first
 puts customer["id"]
 ```
 
-### 
 ### Creating a Payment
     
 ```ruby
@@ -296,6 +295,20 @@ bulk_payment = response.data
 puts bulk_payment["id"]
 ```
 
+### Creating a webhook
+```ruby
+response = Unit::Webhook.create_webhook(
+  label: "some label", 
+  url: "https://webhook.site/81ee6b53-fde4-4b7d-85a0-0b6249a4488d",
+  token: "MyToken", 
+  content_type: "Json", 
+  delivery_mode: "AtLeastOnce",
+  include_resources: false,
+  subscription_type: "OnlyAuthorizationRequest")
+webhook = response.data
+puts webhook["id"]
+```
+
 ### Creating a fee
 ```ruby
 response = Unit::Fee.create_fee(
@@ -311,7 +324,6 @@ puts fee["id"]
 
 
 ### Handling Response
-
 ```ruby
 require 'unit_ruby_sdk'
 
