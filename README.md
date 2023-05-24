@@ -145,7 +145,7 @@ puts customer["id"]
 
 ### 
 ### Creating a Payment
-
+    
 ```ruby
 require 'unit_ruby_sdk'
 
@@ -200,25 +200,6 @@ response = Unit::ReceivedPayment.update_payment(
   tags: { purpose: "test" })
 received_payment = response.data
 puts received_payment["id"]
-```
-
-### Updating a received payment
-```ruby
-response = Unit::ReceivedPayment.update_payment(
-  payment_id: "1232", 
-  tags: { purpose: "test" })
-received_payment = response.data
-puts received_payment["id"]
-```
-
-### Updating a received payment
-```ruby
-response = Unit::ReceivedPayment.update_payment(
-  payment_id: "1232", 
-  tags: { purpose: "test" })
-received_payment = response.data
-puts received_payment.id
-```
 
 ### Creating a business credit card
 ```ruby
