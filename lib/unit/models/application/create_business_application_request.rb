@@ -15,11 +15,11 @@ module Unit
       # @param phone [Phone]
       # @param state_of_incorporation [String]
       # @param ein [String]
-      # @param industry [String]
       # @param contact [BusinessContact]
       # @param officer [Officer]
       # @param beneficial_owners [Array]
       # @param entity_type [String]
+      # @param industry [String] - optional
       # @param dba [String] - optional
       # @param ip [String] - optional
       # @param website [String] - optional
@@ -33,8 +33,8 @@ module Unit
       # @param countries_of_operation [Array<String>] - optional
       # @param stock_symbol [String] - optional
       # @param business_vertical [String] - optional
-      def initialize(name, address, phone, state_of_incorporation, ein, industry, contact, officer,
-                     beneficial_owners, entity_type, dba = nil, ip = nil, website = nil, tags = nil, idempotency_key = nil,
+      def initialize(name, address, phone, state_of_incorporation, ein, contact, officer,
+                     beneficial_owners, entity_type, industry = nil, dba = nil, ip = nil, website = nil, tags = nil, idempotency_key = nil,
                      device_fingerprints = nil, annual_revenue = nil, number_of_employees = nil,
                      cash_flow = nil, year_of_incorporation = nil, countries_of_operation = nil,
                      stock_symbol = nil, business_vertical = nil)

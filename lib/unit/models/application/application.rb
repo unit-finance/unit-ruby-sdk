@@ -13,16 +13,17 @@ module Unit
 
     class << self
       # Create a new business application by calling Unit's API
+      # @see https://docs.unit.co/applications#create-business-application
       # @param name [String]
       # @param address [Address]
       # @param phone [Phone]
       # @param state_of_incorporation [String]
       # @param ein [String]
-      # @param industry [String]
       # @param contact [BusinessContact]
       # @param officer [Officer]
       # @param beneficial_owners [Array]
       # @param entity_type [String]
+      # @param industry [String] - optional
       # @param dba [String] - optional
       # @param ip [String] - optional
       # @param website [String] - optional
@@ -36,14 +37,14 @@ module Unit
       # @param countries_of_operation [Array<String>] - optional
       # @param stock_symbol [String] - optional
       # @param business_vertical [String] - optional
-      def create_business_application(name:, address:, phone:, state_of_incorporation:, ein:, industry:, contact:,
-                                      officer:, beneficial_owners:, entity_type:, dba: nil, ip: nil, website: nil,
+      def create_business_application(name:, address:, phone:, state_of_incorporation:, ein:, contact:,
+                                      officer:, beneficial_owners:, entity_type:, industry: nil, dba: nil, ip: nil, website: nil,
                                       tags: nil, idempotency_key: nil, device_fingerprints: nil, annual_revenue: nil, number_of_employees: nil,
                                       cash_flow: nil, year_of_incorporation: nil, countries_of_operation: nil, stock_symbol: nil, business_vertical: nil)
 
         request = CreateBusinessApplicationRequest.new(
-          name, address, phone, state_of_incorporation, ein, industry, contact, officer,
-          beneficial_owners, entity_type, dba, ip, website, tags, idempotency_key, device_fingerprints,
+          name, address, phone, state_of_incorporation, ein, contact, officer,
+          beneficial_owners, entity_type, industry, dba, ip, website, tags, idempotency_key, device_fingerprints,
           annual_revenue, number_of_employees, cash_flow, year_of_incorporation, countries_of_operation, stock_symbol, business_vertical
         )
 
@@ -51,6 +52,7 @@ module Unit
       end
 
       # Create a new individual application by calling Unit's API
+      # @see https://docs.unit.co/applications#create-individual-application
       # @param ssn [String]
       # @param full_name [FullName]
       # @param date_of_birth [Date]
@@ -88,7 +90,7 @@ module Unit
       end
 
       # Create a new sole proprietor application by calling Unit's API
-      # @param ssn [String]
+      # @see https://docs.unit.co/applications#create-sole-proprietor-application
       # @param nationality [String]
       # @param full_name [FullName]
       # @param date_of_birth [Date]
@@ -97,6 +99,7 @@ module Unit
       # @param email [String]
       # @param sole_proprietorship [Boolean]
       # @param industry [String]
+      # @param ssn [String] - optional
       # @param passport [String] - optional
       # @param ein [String] - optional
       # @param dba [String] - optional
@@ -115,13 +118,13 @@ module Unit
       # @param device_fingerprints [Array<DeviceFingerprint>] - optional
       # @param jwt_subject [String] - optional
       # @return [UnitResponse, UnitError]
-      def create_sole_proprietor_application(ssn:, nationality:, full_name:, date_of_birth:, address:, phone:,
-                                             email:, industry:, passport: nil, ein: nil, dba: nil, power_of_attorney_agent: nil, evaluation_params: nil,
+      def create_sole_proprietor_application(nationality:, full_name:, date_of_birth:, address:, phone:,
+                                             email:, industry:, ssn: nil, passport: nil, ein: nil, dba: nil, power_of_attorney_agent: nil, evaluation_params: nil,
                                              occupation: nil, annual_income: nil, source_of_income: nil, annual_revenue: nil,
                                              number_of_employees: nil, business_vertical: nil, website: nil, ip: nil, tags: nil,
                                              idempotency_key: nil, device_fingerprints: nil, jwt_subject: nil, sole_proprietorship: true)
-        request = CreateSoleProprietorApplicationRequest.new(ssn, nationality, full_name, date_of_birth, address, phone,
-                                                             email, industry, passport, ein, dba, power_of_attorney_agent, evaluation_params,
+        request = CreateSoleProprietorApplicationRequest.new(nationality, full_name, date_of_birth, address, phone,
+                                                             email, industry, ssn, passport, ein, dba, power_of_attorney_agent, evaluation_params,
                                                              occupation, annual_income, source_of_income, annual_revenue, number_of_employees,
                                                              business_vertical, website, ip, tags, idempotency_key,
                                                              device_fingerprints, jwt_subject, sole_proprietorship: sole_proprietorship)
@@ -129,6 +132,7 @@ module Unit
       end
 
       # Update an application by calling Unit's API
+      # @see https://docs.unit.co/applications#update-individual-application
       # @param application_id [String] The application id
       # @param type [String] The type
       # @param tags [Hash] The tags
@@ -139,6 +143,7 @@ module Unit
       end
 
       # List applications by calling Unit's API
+      # @see https://docs.unit.co/applications#list-applications
       # @param offset [Integer] Number of resources to skip.
       # @param limit [Integer] The limit Maximum number of resources that will be returned.
       # @param email [String] Filter applications by email address (case sensitive).
@@ -155,6 +160,7 @@ module Unit
       end
 
       # Get an application by calling Unit's API
+      # @see https://docs.unit.co/applications#get-application-by-id
       # @param [String] application_id
       # @return [UnitResponse, UnitError]
       def get_application(application_id)
@@ -162,6 +168,7 @@ module Unit
       end
 
       # Upload an application document by calling Unit's API
+      # @see https://docs.unit.co/application-documents#upload-document
       # @param application_id [String] The application ID
       # @param document_id [String] The document ID
       # @param file [String] The file content

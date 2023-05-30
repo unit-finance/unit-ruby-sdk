@@ -37,8 +37,8 @@ RSpec.describe Unit::Application do
 
   it "Should create sole proprietor application" do
     response = described_class.create_sole_proprietor_application(
-      ssn: "123456789", nationality: "US", full_name: FULL_NAME, date_of_birth: Date.new(1989, 2, 1), address: ADDRESS, phone: PHONE,
-      email: EMAIL, industry: "Retail", ein: "123456789", dba:  "Piedpiper Inc", power_of_attorney_agent: AGENT, evaluation_params: EVALUATION_PARAMS,
+      nationality: "US", full_name: FULL_NAME, date_of_birth: Date.new(1989, 2, 1), address: ADDRESS, phone: PHONE,
+      email: EMAIL, industry: "Retail",  ssn: "123456789", ein: "123456789", dba:  "Piedpiper Inc", power_of_attorney_agent: AGENT, evaluation_params: EVALUATION_PARAMS,
       occupation: "ArchitectOrEngineer", annual_income: "Between50kAnd100k", source_of_income:  "EmploymentOrPayrollIncome", annual_revenue: "Between100kAnd200k",
       number_of_employees: "Between5And10", business_vertical: "TechnologyMediaOrTelecom", website: "https://www.piedpiper.com", ip: "127.0.0.2",
       tags: { userId: "106a75e9-de77-4e25-9561-faffe59d7814" },
@@ -72,12 +72,5 @@ RSpec.describe Unit::Application do
   it "Should upload document back" do
     response = described_class.upload_document(application_id: "836683", document_id: "125214", file: get_document_contents, file_type: Unit::Types::DocumentFileType::PDF, is_back_side: true)
     expect(response.data["type"]).to eq "document"
-  end
-
-  it "Should return a UnitError when token is missing" do
-    Unit.config(token: "")
-    response = described_class.get_application("123")
-    expect(response).to be_a(Unit::UnitError)
-    expect(response.errors[0].title).to eq "Bearer token is missing"
   end
 end

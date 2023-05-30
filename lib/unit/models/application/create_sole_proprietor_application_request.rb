@@ -12,7 +12,6 @@ module Unit
                   :business_vertical, :website, :ip, :tags, :idempotency_key,
                   :device_fingerprints, :jwt_subject
 
-      # @param ssn [String]
       # @param nationality [String]
       # @param full_name [FullName]
       # @param date_of_birth [Date]
@@ -21,6 +20,7 @@ module Unit
       # @param email [String]
       # @param sole_proprietorship [Boolean]
       # @param industry [String]
+      # @param ssn [String] - optional
       # @param passport [String] - optional
       # @param ein [String] - optional
       # @param dba [String] - optional
@@ -38,8 +38,8 @@ module Unit
       # @param idempotency_key [String] - optional
       # @param device_fingerprints [Array<DeviceFingerprint>] - optional
       # @param jwt_subject [String] - optional
-      def initialize(ssn, nationality, full_name, date_of_birth, address, phone,
-                     email, industry, passport = nil, ein = nil, dba = nil, power_of_attorney_agent = nil, evaluation_params = nil,
+      def initialize(nationality, full_name, date_of_birth, address, phone,
+                     email, industry, ssn = nil, passport = nil, ein = nil, dba = nil, power_of_attorney_agent = nil, evaluation_params = nil,
                      occupation = nil, annual_income = nil, source_of_income = nil, annual_revenue = nil,
                      number_of_employees = nil, business_vertical = nil, website = nil, ip = nil, tags = nil,
                      idempotency_key = nil, device_fingerprints = nil, jwt_subject = nil, sole_proprietorship: true)
