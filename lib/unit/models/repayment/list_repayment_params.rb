@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Params for listing repayments
-# @see https://docs.unit.co/repayments/#create-ach-repayment
+# @see https://docs.unit.co/repayments/#list-repayments
 module Unit
   module Repayment
     class ListRepaymentParams

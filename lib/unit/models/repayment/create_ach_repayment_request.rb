@@ -13,11 +13,11 @@ module Unit
       # @param counterparty_id [String]
       # @param description [String]
       # @param amount [Integer]
-      # @param addenda [String]
+      # @param addenda [String] - optional
       # @param tags [Hash] - optional
       # @param same_day [Boolean] - optional
       # @param idempotency_key [String] - optional
-      def initialize(account_id, credit_account_id, counterparty_id, description, amount, addenda, tags = nil,
+      def initialize(account_id, credit_account_id, counterparty_id, description, amount, addenda = nil, tags = nil,
                      idempotency_key = nil, same_day: false)
         @account_id = account_id
         @credit_account_id = credit_account_id

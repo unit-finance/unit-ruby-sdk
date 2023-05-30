@@ -39,11 +39,11 @@ module Unit
       # @param counterparty_id [String]
       # @param description [String]
       # @param amount [Integer]
-      # @param addenda [String]
+      # @param addenda [String] - optional
       # @param tags [Hash] - optional
       # @param same_day [Boolean] - optional
       # @param idempotency_key [String] - optional
-      def create_ach_repayment(account_id:, credit_account_id:, counterparty_id:, description:, amount:, addenda:, tags: nil, idempotency_key: nil, same_day: false)
+      def create_ach_repayment(account_id:, credit_account_id:, counterparty_id:, description:, amount:, addenda: nil, tags: nil, idempotency_key: nil, same_day: false)
         request = Unit::Repayment::CreateAchRepaymentRequest.new(account_id, credit_account_id, counterparty_id, description, amount, addenda, tags, idempotency_key, same_day: same_day)
         Unit::Resource::RepaymentResource.create(request)
       end
