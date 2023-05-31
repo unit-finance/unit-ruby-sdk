@@ -29,7 +29,20 @@ RSpec.describe Unit::Application do
 
   it "Should create individual application" do
     response = described_class.create_individual_application(
-      ssn: "123456789", full_name: FULL_NAME, date_of_birth: Date.new(1989, 2, 1), address: ADDRESS, email: EMAIL, phone: PHONE
+      ssn: "123456789", full_name: FULL_NAME, date_of_birth: Date.new(1989, 2, 1), address: ADDRESS, email: EMAIL, phone: PHONE,
+      occupation: "ArchitectOrEngineer", annual_income: "UpTo10k", source_of_income: "EmploymentOrPayrollIncome"
+    )
+    expect(response.data["type"]).to eq "individualApplication"
+  end
+
+  it "Should create sole proprietor application" do
+    response = described_class.create_sole_proprietor_application(
+      nationality: "US", full_name: FULL_NAME, date_of_birth: Date.new(1989, 2, 1), address: ADDRESS, phone: PHONE,
+      email: EMAIL, industry: "Retail",  ssn: "123456789", ein: "123456789", dba:  "Piedpiper Inc", power_of_attorney_agent: AGENT, evaluation_params: EVALUATION_PARAMS,
+      occupation: "ArchitectOrEngineer", annual_income: "Between50kAnd100k", source_of_income:  "EmploymentOrPayrollIncome", annual_revenue: "Between100kAnd200k",
+      number_of_employees: "Between5And10", business_vertical: "TechnologyMediaOrTelecom", website: "https://www.piedpiper.com", ip: "127.0.0.2",
+      tags: { userId: "106a75e9-de77-4e25-9561-faffe59d7814" },
+      idempotency_key: "3a1a33be-4e12-4603-9ed0-820922389fb8", device_fingerprints: DEVICE_FINGERPRINT, sole_proprietorship: true
     )
     expect(response.data["type"]).to eq "individualApplication"
   end
