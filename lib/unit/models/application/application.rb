@@ -10,7 +10,8 @@ module Unit
     autoload :ListApplicationParams, "unit/models/application/list_application_params"
     autoload :PatchApplicationRequest, "unit/models/application/patch_application_request"
     autoload :UploadDocumentRequest, "unit/models/application/upload_document_request"
-
+    autoload :CreateTrustApplicationRequest, "unit/models/application/create_trust_application_request"
+    autoload :PatchTrustApplicationRequest, "unit/models/application/patch_trust_application_request"
     class << self
       # Create a new business application by calling Unit's API
       # @see https://docs.unit.co/applications#create-business-application
@@ -178,6 +179,33 @@ module Unit
       def upload_document(application_id:, document_id:, file:, file_type:, is_back_side: false)
         request = UploadDocumentRequest.new(application_id, document_id, file, file_type, is_back_side: is_back_side)
         Unit::Resource::ApplicationResource.upload(request)
+      end
+
+      # Create a trust application
+      # @see https://docs.unit.co/applications/#create-trust-application
+      # @param name [String]
+      # @param state_of_incorporation [String]
+      # @param revocability [String]
+      # @param source_of_funds [String]
+      # @param tax_id [String]
+      # @param grantor [Grantor]
+      # @param trustees [Array<Trustee>]
+      # @param beneficiaries [Array<Beneficiary>]
+      # @param contact [TrustContact]
+      # @param ip [String] - optional
+      # @param tags [Hash] - optional
+      # @param idempotency_key [String] - optional
+      # @param device_fingerprints [Array<DeviceFingerprint>] - optional
+      def create_trust_application(name:, state_of_incorporation:, revocability:, source_of_funds:, tax_id:,
+                                   grantor:, trustees:, beneficiaries:, contact:, ip: nil, tags: nil, idempotency_key: nil, device_fingerprints: nil)
+        request = CreateTrustApplicationRequest.new(name, state_of_incorporation, revocability, source_of_funds, tax_id,
+                                                    grantor, trustees, beneficiaries, contact, ip, tags, idempotency_key, device_fingerprints)
+        Unit::Resource::ApplicationResource.create_application(request)
+      end
+
+      def update_trust_application(application_id:, tags: nil)
+        request = PatchTrustApplicationRequest.new(application_id, tags)
+        Unit::Resource::ApplicationResource.update(request)
       end
     end
   end
