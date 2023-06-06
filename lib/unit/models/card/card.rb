@@ -10,6 +10,12 @@ module Unit
     autoload :CreateIndividualVirtualCardRequest, "unit/models/card/create_individual_virtual_card_request"
     autoload :ReplaceCardRequest, "unit/models/card/replace_card_request"
     autoload :ListCardParams, "unit/models/card/list_card_params"
+    autoload :CreateBusinessCreditCardRequest, "unit/models/card/create_business_credit_card_request"
+    autoload :CreateBusinessVirtualCreditCardRequest, "unit/models/card/create_business_virtual_credit_card_request"
+    autoload :PatchBusinessCardRequest, "unit/models/card/patch_business_card_request"
+    autoload :PatchBusinessCreditCardRequest, "unit/models/card/patch_business_credit_card_request"
+    autoload :PatchBusinessVirtualCardRequest, "unit/models/card/patch_business_virtual_card_request"
+    autoload :PatchBusinessVirtualCreditCardRequest, "unit/models/card/patch_business_virtual_credit_card_request"
 
     class << self
       # Create a new individual debit card by calling Unit's API
@@ -22,10 +28,11 @@ module Unit
       # @param tags [Hash] - optional
       # @param limits [Hash] - optional
       # @param print_only_business_name [String] - optional
+      # @param expiry_date [String] - optional
       def create_individual_debit_card(account_id:, customer_id: nil, shipping_address: nil, design: nil, additional_embossed_text: nil,
-                                       idempotency_key: nil, tags: nil, limits: nil, print_only_business_name: nil)
+                                       idempotency_key: nil, tags: nil, limits: nil, print_only_business_name: nil, expiry_date: nil)
         request = CreateIndividualDebitCardRequest.new(account_id, customer_id, shipping_address, design, additional_embossed_text,
-                                                       idempotency_key, tags, limits, print_only_business_name)
+                                                       idempotency_key, tags, limits, print_only_business_name, expiry_date)
         Unit::Resource::CardResource.create_card(request)
       end
 
@@ -43,11 +50,102 @@ module Unit
       # @param tags [Hash] - optional
       # @param limits [Hash] - optional
       # @param print_only_business_name [Boolean] - optional
+      # @param expiry_date [String] - optional
       def create_business_debit_card(account_id:, full_name:, date_of_birth:, address:, phone:, email:, shipping_address: nil,
-                                     design: nil, additional_embossed_text: nil, idempotency_key: nil, tags: nil, limits: nil, print_only_business_name: nil)
+                                     design: nil, additional_embossed_text: nil, idempotency_key: nil, tags: nil, limits: nil, print_only_business_name: nil, expiry_date: nil)
         request = CreateBusinessDebitCardRequest.new(account_id, full_name, date_of_birth, address, shipping_address, phone, email, design, additional_embossed_text,
-                                                     idempotency_key, tags, limits, print_only_business_name)
+                                                     idempotency_key, tags, limits, print_only_business_name, expiry_date)
         Unit::Resource::CardResource.create_card(request)
+      end
+
+      # Create a new business credit card by calling Unit's API
+      # @see https://guides.unit.co/business-charge-cards/#what-is-a-charge-card
+      # @param account_id [String]
+      # @param full_name [FullName]
+      # @param date_of_birth [Date]
+      # @param address [Address]
+      # @param shipping_address [Address] - optional
+      # @param phone [Phone] - optional
+      # @param email [String] - optional
+      # @param design [String] - optional
+      # @param additional_embossed_text [String] - optional
+      # @param idempotency_key [String] - optional
+      # @param tags [Hash] - optional
+      # @param limits [Hash] - optional
+      # @param print_only_business_name [Boolean] - optional
+      # @param expiry_date [String] - optional
+      def create_business_credit_card(account_id:, full_name:, date_of_birth:, address:, shipping_address: nil, phone: nil, email: nil, design: nil, additional_embossed_text: nil, idempotency_key: nil, tags: nil, limits: nil, print_only_business_name: nil, expiry_date: nil)
+        request = CreateBusinessCreditCardRequest.new(account_id, full_name, date_of_birth, address, shipping_address, phone, email, design, additional_embossed_text, idempotency_key, tags, limits, print_only_business_name, expiry_date)
+        Unit::Resource::CardResource.create_card(request)
+      end
+
+      # Create a new business virtual credit card by calling Unit's API
+      # @see https://docs.unit.co/cards#create-business-virtual-debit-card
+      # @param account_id [String]
+      # @param type [String]
+      # @param idempotency_key [String] - optional
+      # @param tags [Hash] - optional
+      # @param limits [Hash] - optional
+      # @param expiry_date [String] - optional
+      def create_business_virtual_credit_card(account_id:, full_name:, date_of_birth:, address:, phone: nil, email: nil, idempotency_key: nil, tags: nil, limits: nil, expiry_date: nil)
+        request = CreateBusinessVirtualCreditCardRequest.new(account_id, full_name, date_of_birth, address, phone, email, idempotency_key, tags, limits, expiry_date)
+        Unit::Resource::CardResource.create_card(request)
+      end
+
+      # Update a business debit card by calling Unit's API
+      # @see https://docs.unit.co/cards/#update-business-debit-card
+      # @param card_id [String]
+      # @param shipping_address [Address] - optional
+      # @param address [Address] - optional
+      # @param phone [Phone] - optional
+      # @param email [String] - optional
+      # @param design [String] - optional
+      # @param tags [Hash] - optional
+      # @param limits [Hash] - optional
+      def update_business_debit_card(card_id:, shipping_address: nil, address: nil, phone: nil, email: nil, design: nil, tags: nil, limits: nil)
+        request = PatchBusinessCardRequest.new(card_id, shipping_address, address, phone, email, design, tags, limits)
+        Unit::Resource::CardResource.update(request)
+      end
+
+      # Update a business credit card by calling Unit's API
+      # @see https://guides.unit.co/business-charge-cards/
+      # @param card_id [String]
+      # @param shipping_address [Address] - optional
+      # @param address [Address] - optional
+      # @param phone [Phone] - optional
+      # @param email [String] - optional
+      # @param design [String] - optional
+      # @param tags [Hash] - optional
+      # @param limits [Hash] - optional
+      def update_business_credit_card(card_id:, shipping_address: nil, address: nil, phone: nil, email: nil, design: nil, tags: nil, limits: nil)
+        request = PatchBusinessCreditCardRequest.new(card_id, shipping_address, address, phone, email, design, tags, limits)
+        Unit::Resource::CardResource.update(request)
+      end
+
+      # Update a business virtual debit card by calling Unit's API
+      # @see https://docs.unit.co/cards/#update-business-virtual-debit-card
+      # @param card_id [String]
+      # @param address [Address] - optional
+      # @param phone [Phone] - optional
+      # @param email [String] - optional
+      # @param tags [Hash] - optional
+      # @param limits [Hash] - optional
+      def update_business_virtual_debit_card(card_id:, address: nil, phone: nil, email: nil, tags: nil, limits: nil)
+        request = PatchBusinessVirtualCardRequest.new(card_id, address, phone, email, tags, limits)
+        Unit::Resource::CardResource.update(request)
+      end
+
+      # Update a business virtual credit card by calling Unit's API
+      # @see https://guides.unit.co/business-charge-cards/
+      # @param card_id [String]
+      # @param address [Address] - optional
+      # @param phone [Phone] - optional
+      # @param email [String] - optional
+      # @param tags [Hash] - optional
+      # @param limits [Hash] - optional
+      def update_business_virtual_credit_card(card_id:, address: nil, phone: nil, email: nil, tags: nil, limits: nil)
+        request = PatchBusinessVirtualCreditCardRequest.new(card_id, address, phone, email, tags, limits)
+        Unit::Resource::CardResource.update(request)
       end
 
       # Create a new individual virtual card by calling Unit's API
