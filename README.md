@@ -207,6 +207,14 @@ response = Unit::Payment.create_bulk_payment(
 bulk_payment = response.data
 puts bulk_payment.id
 ```
+
+### Creating a control agreement
+```ruby
+response = Unit::Account::DACA.activate_control_agreement(account_id: "1234")
+control_agreement = response.data
+puts control_agreement["id"]
+```
+
 ### Logging Errors
 
 ```ruby
