@@ -313,7 +313,14 @@ response = Unit::Repayment.create_book_repayment(
   tags: { purpose: "test" }, 
   idempotency_key: "3a1a33be-4e12-4603-9ed0-820922389fb8")
 book_repayment = response.data
-puts book_repayment.id
+puts book_repayment["id"]
+```
+
+### Creating a control agreement
+```ruby
+response = Unit::Account::DACA.activate_control_agreement(account_id: "1234")
+control_agreement = response.data
+puts control_agreement["id"]
 ```
 
 ### Logging Errors
