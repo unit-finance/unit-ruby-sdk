@@ -207,6 +207,13 @@ response = Unit::Payment.create_bulk_payment(
 bulk_payment = response.data
 puts bulk_payment.id
 ```
+
+### Get a check payment by id
+```ruby
+response = Unit::CheckPayment.get_payment(payment_id: "199")
+check_payment = response.data
+puts check_payment["id"]
+```
 ### Logging Errors
 
 ```ruby
