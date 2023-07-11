@@ -41,7 +41,6 @@ module Unit
         # @return [UnitResponse, UnitError]
         def return_payment(request)
           payload = request.to_json_api
-          p payload
           response = HttpHelper.post("#{api_url}/check-payments/#{request.payment_id}/return", body: payload, headers: headers)
           response_handler(response)
         end
