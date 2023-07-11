@@ -261,5 +261,30 @@ module Unit
         end
       end
     end
+
+    module DACA
+      class << self
+        # Enter DACA
+        # @see https://docs.unit.co/deposit-account-control-agreement/#enter-daca
+        # @param account_id [String]
+        def enter_control_agreement(account_id:)
+          Unit::Resource::AccountResource.enter_control_agreement(account_id)
+        end
+
+        # Activate DACA
+        # @see https://docs.unit.co/deposit-account-control-agreement/#activate-daca
+        # @param account_id [String]
+        def activate_control_agreement(account_id:)
+          Unit::Resource::AccountResource.activate_control_agreement(account_id)
+        end
+
+        # Deactivate DACA
+        # @see https://docs.unit.co/deposit-account-control-agreement/#deactivate-daca
+        # @param account_id [String]
+        def deactivate_control_agreement(account_id:)
+          Unit::Resource::AccountResource.deactivate_control_agreement(account_id)
+        end
+      end
+    end
   end
 end

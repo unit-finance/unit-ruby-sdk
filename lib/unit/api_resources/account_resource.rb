@@ -10,6 +10,30 @@ module Unit
   module Resource
     class AccountResource < Unit::Resource::BaseResource
       class << self
+        # Enter a control agreement by calling Unit's API
+        # @param account_id [String]
+        # @return [UnitResponse, UnitError]
+        def enter_control_agreement(account_id)
+          response = HttpHelper.post("#{api_url}/accounts/#{account_id}/enter-daca", headers: headers)
+          response_handler(response)
+        end
+
+        # Activate a control agreement by calling Unit's API
+        # @param account_id [String]
+        # @return [UnitResponse, UnitError]
+        def activate_control_agreement(account_id)
+          response = HttpHelper.post("#{api_url}/accounts/#{account_id}/activate-daca", headers: headers)
+          response_handler(response)
+        end
+
+        # Deactivate a control agreement by calling Unit's API
+        # @param account_id [String]
+        # @return [UnitResponse, UnitError]
+        def deactivate_control_agreement(account_id)
+          response = HttpHelper.post("#{api_url}/accounts/#{account_id}/deactivate-daca", headers: headers)
+          response_handler(response)
+        end
+
         # Create a new account by calling Unit's API
         # @param request [CreateDepositAccountRequest] request
         # @return [UnitResponse, UnitError]
