@@ -19,12 +19,12 @@ RSpec.describe Unit::CheckPayment do
     end
 
     it "gets image front" do
-      response = Unit::CheckPayment.get_image_front(payment_id: "199")
+      response = Unit::CheckPayment.get_image(payment_id: "199")
       expect(response).to be_truthy
     end
 
     it "gets image back" do
-      response = Unit::CheckPayment.get_image_back(payment_id: "199")
+      response = Unit::CheckPayment.get_image(payment_id: "199", is_front_side: false)
       expect(response).to be_truthy
     end
   end

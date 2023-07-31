@@ -44,20 +44,12 @@ module Unit
         Unit::Resource::CheckPaymentResource.list(request)
       end
 
-      # Get a check deposit image front side
+      # Get a check deposit image front or back side
       # @see https://docs.unit.co/check-payments#get-specific-check-payment-front-image
-      # @param payment_id [String]
-      # @param is_front_side [Boolean] - optional
-      def get_image_front(payment_id:, is_front_side: true)
-        request = GetImageRequest.new(payment_id, is_front_side: is_front_side)
-        Unit::Resource::CheckPaymentResource.get_image(request)
-      end
-
-      # Get a check deposit image back side
       # @see https://docs.unit.co/check-payments#get-specific-check-payment-back-image
       # @param payment_id [String]
       # @param is_front_side [Boolean] - optional
-      def get_image_back(payment_id:, is_front_side: false)
+      def get_image(payment_id:, is_front_side: true)
         request = GetImageRequest.new(payment_id, is_front_side: is_front_side)
         Unit::Resource::CheckPaymentResource.get_image(request)
       end
