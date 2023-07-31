@@ -262,7 +262,7 @@ puts counterparty["id"]
  response = Unit::RecurringPayment.create_recurring_credit_book_payment(account_id: "27573", counterparty_id: "36099", amount: 1000, 
                                                                         description: "test payme", schedule: schedule)
  recurring_payment = response.data
- puts recurring_payment.id
+ puts recurring_payment["id"]
 ```
 
 
@@ -323,6 +323,12 @@ control_agreement = response.data
 puts control_agreement["id"]
 ```
 
+### Get a check payment by id
+```ruby
+response = Unit::CheckPayment.get_payment(payment_id: "199")
+check_payment = response.data
+puts check_payment["id"]
+```
 ### Logging Errors
 
 ### Handling Response
