@@ -119,6 +119,19 @@ credit_account = response.data
 puts credit_account["id"]
 ```
 
+### Creating a batch release request
+```ruby
+requests =
+  [
+    { account_id: "49230", batch_account_id: "1296383", amount: 100, description: "Description 1", sender_name: "Sender Name 1", sender_address: ADDRESS, sender_account_number: "1234" },
+    { account_id: "49230", batch_account_id: "1296383", amount: 100, description: "Description 1", sender_name: "Sender Name 1", sender_address: ADDRESS, sender_account_number: "12324" }
+  ]
+response = Unit::Payment.create_batch_release(requests)
+batch_release = response.data
+puts batch_release[0]["id"]
+```
+
+
 ### Fetching a Customer
 
 ```ruby
@@ -130,7 +143,6 @@ customer = Unit::Customer.list_customers(limit: 20, offset: 10).data.first
 puts customer["id"]
 ```
 
-### 
 ### Creating a Payment
     
 ```ruby
@@ -153,6 +165,18 @@ response = Unit::Transaction.get_transaction(transaction_id: '12345', account_id
 transaction = response.data
 puts transaction["id"]
 ```
+
+### Get an authorization by id
+
+```ruby
+response = Unit::Authorization.get_authorization(
+  authorization_id: '12345',
+  include_non_authorized: true
+)
+authorization = response.data
+puts authorization["id"]
+```
+
 
 ### Creating an individual debit card
 ```ruby
@@ -193,7 +217,7 @@ response = Unit::Card.create_business_credit_card(
   email: email
 )
 charge_card = response.data
-puts charge_card.id
+puts charge_card["id"]
 ```
 
 ### Creating a check deposit
@@ -233,6 +257,16 @@ puts counterparty["id"]
  puts ach_payment["id"]
 ```
 
+### Creating a recurring payment
+```ruby
+ schedule = Unit::Types::CreateSchedule.new("Monthly", 3)
+ response = Unit::RecurringPayment.create_recurring_credit_book_payment(account_id: "27573", counterparty_id: "36099", amount: 1000, 
+                                                                        description: "test payme", schedule: schedule)
+ recurring_payment = response.data
+ puts recurring_payment["id"]
+```
+
+
 ### Creating a wire payment
 ```ruby
  address = Unit::Types::Address.new('123 Main St', 'San Francisco', 'CA', '94205', 'US')
@@ -249,7 +283,7 @@ puts counterparty["id"]
 ```ruby
 response = Unit::Event.get_event(event_id: "12605774")
 event = response.data
-puts event["id"]
+puts event.id
 ```
 
 ### Creating a bulk payment
@@ -267,6 +301,18 @@ response = Unit::Payment.create_bulk_payment(
   requests: [book_payment_request, wire_payment_request, ach_payment_inline_request, ach_payment_linked_request, ach_payment_plaid_token_request])
 bulk_payment = response.data
 puts bulk_payment["id"]
+```
+
+### Creating a stop payment
+```ruby
+response = Unit::StopPayment.create_stop_payment(
+  account_id: "165432",
+  amount: 10_345,
+  check_number: "123456",
+  tags: { "test": "122" }
+)
+stop_payment = response.data
+puts stop_payment["id"]
 ```
 
 ### Creating a book repayment
@@ -297,22 +343,6 @@ check_payment = response.data
 puts check_payment["id"]
 ```
 
-### Creating a stop payment
-```ruby
-response = Unit::StopPayment.create_stop_payment(
-  account_id: "165432",
-  amount: 10_345,
-  check_number: "123456",
-  tags: { "test": "122" }
-)
-stop_payment = response.data
-puts stop_payment['id']
-```
-
-### Logging Errors
-
-### Handling Response
-
 ### Creating a webhook
 ```ruby
 response = Unit::Webhook.create_webhook(
@@ -340,6 +370,7 @@ fee = response.data
 puts fee["id"]
 ```
 
+### Logging Errors
 
 ### Handling Response
 ```ruby
