@@ -207,6 +207,19 @@ response = Unit::Payment.create_bulk_payment(
 bulk_payment = response.data
 puts bulk_payment.id
 ```
+
+### Creating a stop payment
+```ruby
+response = Unit::StopPayment.create_stop_payment(
+  account_id: "165432",
+  amount: 10_345,
+  check_number: "123456",
+  tags: { "test": "122" }
+)
+stop_payment = response.data
+puts stop_payment['id']
+```
+
 ### Logging Errors
 
 ```ruby
