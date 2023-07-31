@@ -112,3 +112,24 @@ RSpec.describe Unit::Account::Credit do
     expect(response.data[0]["type"]).to eq("accountEndOfDay")
   end
 end
+
+RSpec.describe Unit::Account::DACA do
+  before do
+    configure_tests
+  end
+
+  it "Should enter a DACA account" do
+    response = described_class.enter_control_agreement(account_id: "36099")
+    expect(response.data["type"]).to eq("depositAccount")
+  end
+
+  it "Should enter a DACA account" do
+    response = described_class.activate_control_agreement(account_id: "36099")
+    expect(response.data["type"]).to eq("depositAccount")
+  end
+
+  it "Should enter a DACA account" do
+    response = described_class.deactivate_control_agreement(account_id: "36099")
+    expect(response.data["type"]).to eq("depositAccount")
+  end
+end
