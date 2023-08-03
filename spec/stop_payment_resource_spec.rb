@@ -34,5 +34,10 @@ RSpec.describe Unit::StopPayment do
       response = Unit::StopPayment.list_stop_payment
       expect(response.data[0]["type"]).to eq("stopPayment")
     end
+
+    it "should disable a stop payment" do
+      response = Unit::StopPayment.disable_stop_payment(payment_id: stop_payment.data["id"])
+      expect(response.data["type"]).to eq("stopPayment")
+    end
   end
 end
