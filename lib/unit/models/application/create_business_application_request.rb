@@ -84,7 +84,7 @@ module Unit
               website: website,
               tags: tags,
               idempotency_key: idempotency_key,
-              device_fingerprints: device_fingerprints,
+              deviceFingerprints: device_fingerprints,
               annual_revenue: annual_revenue,
               number_of_employees: number_of_employees,
               cashFlow: cash_flow,
