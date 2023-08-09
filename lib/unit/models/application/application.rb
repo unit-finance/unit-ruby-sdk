@@ -99,16 +99,12 @@ module Unit
       # @param phone [Phone]
       # @param email [String]
       # @param sole_proprietorship [Boolean]
-      # @param industry [String]
       # @param ssn [String] - optional
       # @param passport [String] - optional
       # @param ein [String] - optional
       # @param dba [String] - optional
       # @param power_of_attorney_agent [PowerOfAttorneyAgent] - optional
       # @param evaluation_params [EvaluationParams] - optional
-      # @param occupation [String] - optional
-      # @param annual_income [String] - optional
-      # @param source_of_income [String] - optional
       # @param annual_revenue [String] - optional
       # @param number_of_employees [String] - optional
       # @param business_vertical [String] - optional
@@ -120,13 +116,12 @@ module Unit
       # @param jwt_subject [String] - optional
       # @return [UnitResponse, UnitError]
       def create_sole_proprietor_application(nationality:, full_name:, date_of_birth:, address:, phone:,
-                                             email:, industry:, ssn: nil, passport: nil, ein: nil, dba: nil, power_of_attorney_agent: nil, evaluation_params: nil,
-                                             occupation: nil, annual_income: nil, source_of_income: nil, annual_revenue: nil,
-                                             number_of_employees: nil, business_vertical: nil, website: nil, ip: nil, tags: nil,
+                                             email:, ssn: nil, passport: nil, ein: nil, dba: nil, power_of_attorney_agent: nil, evaluation_params: nil,
+                                             annual_revenue: nil, number_of_employees: nil, business_vertical: nil, website: nil, ip: nil, tags: nil,
                                              idempotency_key: nil, device_fingerprints: nil, jwt_subject: nil, sole_proprietorship: true)
         request = CreateSoleProprietorApplicationRequest.new(nationality, full_name, date_of_birth, address, phone,
-                                                             email, industry, ssn, passport, ein, dba, power_of_attorney_agent, evaluation_params,
-                                                             occupation, annual_income, source_of_income, annual_revenue, number_of_employees,
+                                                             email, ssn, passport, ein, dba, power_of_attorney_agent, evaluation_params,
+                                                             annual_revenue, number_of_employees,
                                                              business_vertical, website, ip, tags, idempotency_key,
                                                              device_fingerprints, jwt_subject, sole_proprietorship: sole_proprietorship)
         Unit::Resource::ApplicationResource.create_application(request)

@@ -22,7 +22,9 @@ RSpec.describe Unit::Application do
         Unit::Types::BeneficialOwner.new(FULL_NAME, DATE_OF_BIRTH, ADDRESS, PHONE, EMAIL, SSN),
         Unit::Types::BeneficialOwner.new(FULL_NAME, DATE_OF_BIRTH, ADDRESS, PHONE, EMAIL, SSN)
       ],
-      entity_type: ENTITY_TYPE
+      entity_type: ENTITY_TYPE,
+      business_vertical: "AgricultureForestryFishingOrHunting",
+      year_of_incorporation: "2019"
     )
     expect(response.data["type"]).to eq "businessApplication"
   end
@@ -38,11 +40,10 @@ RSpec.describe Unit::Application do
   it "Should create sole proprietor application" do
     response = described_class.create_sole_proprietor_application(
       nationality: "US", full_name: FULL_NAME, date_of_birth: Date.new(1989, 2, 1), address: ADDRESS, phone: PHONE,
-      email: EMAIL, industry: "Retail",  ssn: "123456789", ein: "123456789", dba:  "Piedpiper Inc", power_of_attorney_agent: AGENT, evaluation_params: EVALUATION_PARAMS,
-      occupation: "ArchitectOrEngineer", annual_income: "Between50kAnd100k", source_of_income:  "EmploymentOrPayrollIncome", annual_revenue: "Between100kAnd200k",
-      number_of_employees: "Between5And10", business_vertical: "TechnologyMediaOrTelecom", website: "https://www.piedpiper.com", ip: "127.0.0.2",
-      tags: { userId: "106a75e9-de77-4e25-9561-faffe59d7814" },
-      idempotency_key: "3a1a33be-4e12-4603-9ed0-820922389fb8", device_fingerprints: DEVICE_FINGERPRINT, sole_proprietorship: true
+      email: EMAIL, ssn: "123456788", ein: "123456788", dba: "Piedpiper Inc", evaluation_params: EVALUATION_PARAMS,
+      annual_revenue: "Between100kAnd200k", number_of_employees: "Between5And10", business_vertical: "TechnologyMediaOrTelecom",
+      website: "https://www.piedpiper.com", ip: "127.0.0.2", tags: { userId: "106a75e9-de77-4e25-9561-faffejej" },
+      device_fingerprints: DEVICE_FINGERPRINT, sole_proprietorship: true
     )
     expect(response.data["type"]).to eq "individualApplication"
   end
@@ -78,7 +79,7 @@ RSpec.describe Unit::Application do
     Unit.config(token: "")
     response = described_class.get_application("123")
     expect(response).to be_a(Unit::UnitError)
-    expect(response.errors[0].title).to eq "Bearer token is missing"
+    expect(response.errors[0].title).to eq "Bearer token is invalid or expired"
   end
 
   describe "Trust Application" do
@@ -97,7 +98,7 @@ RSpec.describe Unit::Application do
         tags: {
           "userId": "106a75e9-de77-4e25-9561-faffe59d7814"
         },
-        idempotency_key: "3a1a33be-4e12-4603-9ed0-820922389fb8"
+        idempotency_key: "3a1a33be-4e12-4603-9ed0-820922389fjj"
       )
       expect(response.data["type"]).to eq "trustApplication"
     end
