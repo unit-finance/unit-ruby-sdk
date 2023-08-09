@@ -79,7 +79,7 @@ RSpec.describe Unit::Application do
     Unit.config(token: "")
     response = described_class.get_application("123")
     expect(response).to be_a(Unit::UnitError)
-    expect(response.errors[0].title).to eq "Bearer token is missing"
+    expect(response.errors[0].title).to eq "Bearer token is invalid or expired"
   end
 
   describe "Trust Application" do
