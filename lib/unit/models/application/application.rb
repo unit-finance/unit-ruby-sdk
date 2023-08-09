@@ -120,14 +120,12 @@ module Unit
       # @param jwt_subject [String] - optional
       # @return [UnitResponse, UnitError]
       def create_sole_proprietor_application(nationality:, full_name:, date_of_birth:, address:, phone:,
-                                             email:, industry:, ssn: nil, passport: nil, ein: nil, dba: nil, power_of_attorney_agent: nil, evaluation_params: nil,
-                                             occupation: nil, annual_income: nil, source_of_income: nil, annual_revenue: nil,
-                                             number_of_employees: nil, business_vertical: nil, website: nil, ip: nil, tags: nil,
+                                             email:, ssn: nil, passport: nil, ein: nil, dba: nil, evaluation_params: nil,
+                                             annual_revenue: nil, number_of_employees: nil, business_vertical: nil, website: nil, ip: nil, tags: nil,
                                              idempotency_key: nil, device_fingerprints: nil, jwt_subject: nil, sole_proprietorship: true)
         request = CreateSoleProprietorApplicationRequest.new(nationality, full_name, date_of_birth, address, phone,
-                                                             email, industry, ssn, passport, ein, dba, power_of_attorney_agent, evaluation_params,
-                                                             occupation, annual_income, source_of_income, annual_revenue, number_of_employees,
-                                                             business_vertical, website, ip, tags, idempotency_key,
+                                                             email, ssn, passport, ein, dba, evaluation_params,
+                                                             annual_revenue, number_of_employees, business_vertical, website, ip, tags, idempotency_key,
                                                              device_fingerprints, jwt_subject, sole_proprietorship: sole_proprietorship)
         Unit::Resource::ApplicationResource.create_application(request)
       end
