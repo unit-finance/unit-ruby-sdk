@@ -98,7 +98,7 @@ RSpec.describe Unit::Application do
         tags: {
           "userId": "106a75e9-de77-4e25-9561-faffe59d7814"
         },
-        idempotency_key: "3a1a33be-4e12-4603-9ed0-820922389fb8"
+        idempotency_key: "3a1a33be-4e12-4603-9ed0-820922389fjj"
       )
       expect(response.data["type"]).to eq "trustApplication"
     end
