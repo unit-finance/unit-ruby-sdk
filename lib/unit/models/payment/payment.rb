@@ -16,6 +16,7 @@ module Unit
     autoload :BulkPaymentRequest, "unit/models/payment/bulk_payment_request"
     autoload :CreateBatchReleaseRequest, "unit/models/payment/create_batch_release_request"
     autoload :BatchReleaseRequestBuilder, "unit/models/payment/batch_release_request_builder"
+
     class << self
       # Create a new book payment by calling Unit's API
       # @see https://docs.unit.co/book-payments#book-payments
@@ -201,6 +202,6 @@ module Unit
         end
         Unit::Resource::PaymentResource.create_batch_release(payload.to_hash)
       end
-     end
+    end
   end
 end
