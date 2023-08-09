@@ -1,11 +1,6 @@
 name: Ruby
 
-on:
-  push:
-    branches:
-      - main
-
-  pull_request:
+on: pull_request
 
 jobs:
   test:
@@ -23,6 +18,5 @@ jobs:
       - name: Rake
         run: bundle exec rake
       - name: Run tests
-        env:
-          USER_TOKEN: ${{ secrets.UNIT_TOKEN }}
-        run: rspec
+        run: |
+          USER_TOKEN=${{ secrets.UNIT_TOKEN }} rspec
