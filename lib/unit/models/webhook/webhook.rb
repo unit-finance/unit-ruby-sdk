@@ -2,13 +2,13 @@
 
 module Unit
   module Webhook
-    class << self
-      WEBHOOK_LIMIT = 100
-      WEBHOOK_OFFSET = 0
-      autoload :CreateWebhookRequest, "unit/models/webhook/create_webhook_request"
-      autoload :ListWebhookParams, "unit/models/webhook/list_webhook_params"
-      autoload :PatchWebhookRequest, "unit/models/webhook/patch_webhook_request"
+    WEBHOOK_LIMIT = 100
+    WEBHOOK_OFFSET = 0
+    autoload :CreateWebhookRequest, "unit/models/webhook/create_webhook_request"
+    autoload :ListWebhookParams, "unit/models/webhook/list_webhook_params"
+    autoload :PatchWebhookRequest, "unit/models/webhook/patch_webhook_request"
 
+    class << self
       # Create a webhook
       # @see https://docs.unit.co/webhooks#create-webhook
       # @param label [String]

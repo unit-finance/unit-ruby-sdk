@@ -32,10 +32,10 @@ module Unit
             attributes: {
               label: label,
               url: url,
-              content_type: content_type,
+              contentType: content_type,
               token: token,
-              include_resources: include_resources,
-              subscription_type: subscription_type
+              includeResources: include_resources,
+              subscriptionType: subscription_type
             }
           }
         }

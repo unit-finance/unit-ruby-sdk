@@ -77,6 +77,7 @@ module Unit
               soleProprietorship: sole_proprietorship,
               passport: passport,
               nationality: nationality,
+              deviceFingerprints: device_fingerprints,
               idempotencyKey: idempotency_key,
               tags: tags,
               jwtSubject: jwt_subject,
