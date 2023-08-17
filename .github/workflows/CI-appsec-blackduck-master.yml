@@ -11,6 +11,13 @@ jobs:
     steps:
       - name: Checkout Source
         uses: actions/checkout@v3
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.6.8
+      - name: Install Dependencies
+        run: |
+          bundle install
 
       - name: Black Duck Intelligent Scan
         uses: synopsys-sig/synopsys-action@v1.2.0
