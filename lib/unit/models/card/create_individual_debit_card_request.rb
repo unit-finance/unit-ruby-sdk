@@ -5,7 +5,8 @@
 module Unit
   module Card
     class CreateIndividualDebitCardRequest
-      attr_reader :account_id, :customer_id, :shipping_address, :design, :additional_embossed_text, :idempotency_key, :tags, :limits, :print_only_business_name
+      attr_reader :account_id, :customer_id, :shipping_address, :design, :additional_embossed_text, :idempotency_key,
+                  :tags, :limits, :print_only_business_name, :expiry_date
 
       # @param account_id [String]
       # @param customer_id [String] - optional
@@ -16,8 +17,9 @@ module Unit
       # @param tags [Hash] - optional
       # @param limits [Hash] - optional
       # @param print_only_business_name [Boolean] - optional
+      # @param expiry_date [String] - optional
       def initialize(account_id, customer_id = nil, shipping_address = nil, design = nil, additional_embossed_text = nil,
-                     idempotency_key = nil, tags = nil, limits = nil, print_only_business_name = nil)
+                     idempotency_key = nil, tags = nil, limits = nil, print_only_business_name = nil, expiry_date = nil)
         @account_id = account_id
         @customer_id = customer_id
         @shipping_address = shipping_address
@@ -27,6 +29,7 @@ module Unit
         @tags = tags
         @limits = limits
         @print_only_business_name = print_only_business_name
+        @expiry_date = expiry_date
       end
 
       def to_json_api
@@ -40,7 +43,8 @@ module Unit
               "idempotencyKey": idempotency_key,
               "tags": tags,
               "limits": limits,
-              "printOnlyBusinessName": print_only_business_name
+              "printOnlyBusinessName": print_only_business_name,
+              "expiryDate": expiry_date
             },
             "relationships": {
               "account": Unit::Types::Relationship.new("depositAccount", account_id).to_hash
