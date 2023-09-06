@@ -6,11 +6,29 @@ module Unit
     CHECK_PAYMENT_OFFSET = 0
 
     autoload :GetRequest, "unit/models/check_payment/get_request"
+    autoload :OriginateCheckPaymentRequest, "unit/models/check_payment/originate_check_payment_request"
     autoload :ListPaymentParams, "unit/models/check_payment/list_check_payment_params"
     autoload :GetImageRequest, "unit/models/check_payment/get_image_request"
     autoload :ReturnCheckPaymentRequest, "unit/models/check_payment/return_check_payment_request"
 
     class << self
+      # Originate a check payment by id
+      # @see https://docs.unit.co/originate-check-payments/#check-payments
+      # @param account_id [String]
+      # @param customer_id [String]
+      # @param customer_type [String]
+      # @param amount [String]
+      # @param counterparty [CheckPaymentCounterparty]
+      # @param description [String]
+      # @param idempotency_key [String]
+      # @param memo [String] - optional
+      # @param send_date [String] - optional
+      # @param tags [Hash] - optional
+      def originate_check_payment(account_id:, customer_id:, customer_type:, amount:, counterparty:, description:, idempotency_key:, memo: nil, send_date: nil, tags: nil)
+        request = OriginateCheckPaymentRequest.new(account_id, customer_id, customer_type, amount, counterparty, description, idempotency_key, memo, send_date, tags)
+        Unit::Resource::CheckPaymentResource.originate_payment(request)
+      end
+
       # Get a check payment by id
       # @see https://docs.unit.co/check-payments#get-specific-check-payment
       # @param payment_id [String]

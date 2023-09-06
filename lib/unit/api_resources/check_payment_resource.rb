@@ -10,6 +10,15 @@ module Unit
   module Resource
     class CheckPaymentResource < Unit::Resource::BaseResource
       class << self
+        # Originate a check payment by calling Unit's API
+        # @param request [OriginateCheckPaymentRequest]
+        # @return [UnitResponse, UnitError]
+        def originate_payment(request)
+          payload = request.to_json_api
+          response = HttpHelper.post("#{api_url}/check-payments", body: payload, headers: headers)
+          response_handler(response)
+        end
+
         # Get a check payment by id by calling Unit's API
         # @param params [GetRequest]
         # @return [UnitResponse, UnitError]
