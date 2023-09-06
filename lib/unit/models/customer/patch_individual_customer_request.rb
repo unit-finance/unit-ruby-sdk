@@ -35,7 +35,7 @@ module Unit
               phone: phone&.represent,
               email: email,
               dba: dba,
-              authorized_users: authorized_users&.map(&:represent),
+              authorizedUsers: authorized_users&.map(&:represent),
               tags: tags
             }
           }
