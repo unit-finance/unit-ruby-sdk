@@ -69,6 +69,13 @@ module Unit
       def approve_payment_verification(payment_id:)
         Unit::Resource::CheckPaymentResource.approve_payment_verification(payment_id)
       end
+
+      # Cancel Check Payment
+      # @see https://docs.unit.co/originate-check-payments/#cancel-check-payment
+      # @param payment_id [String]
+      def cancel_check_payment(payment_id:)
+        Unit::Resource::CheckPaymentResource.cancel_payment(payment_id)
+      end
     end
   end
 end

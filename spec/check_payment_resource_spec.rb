@@ -27,5 +27,10 @@ RSpec.describe Unit::CheckPayment do
       response = Unit::CheckPayment.get_image(payment_id: "199", is_front_side: false)
       expect(response).to be_truthy
     end
+
+    it "cancels a check payment" do
+      response = Unit::CheckPayment.cancel_check_payment(payment_id: "199")
+      expect(response.data["type"]).to eq("checkPayment")
+    end
   end
 end
