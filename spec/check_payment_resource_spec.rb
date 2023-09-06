@@ -29,7 +29,7 @@ RSpec.describe Unit::CheckPayment do
     end
 
     it "cancels a check payment" do
-      response = Unit::CheckPayment.cancel_check_payment(payment_id: "199")
+      response = Unit::CheckPayment.cancel_check_payment(payment_id: "469")
       expect(response.data["type"]).to eq("checkPayment")
     end
   end
