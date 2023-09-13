@@ -368,7 +368,6 @@ puts check_payment["id"]
 ### Get a check payment by id
 
 ```ruby
-
 response = Unit::CheckPayment.get_payment(payment_id: "199")
 check_payment = response.data
 puts check_payment["id"]
