@@ -62,6 +62,14 @@ module Unit
           response = HttpHelper.post("#{api_url}/check-payments/#{payment_id}/approve", body: payload, headers: headers)
           response_handler(response)
         end
+
+        # Cancel check payment
+        # @param payment_id [String]
+        # @return [UnitResponse, UnitError]
+        def cancel_payment(payment_id)
+          response = HttpHelper.post("#{api_url}/check-payments/#{payment_id}/cancel", headers: headers)
+          response_handler(response)
+        end
       end
     end
   end
