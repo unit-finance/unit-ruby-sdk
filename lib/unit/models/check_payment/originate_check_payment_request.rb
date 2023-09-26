@@ -10,7 +10,7 @@ module Unit
       # @param account_id [String]
       # @param customer_id [String]
       # @param customer_type [String]
-      # @param amount [String]
+      # @param amount [Integer]
       # @param counterparty [CheckPaymentCounterparty]
       # @param description [String]
       # @param idempotency_key [String]
