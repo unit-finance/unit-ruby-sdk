@@ -8,6 +8,19 @@ RSpec.describe Unit::CheckPayment do
   end
 
   describe "check payments" do
+    it "should originate a check payment" do
+      response = Unit::CheckPayment.originate_check_payment(
+        account_id: "1862088",
+        customer_id: "1270728",
+        customer_type: "individualCustomer",
+        amount: 100,
+        counterparty: CHECK_PAYMENT_COUNTERPARTY,
+        description: "test",
+        idempotency_key: "test"
+      )
+      expect(response.data["type"]).to eq("checkPayment")
+    end
+
     it "should get a check payment by id" do
       response = Unit::CheckPayment.get_payment(payment_id: "199")
       expect(response.data["type"]).to eq("checkPayment")

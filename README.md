@@ -348,6 +348,23 @@ control_agreement = response.data
 puts control_agreement["id"]
 ```
 
+### Originate a check payment
+
+```ruby
+address = Unit::Types::Address.new('123 Main St', 'San Francisco', 'CA', '94205', 'US') 
+check_payment_counterparty = Unit::Types::CheckPaymentCounterparty.new("Jane Doe", address)
+response = Unit::CheckPayment.originate_check_payment(
+  account_id: "123",
+  customer_id: "123",
+  customer_type: "individualCustomer",
+  amount: 100,
+  counterparty: check_payment_counterparty,
+  description: "test",
+  idempotency_key: "test")
+check_payment = response.data
+puts check_payment["id"]
+```
+
 ### Get a check payment by id
 
 ```ruby
