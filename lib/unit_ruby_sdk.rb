@@ -66,6 +66,7 @@ module Unit
     autoload :EvaluationParams, "unit/types/evaluation_params"
     autoload :Counterparty, "unit/types/counterparty"
     autoload :WireCounterparty, "unit/types/wire_counterparty"
+    autoload :CheckPaymentCounterparty, "unit/types/check_payment_counterparty"
     autoload :FullName, "unit/types/full_name"
     autoload :Officer, "unit/types/officer"
     autoload :Phone, "unit/types/phone"
