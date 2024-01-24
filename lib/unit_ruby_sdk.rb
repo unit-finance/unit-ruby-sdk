@@ -15,6 +15,7 @@ module Unit
   autoload :CheckDeposit, "unit/models/check_deposit/check_deposit"
   autoload :Counterparty, "unit/models/counterparty/counterparty"
   autoload :RecurringPayment, "unit/models/recurring_payment/recurring_payment"
+  autoload :CashDeposit, "unit/models/cash_deposit/cash_deposit"
 
   module Resource
     autoload :ApplicationResource, "unit/api_resources/application_resource"
@@ -29,6 +30,7 @@ module Unit
     autoload :CheckDepositResource, "unit/api_resources/check_deposit_resource"
     autoload :CounterpartyResource, "unit/api_resources/counterparty_resource"
     autoload :RecurringPaymentResource, "unit/api_resources/recurring_payment_resource"
+    autoload :CashDepositResource, "unit/api_resources/cash_deposit_resource"
   end
 
   module Types
