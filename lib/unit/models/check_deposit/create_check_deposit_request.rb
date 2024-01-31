@@ -28,7 +28,7 @@ module Unit
               amount: amount,
               description: description,
               tags: tags,
-              idempotency_key: idempotency_key
+              idempotencyKey: idempotency_key
             },
             "relationships": {
               "account": Unit::Types::Relationship.new("account", account_id).to_hash
