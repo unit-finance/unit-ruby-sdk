@@ -76,8 +76,6 @@ module Unit
     autoload :RestrictedResource, "unit/types/restricted_resource"
     autoload :DocumentFileType, "unit/types/document_file_type"
     autoload :Coordinates, "unit/types/coordinates"
-    autoload :CreateSchedule, "unit/types/create_schedule"
-    autoload :CreateSchedule, "unit/types/create_schedule"
     autoload :TrustContact, "unit/types/trust_contact"
     autoload :Trustee, "unit/types/trustee"
     autoload :Grantor, "unit/types/grantor"
