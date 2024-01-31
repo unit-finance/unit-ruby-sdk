@@ -28,6 +28,7 @@ module Unit
   autoload :Authorization, "unit/models/authorization/authorization"
   autoload :AuthorizationRequest, "unit/models/authorization_request/authorization_request"
   autoload :RecurringPayment, "unit/models/recurring_payment/recurring_payment"
+  autoload :CashDeposit, "unit/models/cash_deposit/cash_deposit"
 
   module Resource
     autoload :ApplicationResource, "unit/api_resources/application_resource"
@@ -55,6 +56,7 @@ module Unit
     autoload :AuthorizationResource, "unit/api_resources/authorization_resource"
     autoload :AuthorizationRequestResource, "unit/api_resources/authorization_request_resource"
     autoload :RecurringPaymentResource, "unit/api_resources/recurring_payment_resource"
+    autoload :CashDepositResource, "unit/api_resources/cash_deposit_resource"
   end
 
   module Types
