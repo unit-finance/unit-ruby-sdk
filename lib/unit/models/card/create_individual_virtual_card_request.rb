@@ -5,21 +5,19 @@
 module Unit
   module Card
     class CreateIndividualVirtualCardRequest
-      attr_reader :account_id, :customer_id, :idempotency_key, :tags, :limits, :expiry_date
+      attr_reader :account_id, :customer_id, :idempotency_key, :tags, :limits
 
       # @param account_id [String]
       # @param customer_id [String] - optional
       # @param idempotency_key [String] - optional
       # @param tags [Hash] - optional
       # @param limits [Hash] - optional
-      # @param expiry_date [String] - optional
-      def initialize(account_id, customer_id = nil, idempotency_key = nil, tags = nil, limits = nil, expiry_date = nil)
+      def initialize(account_id, customer_id = nil, idempotency_key = nil, tags = nil, limits = nil)
         @account_id = account_id
         @customer_id = customer_id
         @idempotency_key = idempotency_key
         @tags = tags
         @limits = limits
-        @expiry_date = expiry_date
       end
 
       def to_json_api
@@ -29,8 +27,7 @@ module Unit
             "attributes": {
               "idempotencyKey": idempotency_key,
               "tags": tags,
-              "limits": limits,
-              "expiryDate": expiry_date
+              "limits": limits
             },
             "relationships": {
               "account": Unit::Types::Relationship.new("depositAccount", account_id).to_hash

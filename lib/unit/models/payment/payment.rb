@@ -14,9 +14,6 @@ module Unit
     autoload :ListPaymentParams, "unit/models/payment/list_payment_params"
     autoload :GetRequest, "unit/models/payment/get_request"
     autoload :BulkPaymentRequest, "unit/models/payment/bulk_payment_request"
-    autoload :CreateBatchReleaseRequest, "unit/models/payment/create_batch_release_request"
-    autoload :BatchReleaseRequestBuilder, "unit/models/payment/batch_release_request_builder"
-
     class << self
       # Create a new book payment by calling Unit's API
       # @see https://docs.unit.co/book-payments#book-payments
@@ -183,24 +180,6 @@ module Unit
       def create_bulk_payment(requests:)
         request = Unit::Payment::BulkPaymentRequest.serialize(requests)
         Unit::Resource::PaymentResource.create_bulk_payment(request)
-      end
-
-      # Create a batch release
-      # @see https://docs.unit.co/batch-payments/#create-batch-releases
-      # @param account_id [String]
-      # @param amount [Integer]
-      # @param description [String]
-      # @param sender_name [String]
-      # @param sender_address [Address]
-      # @param sender_account_number [String]
-      # @param tags [Hash] - optional
-      # @param idempotency_key [String] - optional
-      def create_batch_release(requests)
-        payload = BatchReleaseRequestBuilder.new
-        requests.each do |req|
-          payload.add_request(req[:account_id], req[:batch_account_id], req[:amount], req[:description], req[:sender_name], req[:sender_address], req[:sender_account_number], req[:tags], req[:idempotency_key])
-        end
-        Unit::Resource::PaymentResource.create_batch_release(payload.to_hash)
       end
     end
   end

@@ -35,7 +35,7 @@ RSpec.describe Unit::Payment do
       end
 
       it "creates ach payment with plaid token" do
-        response = described_class.create_ach_payment_with_plaid_token(account_id: "27573", amount: 1000, direction: "Credit", description: "test payment", plaid_processor_token: "processor-sandbox-1424a3b1-2b56-4d46-9e11-1fdc70fd3724")
+        response = described_class.create_ach_payment_with_plaid_token(account_id: "27573", amount: 1000, direction: "Credit", description: "test payment", plaid_processor_token: "processor-sandbox-fc8b9c23-b400-40f9-8ee8-c2cabd719721")
         expect(response.data["type"]).to eq("achPayment")
       end
 
@@ -63,19 +63,6 @@ RSpec.describe Unit::Payment do
       it "creates wire payment" do
         response = described_class.create_wire_payment(account_id: "27573", amount: 1000, description: "test payment", counterparty: WIRE_COUNTERPARTY)
         expect(response.data["type"]).to eq("wirePayment")
-      end
-    end
-
-    describe "batch release" do
-      let(:requests) do
-        [
-          { account_id: "49230", batch_account_id: "1296383", amount: 100, description: "Description 1", sender_name: "Sender Name 1", sender_address: ADDRESS, sender_account_number: "1234" },
-          { account_id: "49230", batch_account_id: "1296383", amount: 100, description: "Description 1", sender_name: "Sender Name 1", sender_address: ADDRESS, sender_account_number: "12324" }
-        ]
-      end
-      it "creates a batch release" do
-        response = described_class.create_batch_release(requests)
-        expect(response.data[0]["type"]).to eq("batchRelease")
       end
     end
   end

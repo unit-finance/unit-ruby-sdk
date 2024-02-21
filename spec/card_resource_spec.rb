@@ -13,15 +13,9 @@ RSpec.describe Unit::Card do
     let(:frozen_card_id) { described_class.list_cards(limit: 10, offset: 0, status: %w[Frozen]).data[0]["id"] }
     let(:create_deposit_account) { Unit::Account::Deposit.create_deposit_account(deposit_product: "checking", tags: { "purpose": "checking" }, relationships: RELATIONSHIPS) }
     let(:create_debit_response) { described_class.create_individual_debit_card(account_id: create_deposit_account.data["id"]) }
-    let(:create_credit_account) { Unit::Account::Credit.create_credit_account(credit_terms: "credit_terms_test", credit_limit: 20_000, customer_id: "851228", tags: { "purpose": "tax" }) }
-
     let(:account_for_business) { Unit::Account::Deposit.create_deposit_account(deposit_product: "checking", tags: { "purpose": "checking" }, relationships: RELATIONSHIPS_BUSINESS).data["id"] }
     let(:business_debit_response) { described_class.create_business_debit_card(account_id: account_for_business, full_name: FULL_NAME, date_of_birth: DATE_OF_BIRTH, address: ADDRESS, phone: PHONE, email: EMAIL) }
     let(:business_virtual_response) { described_class.create_business_virtual_card(account_id: account_for_business, full_name: FULL_NAME, date_of_birth: DATE_OF_BIRTH, address: ADDRESS, phone: PHONE, email: EMAIL) }
-    let(:business_credit_response) { described_class.create_business_credit_card(account_id: create_credit_account.data["id"], full_name: FULL_NAME, date_of_birth: DATE_OF_BIRTH, address: ADDRESS, phone: PHONE, email: EMAIL) }
-
-    let(:business_credit_virtual_response) { described_class.create_business_virtual_credit_card(account_id: create_credit_account.data["id"], full_name: FULL_NAME, date_of_birth: DATE_OF_BIRTH, address: ADDRESS, phone: PHONE, email: EMAIL) }
-
     let(:create_virtual_response) { described_class.create_individual_virtual_card(account_id: create_deposit_account.data["id"]) }
     let(:activate_card_response) { described_class.activate(card_id: list_inactive_cards.data[2]["id"]) }
 
@@ -39,30 +33,6 @@ RSpec.describe Unit::Card do
 
     it "creates individual virtual card" do
       expect(create_virtual_response.data["type"]).to eq("individualVirtualDebitCard")
-    end
-
-    it "creates a business credit card" do
-      expect(business_credit_response.data["type"]).to eq("businessCreditCard")
-    end
-
-    it "creates a business virtual credit card" do
-      expect(business_credit_virtual_response.data["type"]).to eq("businessVirtualCreditCard")
-    end
-
-    it "updates a business virtual credit card" do
-      expect(described_class.update_business_virtual_credit_card(card_id: business_credit_virtual_response.data["id"], tags: { purpose: "test" }).data["type"]).to eq("businessVirtualCreditCard")
-    end
-
-    it "updates a business virtual debit card" do
-      expect(described_class.update_business_virtual_debit_card(card_id: business_virtual_response.data["id"], tags: { purpose: "test" }).data["type"]).to eq("businessVirtualDebitCard")
-    end
-
-    it "updates a business debit card" do
-      expect(described_class.update_business_debit_card(card_id: business_debit_response.data["id"], tags: { purpose: "test" }).data["type"]).to eq("businessDebitCard")
-    end
-
-    it "updates a business credit card" do
-      expect(described_class.update_business_credit_card(card_id: business_credit_response.data["id"], tags: { purpose: "test" }).data["type"]).to eq("businessCreditCard")
     end
 
     it "gets pin status" do

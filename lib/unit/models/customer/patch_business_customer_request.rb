@@ -34,7 +34,7 @@ module Unit
               address: address&.represent,
               phone: phone&.represent,
               contact: contact&.represent,
-              authorizedUsers: authorized_users&.map(&:represent),
+              authorized_users: authorized_users&.map(&:represent),
               dba: dba,
               tags: tags
             }

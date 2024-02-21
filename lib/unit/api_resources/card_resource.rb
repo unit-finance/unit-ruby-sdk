@@ -83,14 +83,6 @@ module Unit
           response_handler(response)
         end
 
-        # Update card by calling Unit's API
-        # @param request [PatchBusinessCardRequest, PatchBusinessCreditCardRequest, PatchBusinessVirtualCardRequest, PatchBusinessVirtualCreditCardRequest]
-        def update(request)
-          payload = request.to_json_api
-          response = HttpHelper.patch("#{api_url}/cards/#{request.card_id}", headers: headers, body: payload)
-          response_handler(response)
-        end
-
         # List cards by calling Unit's API
         # @param params [ListCardParams]
         # @return [UnitResponse, UnitError]

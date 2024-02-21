@@ -8,14 +8,14 @@ module Unit
 
       def initialize(use_selfie_verification = nil, required_verification = nil)
         @use_selfie_verification = use_selfie_verification
-        @required_verification = required_verification
+        @required_verificaion = required_verification
       end
 
       def represent
         {
-          useSelfieVerification: use_selfie_verification,
-          requiredVerification: required_verification
-        }.compact!
+          use_selfie_verification: use_selfie_verification,
+          required_verification: required_verification
+        }
       end
     end
   end

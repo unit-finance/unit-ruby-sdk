@@ -3,7 +3,7 @@
 # Represents a response from Unit's API
 module Unit
   class UnitResponse
-    attr_reader :data, :included, :meta
+    attr_reader :data, :included
 
     # @param data [Hash] The JSON API payload
     # @param included [Array] The JSON API payload
