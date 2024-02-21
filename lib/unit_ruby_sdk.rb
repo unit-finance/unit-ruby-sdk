@@ -28,6 +28,7 @@ module Unit
   autoload :AuthorizationRequest, "unit/models/authorization_request/authorization_request"
   autoload :RecurringPayment, "unit/models/recurring_payment/recurring_payment"
   autoload :TaxForm, "unit/models/tax_form/tax_form"
+  autoload :CashDeposit, "unit/models/cash_deposit/cash_deposit"
 
   module Resource
     autoload :ApplicationResource, "unit/api_resources/application_resource"
@@ -55,6 +56,7 @@ module Unit
     autoload :AuthorizationRequestResource, "unit/api_resources/authorization_request_resource"
     autoload :RecurringPaymentResource, "unit/api_resources/recurring_payment_resource"
     autoload :TaxFormResource, "unit/api_resources/tax_form_resource"
+    autoload :CashDepositResource, "unit/api_resources/cash_deposit_resource"
   end
 
   module Types
