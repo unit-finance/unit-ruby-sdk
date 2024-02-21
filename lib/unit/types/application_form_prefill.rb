@@ -50,7 +50,6 @@ module Unit
                      source_of_income = nil, business_vertical = nil,
                      annual_revenue = nil, number_of_employees = nil, cash_flow = nil, year_of_incorporation = nil,
                      countries_of_operation = nil, stock_symbol = nil, has_non_us_entities = nil, jwt_subject = nil)
-
         @application_type = application_type
         @full_name = full_name
         @ssn = ssn

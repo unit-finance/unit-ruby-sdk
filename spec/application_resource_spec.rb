@@ -34,7 +34,6 @@ RSpec.describe Unit::Application do
       ssn: "123456789", full_name: FULL_NAME, date_of_birth: Date.new(1989, 2, 1), address: ADDRESS, email: EMAIL, phone: PHONE,
       occupation: "ArchitectOrEngineer", annual_income: "UpTo10k", source_of_income: "EmploymentOrPayrollIncome"
     )
-    p response
     expect(response.data["type"]).to eq "individualApplication"
   end
 
