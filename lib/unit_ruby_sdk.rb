@@ -18,6 +18,7 @@ module Unit
   autoload :AtmLocation, "unit/models/atm_location/atm_location"
   autoload :CheckDeposit, "unit/models/check_deposit/check_deposit"
   autoload :Counterparty, "unit/models/counterparty/counterparty"
+  autoload :RecurringPayment, "unit/models/recurring_payment/recurring_payment"
   autoload :Institution, "unit/models/institution/institution"
   autoload :Repayment, "unit/models/repayment/repayment"
   autoload :Event, "unit/models/event/event"
@@ -27,7 +28,6 @@ module Unit
   autoload :Authorization, "unit/models/authorization/authorization"
   autoload :AuthorizationRequest, "unit/models/authorization_request/authorization_request"
   autoload :RecurringPayment, "unit/models/recurring_payment/recurring_payment"
-  autoload :TaxForm, "unit/models/tax_form/tax_form"
   autoload :CashDeposit, "unit/models/cash_deposit/cash_deposit"
 
   module Resource
@@ -46,6 +46,7 @@ module Unit
     autoload :AtmLocationResource, "unit/api_resources/atm_location_resource"
     autoload :CheckDepositResource, "unit/api_resources/check_deposit_resource"
     autoload :CounterpartyResource, "unit/api_resources/counterparty_resource"
+    autoload :RecurringPaymentResource, "unit/api_resources/recurring_payment_resource"
     autoload :InstitutionResource, "unit/api_resources/institution_resource"
     autoload :RepaymentResource, "unit/api_resources/repayment_resource"
     autoload :EventResource, "unit/api_resources/event_resource"
@@ -55,7 +56,6 @@ module Unit
     autoload :AuthorizationResource, "unit/api_resources/authorization_resource"
     autoload :AuthorizationRequestResource, "unit/api_resources/authorization_request_resource"
     autoload :RecurringPaymentResource, "unit/api_resources/recurring_payment_resource"
-    autoload :TaxFormResource, "unit/api_resources/tax_form_resource"
     autoload :CashDepositResource, "unit/api_resources/cash_deposit_resource"
   end
 
@@ -78,6 +78,7 @@ module Unit
     autoload :RestrictedResource, "unit/types/restricted_resource"
     autoload :DocumentFileType, "unit/types/document_file_type"
     autoload :Coordinates, "unit/types/coordinates"
+    autoload :CreateSchedule, "unit/types/create_schedule"
     autoload :TrustContact, "unit/types/trust_contact"
     autoload :Trustee, "unit/types/trustee"
     autoload :Grantor, "unit/types/grantor"
