@@ -25,7 +25,8 @@ module Unit
               type: "depositAccount",
               attributes: {
                 depositProduct: deposit_product,
-                tags: tags
+                tags: tags,
+                idempotencyKey: idempotency_key
               },
               relationships: relationships
             }
