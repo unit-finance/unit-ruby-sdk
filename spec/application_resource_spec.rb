@@ -31,7 +31,8 @@ RSpec.describe Unit::Application do
 
   it "Should create individual application" do
     response = described_class.create_individual_application(
-      ssn: "123456789", full_name: FULL_NAME, date_of_birth: Date.new(1989, 2, 1), address: ADDRESS, email: EMAIL, phone: PHONE
+      ssn: "123456789", full_name: FULL_NAME, date_of_birth: Date.new(1989, 2, 1), address: ADDRESS, email: EMAIL, phone: PHONE,
+      occupation: "ArchitectOrEngineer", annual_income: "UpTo10k", source_of_income: "EmploymentOrPayrollIncome"
     )
     expect(response.data["type"]).to eq "individualApplication"
   end
