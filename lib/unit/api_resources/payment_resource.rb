@@ -53,6 +53,15 @@ module Unit
           response = HttpHelper.get("#{api_url}/payments", params: payload, headers: headers)
           response_handler(response)
         end
+
+        # Create a new batch release by calling Unit's API
+        # @param request [BatchReleaseRequestBuilder]
+        # @return [UnitResponse, UnitError]
+        def create_batch_release(request)
+          payload = request.to_hash.to_json
+          response = HttpHelper.post("#{api_url}/batch-releases", body: payload, headers: headers)
+          response_handler(response)
+        end
       end
     end
   end

@@ -35,7 +35,7 @@ module Unit
               "amount": amount,
               "description": description,
               "schedule": schedule&.represent,
-              "transaction_summary_override": transaction_summary_override,
+              "transactionSummaryOverride": transaction_summary_override,
               "idempotencyKey": idempotency_key,
               "tags": tags
             },

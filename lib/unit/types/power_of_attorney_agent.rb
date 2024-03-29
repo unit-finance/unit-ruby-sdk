@@ -1,27 +1,21 @@
 # frozen_string_literal: true
 
-require_relative "full_name"
-require_relative "address"
-require_relative "phone"
-
 module Unit
   module Types
     class PowerOfAttorneyAgent
-      attr_reader :status, :full_name, :ssn, :passport, :nationality,
+      attr_reader :full_name, :ssn, :passport, :nationality,
                   :date_of_birth, :address, :phone, :email, :jwt_subject
 
-      # @param [String] status
       # @param [FullName] full_name
       # @param [String] ssn
-      # @param [String] passport
       # @param [String] nationality
       # @param [Date] date_of_birth
       # @param [Address] address
       # @param [Phone] phone
       # @param [String] email
-      # @param [String] jwt_subject
-      def initialize(status, full_name, ssn, passport, nationality, date_of_birth, address, phone, email, jwt_subject)
-        @status = status
+      # @param [String] passport - optional
+      # @param [String] jwt_subject - optional
+      def initialize(full_name, ssn, nationality, date_of_birth, address, phone, email, passport = nil, jwt_subject = nil)
         @full_name = full_name
         @ssn = ssn
         @passport = passport
@@ -35,7 +29,6 @@ module Unit
 
       def represent
         {
-          status: status,
           fullName: full_name.represent,
           ssn: ssn,
           passport: passport,
@@ -45,7 +38,7 @@ module Unit
           phone: phone.represent,
           email: email,
           jwtSubject: jwt_subject
-        }
+        }.compact!
       end
     end
   end
