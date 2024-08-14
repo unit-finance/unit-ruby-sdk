@@ -29,21 +29,20 @@ module SpecHelper
     stub_const("CHECK_PAYMENT_COUNTERPARTY", Unit::Types::CheckPaymentCounterparty.new("Jane Doe", ADDRESS))
     stub_const("WIRE_COUNTERPARTY", Unit::Types::WireCounterparty.new("Jane Doe", "27573", "812345678", ADDRESS))
     stub_const("APPLICATION_TYPES", %w[individualApplication businessApplication trustApplication].freeze)
-    stub_const("APPLICATION_FORM_PREFILL", Unit::Types::ApplicationFormPrefill.new("Individual", FULL_NAME, SSN, nil, "US", DATE_OF_BIRTH, EMAIL, "Pied Piper", "DE", "Corporation", CONTACT, OFFICER, BENEFICIAL_OWNERS, "https://www.piedpiper.com", "Piedpiper Inc", "123456789", INDUSTRY, ADDRESS, PHONE))
+    stub_const("APPLICATION_FORM_PREFILL", Unit::Types::ApplicationFormPrefill.new("Individual", FULL_NAME, SSN, nil, "US", DATE_OF_BIRTH, EMAIL, "Pied Piper", "DE", "Corporation", CONTACT, OFFICER, BENEFICIAL_OWNERS, "https://www.piedpiper.com", "Piedpiper Inc",
+                                                                                   "123456789", INDUSTRY, ADDRESS, PHONE))
     stub_const("SETTINGS_OVERRIDE", Unit::Types::ApplicationFormSettingsOverride.new("https://www.unit.co", "https://www.unit.co"))
     stub_const("REQUIRE_ID_VERIFICATION", Unit::Types::RequireIdVerification.new(false, false, true))
     stub_const("RELATIONSHIPS", { "customer": Unit::Types::Relationship.new("customer", "751009").to_hash })
     stub_const("RELATIONSHIPS_BUSINESS", { "customer": Unit::Types::Relationship.new("customer", "798787").to_hash })
     stub_const("OWNERS", %w[751009 760549])
     stub_const("RESTRICTED_RESOURCE", Unit::Types::RestrictedResource.new(["27573"], "account").to_json_api)
-    stub_const("TRUSTEES", [Unit::Types::Trustee.new(FULL_NAME, SSN, EMAIL, PHONE, ADDRESS, DATE_OF_BIRTH).represent])
-    stub_const("TRUST_CONTACT", Unit::Types::TrustContact.new(FULL_NAME, EMAIL, PHONE, ADDRESS))
-    stub_const("GRANTOR", Unit::Types::Grantor.new(FULL_NAME, SSN, EMAIL, PHONE, ADDRESS, DATE_OF_BIRTH))
-    stub_const("BENEFICIARIES", [Unit::Types::Beneficiary.new(FULL_NAME, DATE_OF_BIRTH).represent])
     stub_const("SCHEDULE", Unit::Types::CreateSchedule.new("Monthly", 3))
     stub_const("UNIT_API_URL", "https://api.s.unit.sh")
     stub_const("UNIT_TOKEN", ENV["USER_TOKEN"])
-    Unit.config(api_url: UNIT_API_URL, token: UNIT_TOKEN)
+    Unit.config(api_url: UNIT_API_URL, token:
+      'v2.public.eyJyb2xlIjoiYWRtaW4iLCJ1c2VySWQiOiI0MTQ4Iiwic3ViIjoic29sb21paWFAY29kaWZ5LmlvIiwiZXhwIjoiMjAyNS0wMy0xM1QwODo1MToyNC42ODNaIiwianRpIjoiMzAzMTMzIiwib3JnSWQiOiIxMjYiLCJzY29wZSI6ImFwcGxpY2F0aW9ucyBhcHBsaWNhdGlvbnMtd3JpdGUgY3VzdG9tZXJzIGN1c3RvbWVycy13cml0ZSBjdXN0b21lci10YWdzLXdyaXRlIGN1c3RvbWVyLXRva2VuLXdyaXRlIGFjY291bnRzIGFjY291bnRzLXdyaXRlIGNhcmRzIGNhcmRzLXdyaXRlIGNhcmRzLXNlbnNpdGl2ZSBjYXJkcy1zZW5zaXRpdmUtd3JpdGUgdHJhbnNhY3Rpb25zIHRyYW5zYWN0aW9ucy13cml0ZSBhdXRob3JpemF0aW9ucyBzdGF0ZW1lbnRzIHBheW1lbnRzIHBheW1lbnRzLXdyaXRlIHBheW1lbnRzLXdyaXRlLWNvdW50ZXJwYXJ0eSBwYXltZW50cy13cml0ZS1saW5rZWQtYWNjb3VudCBhY2gtcGF5bWVudHMtd3JpdGUgd2lyZS1wYXltZW50cy13cml0ZSByZXBheW1lbnRzIHJlcGF5bWVudHMtd3JpdGUgcGF5bWVudHMtd3JpdGUtYWNoLWRlYml0IGNvdW50ZXJwYXJ0aWVzIGNvdW50ZXJwYXJ0aWVzLXdyaXRlIGJhdGNoLXJlbGVhc2VzIGJhdGNoLXJlbGVhc2VzLXdyaXRlIGxpbmtlZC1hY2NvdW50cyBsaW5rZWQtYWNjb3VudHMtd3JpdGUgd2ViaG9va3Mgd2ViaG9va3Mtd3JpdGUgZXZlbnRzIGV2ZW50cy13cml0ZSBhdXRob3JpemF0aW9uLXJlcXVlc3RzIGF1dGhvcml6YXRpb24tcmVxdWVzdHMtd3JpdGUgY2FzaC1kZXBvc2l0cyBjYXNoLWRlcG9zaXRzLXdyaXRlIGNoZWNrLWRlcG9zaXRzIGNoZWNrLWRlcG9zaXRzLXdyaXRlIHJlY2VpdmVkLXBheW1lbnRzIHJlY2VpdmVkLXBheW1lbnRzLXdyaXRlIGRpc3B1dGVzIGNoYXJnZWJhY2tzIGNoYXJnZWJhY2tzLXdyaXRlIHJld2FyZHMgcmV3YXJkcy13cml0ZSBjaGVjay1wYXltZW50cyBjaGVjay1wYXltZW50cy13cml0ZSBjcmVkaXQtZGVjaXNpb25zIGNyZWRpdC1kZWNpc2lvbnMtd3JpdGUgbGVuZGluZy1wcm9ncmFtcyBsZW5kaW5nLXByb2dyYW1zLXdyaXRlIGNyZWRpdC1hcHBsaWNhdGlvbnMgY3JlZGl0LWFwcGxpY2F0aW9ucy13cml0ZSIsIm9yZyI6IlNESyIsInNvdXJjZUlwIjoiIiwidXNlclR5cGUiOiJvcmciLCJpc1VuaXRQaWxvdCI6ZmFsc2V9uHGOiLd2BlGfSlsERcvW9xfdtA7iKuU1d-ZPf2z1Xdi8OaG8zPfPqjDatYSpMvm1GNpo6_mHMuv7cADa-GfRCg')
+
   end
 
   def get_document_contents

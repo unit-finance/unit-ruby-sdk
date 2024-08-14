@@ -63,40 +63,6 @@ upload_document_request = Unit::Application.upload_document(
 puts upload_document_request.data["id"]
 ```
 
-### Creating a trust application
-
-```ruby
-full_name = Unit::Types::FullName.new('John', 'Doe')
-date_of_birth = '1980-08-10'
-address = Unit::Types::Address.new('123 Main St', 'San Francisco', 'CA', '94205', 'US')
-phone = Unit::Types::Phone.new('380', '555123222')
-email = 'jone.doe@unit-finance.com'
-ssn = '123456789'
-trust_contact = Unit::Types::TrustContact.new(full_name, email, phone, address)
-beneficiaries = [Unit::Types::Beneficiary.new(full_name, date_of_birth).represent]
-grantor = Unit::Types::Grantor.new(full_name, ssn, email, phone, address, date_of_birth)
-trustees = [Unit::Types::Trustee.new(full_name, ssn, email, phone, address, date_of_birth).represent]
-
-response = Unit::Application.create_trust_application(
-  name: "Trust me Inc.",
-  state_of_incorporation: "CA",
-  revocability: "Revocable",
-  source_of_funds: "Salary",
-  tax_id: "123456789",
-  grantor: grantor,
-  trustees: trustees,
-  beneficiaries: beneficiaries,
-  contact: trust_contact,
-  ip: "127.0.0.2",
-  tags: {
-    "userId": "106a75e9-de77-4e25-9561-faffe59d7814"
-  },
-  idempotency_key: "3a1a33be-4e12-4603-9ed0-820922389fb8")
-
-trust_application = response.data
-puts trust_application["id"]
-```
-
 ### Creating a deposit account request
 
 ```ruby
