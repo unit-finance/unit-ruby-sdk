@@ -66,12 +66,12 @@ RSpec.describe Unit::Application do
   end
 
   it "Should upload document" do
-    response = described_class.upload_document(application_id: "836683", document_id: "125215", file: get_document_contents, file_type: "pdf")
+    response = described_class.upload_document(application_id: "2624618", document_id: "541996", file: get_document_contents, file_type: "pdf")
     expect(response.data["type"]).to eq "document"
   end
 
   it "Should upload document back" do
-    response = described_class.upload_document(application_id: "836683", document_id: "125214", file: get_document_contents, file_type: Unit::Types::DocumentFileType::PDF, is_back_side: true)
+    response = described_class.upload_document(application_id: "2624618", document_id: "541996", file: get_document_contents, file_type: Unit::Types::DocumentFileType::PDF, is_back_side: true)
     expect(response.data["type"]).to eq "document"
   end
 

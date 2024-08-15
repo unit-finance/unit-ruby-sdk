@@ -9,8 +9,8 @@ RSpec.describe Unit::Event do
 
   describe "event requests" do
     it "gets an event" do
-      response = described_class.get_event(event_id: "15543784")
-      expect(response.data["type"]).to eq("transaction.created")
+      response = described_class.get_event(event_id: "31769928")
+      expect(response.data["type"]).to eq("account.created")
     end
 
     it "lists events" do
@@ -19,7 +19,7 @@ RSpec.describe Unit::Event do
     end
 
     it "fires an event" do
-      response = described_class.fire_event(event_id: "15543784")
+      response = described_class.fire_event(event_id: "31769928")
       expect(response.data).to be_nil
     end
   end
