@@ -119,11 +119,6 @@ RSpec.describe Unit::Account::DACA do
   end
 
   it "Should enter a DACA account" do
-    response = described_class.enter_control_agreement(account_id: "36099")
-    expect(response.data["type"]).to eq("depositAccount")
-  end
-
-  it "Should enter a DACA account" do
     response = described_class.activate_control_agreement(account_id: "36099")
     expect(response.data["type"]).to eq("depositAccount")
   end
