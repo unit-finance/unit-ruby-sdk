@@ -14,7 +14,7 @@ RSpec.describe Unit::CashDeposit do
     let(:coordinates) { Unit::Types::Coordinates.new(40.730610, -71.935242) }
 
     it "should generate a barcode for cash deposit" do
-      store_id = "2433"
+      store_id = "2481"
       response = Unit::CashDeposit.generate_barcode(store_id: store_id, account_id: account_id, customer_id: customer_id)
       expect(response.data["type"]).to eq("cashDepositBarcode")
     end

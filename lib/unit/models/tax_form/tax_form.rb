@@ -7,7 +7,6 @@ module Unit
     autoload :ListTaxFormParams, "unit/models/tax_form/list_tax_form_params"
 
     class << self
-
       # List tax forms
       # @see https://unit.co/docs/api/tax-forms/#list-tax-forms
       # @param limit [Integer]
