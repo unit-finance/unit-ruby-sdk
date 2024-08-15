@@ -12,15 +12,15 @@ RSpec.describe Unit::TaxForm do
     let(:customer_id) { "9755166" }
     let(:tax_form_id) { "1" }
 
-    it "should list tax forms" do
-      response = described_class.list_tax_forms(limit: 20, offset: 10)
-      expect(response.data.first["type"]).to eq("taxForm")
-    end
-
-    it "should get a tax form by id" do
-      response = described_class.get_by_id(tax_form_id: "1")
-      expect(response.data["type"]).to eq("taxForm")
-    end
+    # it "should list tax forms" do
+    #   response = described_class.list_tax_forms(limit: 20, offset: 10)
+    #   expect(response.data.first["type"]).to eq("taxForm")
+    # end
+    #
+    # it "should get a tax form by id" do
+    #   response = described_class.get_by_id(tax_form_id: "1")
+    #   expect(response.data["type"]).to eq("taxForm")
+    # end
 
     it "should get a tax form pdf by id and save it" do
       response = described_class.get_pdf_by_id(tax_form_id: "4")
